@@ -6,6 +6,7 @@ use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Guesser\TypeMetadataBuildingTrait;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\ETL\Metadata\Type;
 use Kiboko\Component\ETL\Metadata\TypeMetadata;
 use Phpactor\Docblock\DocblockFactory;
 use Phpactor\Docblock\DocblockType;
@@ -68,7 +69,7 @@ class DocblockTypeGuesser implements TypeGuesser
                 return new ScalarTypeMetadata($type);
             }
 
-            if (in_array($iterated, self::$builtInTypes)) {
+            if (in_array($iterated, Type::$builtInTypes)) {
                 return new ListTypeMetadata(
                     $this->simpleType($iterated, $isFullyQualified, $reflector)
                 );
