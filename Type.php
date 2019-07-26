@@ -28,6 +28,21 @@ class Type
         'null'
     ];
 
+    /**
+     * @param TypeMetadata[] $left
+     * @param TypeMetadata[] $right
+     *
+     * @return TypeMetadata[]
+     */
+    public static function subsetOf(iterable $left, iterable $right): iterable
+    {
+        foreach ($left as $type) {
+            if (self::isOneOf($type, $right)) {
+                yield $type;
+            }
+        }
+    }
+
     public static function isOneOf(TypeMetadata $expected, TypeMetadata ...$actual): bool
     {
         foreach ($actual as $type) {
