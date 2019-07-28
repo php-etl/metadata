@@ -32,7 +32,7 @@ class ClassMetadataBuilder
 
     public function build(\Reflector $classOrObject)
     {
-        if (!$classOrObject instanceof \ReflectionClass ||
+        if (!$classOrObject instanceof \ReflectionClass &&
             !$classOrObject instanceof \ReflectionObject
         ) {
             throw new \InvalidArgumentException('Expected object of type \\ReflectionClass or \\ReflectionObject.');
