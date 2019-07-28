@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class ClassMetadata implements TypeMetadata
+final class ClassMetadata implements CompositeTypeMetadata
 {
     /** @var string */
     public $namespace;

@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class CollectionTypeMetadata implements CompositeTypeMetadata
+final class CollectionTypeMetadata implements IterableTypeMetadata
 {
     /** @var ClassTypeMetadata */
     public $type;
