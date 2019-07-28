@@ -41,6 +41,8 @@ class CompositeTypeGuesser implements TypeGuesser
             yield from ($this->php74Guesser)($class, $reflector->getReturnType());
         }
 
-        yield from ($this->docblockGuesser)($class, $reflector);
+        if ($reflector instanceof \ReflectionMethod || $reflector instanceof \ReflectionProperty) {
+            yield from ($this->docblockGuesser)($class, $reflector);
+        }
     }
 }
