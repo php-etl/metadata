@@ -57,8 +57,10 @@ class Type
 
     public static function is(TypeMetadata $expected, TypeMetadata $actual): bool
     {
-        if ($expected instanceof ClassMetadata && $actual instanceof ClassMetadata) {
-            return is_a($expected->name, $actual->name);
+        if (($expected instanceof ClassTypeMetadata || $expected instanceof ClassReferenceMetadata) &&
+            ($actual instanceof ClassTypeMetadata || $actual instanceof ClassReferenceMetadata)
+        ) {
+            return is_a((string) $expected, (string) $actual);
         }
         if ($expected instanceof ListTypeMetadata && $actual instanceof ListTypeMetadata) {
             return self::is($expected->inner, $actual->inner);

@@ -7,7 +7,7 @@ use Phpactor\Docblock\DocblockFactory;
 
 class ClassMetadataBuilder
 {
-    public function buildFromFQCN(string $className): ClassMetadata
+    public function buildFromFQCN(string $className): ClassTypeMetadata
     {
         try {
             return $this->build(new \ReflectionClass($className));
@@ -25,12 +25,12 @@ class ClassMetadataBuilder
         }
     }
 
-    public function buildFromObject(object $object): ClassMetadata
+    public function buildFromObject(object $object): ClassTypeMetadata
     {
         return $this->build(new \ReflectionObject($object));
     }
 
-    public function build(\Reflector $classOrObject)
+    public function build(\Reflector $classOrObject): ClassTypeMetadata
     {
         if (!$classOrObject instanceof \ReflectionClass &&
             !$classOrObject instanceof \ReflectionObject
@@ -41,9 +41,9 @@ class ClassMetadataBuilder
         try {
             $fqcn = $classOrObject->getName();
             if (($index = strrpos($fqcn, '\\')) === false) {
-                $object = new ClassMetadata($fqcn);
+                $object = new ClassTypeMetadata($fqcn);
             } else {
-                $object = new ClassMetadata(
+                $object = new ClassTypeMetadata(
                     substr($fqcn, $index + 1),
                     substr($fqcn, 0, $index)
                 );
@@ -73,6 +73,7 @@ class ClassMetadataBuilder
                         new ArgumentMetadataList(...array_map(function(\ReflectionParameter $parameter) use($typeGuesser, $classOrObject) {
                             return new ArgumentMetadata(
                                 $parameter->getName(),
+                                $parameter->isVariadic(),
                                 ...$typeGuesser($classOrObject, $parameter)
                             );
                         }, $method->getParameters())),

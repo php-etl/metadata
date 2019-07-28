@@ -3,8 +3,8 @@
 namespace spec\Kiboko\Component\ETL\Metadata;
 
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassMetadata;
 use Kiboko\Component\ETL\Metadata\ClassMetadataBuilder;
+use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
@@ -16,21 +16,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     public function getMatchers(): array
     {
         return [
-            'havePropertyCount' => function (ClassMetadata $subject) {
+            'havePropertyCount' => function (ClassTypeMetadata $subject) {
                 return count($subject->properties);
             },
-            'haveCompositedPropertyIsInstanceOf' => function (ClassMetadata $subject, string $property, string $class) {
+            'haveCompositedPropertyIsInstanceOf' => function (ClassTypeMetadata $subject, string $property, string $class) {
                 foreach ($subject->properties[$property]->types as $typeDeclaration) {
                     if ($typeDeclaration instanceof ListTypeMetadata &&
-                        $typeDeclaration->inner instanceof ClassTypeMetadata &&
-                        is_a($typeDeclaration->inner->name, $class, true)
+                        ($typeDeclaration->inner instanceof ClassTypeMetadata || $typeDeclaration->inner instanceof ClassReferenceMetadata) &&
+                        is_a((string) $typeDeclaration->inner, $class, true)
                     ) {
                         return true;
                     }
 
                     if ($typeDeclaration instanceof CollectionTypeMetadata &&
-                        $typeDeclaration->type instanceof ClassTypeMetadata &&
-                        is_a($typeDeclaration->type->name, $class, true)
+                        ($typeDeclaration->type instanceof ClassTypeMetadata || $typeDeclaration->type instanceof ClassReferenceMetadata) &&
+                        is_a((string) $typeDeclaration->type, $class, true)
                     ) {
                         return true;
                     }
@@ -38,7 +38,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'haveCompositedPropertyIsType' => function (ClassMetadata $subject, string $property, string $type) {
+            'haveCompositedPropertyIsType' => function (ClassTypeMetadata $subject, string $property, string $type) {
                 foreach ($subject->properties[$property]->types as $typeDeclaration) {
                     if ($typeDeclaration instanceof ListTypeMetadata &&
                         $typeDeclaration->inner instanceof ScalarTypeMetadata &&
@@ -57,7 +57,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'haveCompositedProperty' => function (ClassMetadata $subject, string $property) {
+            'haveCompositedProperty' => function (ClassTypeMetadata $subject, string $property) {
                 foreach ($subject->properties[$property]->types as $typeDeclaration) {
                     if ($typeDeclaration instanceof ListTypeMetadata || $typeDeclaration instanceof CollectionTypeMetadata) {
                         return true;
@@ -66,10 +66,11 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'havePropertyIsInstanceOf' => function (ClassMetadata $subject, string $property, string $class) {
+            'havePropertyIsInstanceOf' => function (ClassTypeMetadata $subject, string $property, string $class) {
                 foreach ($subject->properties[$property]->types as $typeDeclaration) {
-                    if (($typeDeclaration instanceof ClassTypeMetadata && is_a($typeDeclaration->name, $class, true)) ||
-                        ($typeDeclaration instanceof CollectionTypeMetadata && is_a($typeDeclaration->type->name, $class, true))
+                    if (($typeDeclaration instanceof ClassTypeMetadata && is_a((string) $typeDeclaration, $class, true)) ||
+                        ($typeDeclaration instanceof ClassReferenceMetadata && is_a((string) $typeDeclaration, $class, true)) ||
+                        ($typeDeclaration instanceof CollectionTypeMetadata && is_a((string) $typeDeclaration->type, $class, true))
                     ) {
                         return true;
                     }
@@ -77,10 +78,11 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'havePropertyIsType' => function (ClassMetadata $subject, string $property, string $type) {
+            'havePropertyIsType' => function (ClassTypeMetadata $subject, string $property, string $type) {
                 foreach ($subject->properties[$property]->types as $typeDeclaration) {
-                    if (($typeDeclaration instanceof ClassTypeMetadata && $typeDeclaration->name === $type) ||
-                        ($typeDeclaration instanceof CollectionTypeMetadata && $typeDeclaration->type->name === $type) ||
+                    if (($typeDeclaration instanceof ClassTypeMetadata && is_a((string) $typeDeclaration, $type, true)) ||
+                        ($typeDeclaration instanceof ClassReferenceMetadata && is_a((string) $typeDeclaration, $type, true)) ||
+                        ($typeDeclaration instanceof CollectionTypeMetadata && is_a((string) $typeDeclaration->type, $type, true)) ||
                         ($typeDeclaration instanceof ListTypeMetadata && in_array($type, ['array', 'iterable'])) ||
                         ($typeDeclaration instanceof ArrayTypeMetadata && in_array($type, ['array']))
                     ) {
@@ -90,22 +92,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-
-            'haveMethodCount' => function (ClassMetadata $subject) {
+            'haveMethodCount' => function (ClassTypeMetadata $subject) {
                 return count($subject->methods);
             },
-            'haveCompositedMethodReturnIsInstanceOf' => function (ClassMetadata $subject, string $method, string $class) {
+            'haveCompositedMethodReturnIsInstanceOf' => function (ClassTypeMetadata $subject, string $method, string $class) {
                 foreach ($subject->methods[$method]->returnTypes as $typeDeclaration) {
                     if ($typeDeclaration instanceof ListTypeMetadata &&
-                        $typeDeclaration->inner instanceof ClassTypeMetadata &&
-                        is_a($typeDeclaration->inner->name, $class, true)
+                        ($typeDeclaration->inner instanceof ClassTypeMetadata || $typeDeclaration->inner instanceof ClassReferenceMetadata) &&
+                        is_a((string) $typeDeclaration->inner, $class, true)
                     ) {
                         return true;
                     }
 
                     if ($typeDeclaration instanceof CollectionTypeMetadata &&
-                        $typeDeclaration->type instanceof ClassTypeMetadata &&
-                        is_a($typeDeclaration->type->name, $class, true)
+                        ($typeDeclaration->type instanceof ClassTypeMetadata || $typeDeclaration->type instanceof ClassReferenceMetadata) &&
+                        is_a((string) $typeDeclaration->type, $class, true)
                     ) {
                         return true;
                     }
@@ -113,18 +114,18 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'haveCompositedMethodReturnIsType' => function (ClassMetadata $subject, string $method, string $type) {
+            'haveCompositedMethodReturnIsType' => function (ClassTypeMetadata $subject, string $method, string $type) {
                 foreach ($subject->methods[$method]->returnTypes as $typeDeclaration) {
                     if ($typeDeclaration instanceof ListTypeMetadata &&
                         $typeDeclaration->inner instanceof ScalarTypeMetadata &&
-                        is_a($typeDeclaration->inner->name, $type, true)
+                        is_a((string) $typeDeclaration->inner, $type, true)
                     ) {
                         return true;
                     }
 
                     if ($typeDeclaration instanceof CollectionTypeMetadata &&
                         $typeDeclaration->type instanceof ScalarTypeMetadata &&
-                        is_a($typeDeclaration->type->name, $type, true)
+                        is_a((string) $typeDeclaration->type, $type, true)
                     ) {
                         return true;
                     }
@@ -132,7 +133,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'haveCompositedMethodReturn' => function (ClassMetadata $subject, string $method) {
+            'haveCompositedMethodReturn' => function (ClassTypeMetadata $subject, string $method) {
                 foreach ($subject->methods[$method]->returnTypes as $typeDeclaration) {
                     if ($typeDeclaration instanceof ListTypeMetadata || $typeDeclaration instanceof CollectionTypeMetadata) {
                         return true;
@@ -141,10 +142,11 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'haveMethodReturnIsInstanceOf' => function (ClassMetadata $subject, string $method, string $class) {
+            'haveMethodReturnIsInstanceOf' => function (ClassTypeMetadata $subject, string $method, string $class) {
                 foreach ($subject->methods[$method]->returnTypes as $typeDeclaration) {
-                    if (($typeDeclaration instanceof ClassTypeMetadata && is_a($typeDeclaration->name, $class, true)) ||
-                        ($typeDeclaration instanceof CollectionTypeMetadata && is_a($typeDeclaration->type->name, $class, true))
+                    if (($typeDeclaration instanceof ClassTypeMetadata && is_a((string) $typeDeclaration, $class, true)) ||
+                        ($typeDeclaration instanceof ClassReferenceMetadata && is_a((string) $typeDeclaration, $class, true)) ||
+                        ($typeDeclaration instanceof CollectionTypeMetadata && is_a((string) $typeDeclaration->type, $class, true))
                     ) {
                         return true;
                     }
@@ -152,10 +154,11 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
                 return false;
             },
-            'haveMethodReturnIsType' => function (ClassMetadata $subject, string $method, string $type) {
+            'haveMethodReturnIsType' => function (ClassTypeMetadata $subject, string $method, string $type) {
                 foreach ($subject->methods[$method]->returnTypes as $typeDeclaration) {
-                    if (($typeDeclaration instanceof ClassTypeMetadata && $typeDeclaration->name === $type) ||
-                        ($typeDeclaration instanceof CollectionTypeMetadata && $typeDeclaration->type->name === $type) ||
+                    if (($typeDeclaration instanceof ClassTypeMetadata && is_a((string) $typeDeclaration, $type, true)) ||
+                        ($typeDeclaration instanceof ClassReferenceMetadata && is_a((string) $typeDeclaration, $type, true)) ||
+                        ($typeDeclaration instanceof CollectionTypeMetadata && is_a((string) $typeDeclaration->type, $type, true)) ||
                         ($typeDeclaration instanceof ListTypeMetadata && in_array($type, ['array', 'iterable'])) ||
                         ($typeDeclaration instanceof ArrayTypeMetadata && in_array($type, ['array']))
                     ) {
@@ -177,7 +180,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     {
         $object = new class {};
 
-        $this->buildFromObject($object)->shouldReturnAnInstanceOf(ClassMetadata::class);
+        $this->buildFromObject($object)->shouldReturnAnInstanceOf(ClassTypeMetadata::class);
     }
 
     function it_reads_properties()
