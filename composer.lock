@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6810c22479dab33669be8bd4429b7472",
+    "content-hash": "757935c8f28c3fa4ad561ef762a9ec72",
     "packages": [
         {
             "name": "phpactor/docblock",
@@ -800,6 +800,56 @@
                 "iterator"
             ],
             "time": "2019-07-02T07:44:20+00:00"
+        },
+        {
+            "name": "phpunit/php-invoker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-invoker.git",
+                "reference": "42330e8c464fd716395a927cc35a4a70bea694c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-invoker/zipball/42330e8c464fd716395a927cc35a4a70bea694c0",
+                "reference": "42330e8c464fd716395a927cc35a4a70bea694c0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcntl": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "Invoke callables with a timeout",
+            "homepage": "https://github.com/sebastianbergmann/php-invoker/",
+            "keywords": [
+                "process"
+            ],
+            "time": "2019-07-02T07:44:44+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -2329,7 +2379,8 @@
     "stability-flags": {
         "phpactor/docblock": 20,
         "johnkary/phpunit-speedtrap": 20,
-        "mybuilder/phpunit-accelerator": 20
+        "mybuilder/phpunit-accelerator": 20,
+        "phpunit/php-invoker": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

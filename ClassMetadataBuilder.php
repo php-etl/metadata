@@ -9,7 +9,20 @@ class ClassMetadataBuilder
 {
     public function buildFromFQCN(string $className): ClassMetadata
     {
-        return $this->build(new \ReflectionClass($className));
+        try {
+            return $this->build(new \ReflectionClass($className));
+        } catch (\ReflectionException $e) {
+            throw new \RuntimeException(
+                strtr(
+                    'The class %class.name% was not declared. It does either not exist or is does not have been auto-loaded.',
+                    [
+                        '%class.name%' => $className,
+                    ]
+                ),
+                null,
+                $e
+            );
+        }
     }
 
     public function buildFromObject(object $object): ClassMetadata
@@ -42,25 +55,32 @@ class ClassMetadataBuilder
                     new Guesser\Native\DummyTypeGuesser(),
                 new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
             );
-            foreach ($classOrObject->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-                $object->properties[$property->getName()] = new PropertyMetadata(
-                    $property->getName(),
-                    ...$typeGuesser($classOrObject, $property)
-                );
-            }
 
-            foreach ($classOrObject->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-                $object->methods[$method->getName()] = $methodMetadata = new MethodMetadata(
-                    $method->getName(),
-                    new ArgumentMetadataList(...array_map(function(\ReflectionParameter $parameter) use($typeGuesser, $classOrObject) {
-                        return new ArgumentMetadata(
-                            $parameter->getName(),
-                            ...$typeGuesser($classOrObject, $parameter)
-                        );
-                    }, $method->getParameters())),
-                    ...$typeGuesser($classOrObject, $method)
-                );
-            }
+            $object->properties(...array_map(
+                function(\ReflectionProperty $property) use($classOrObject, $typeGuesser) {
+                    return new PropertyMetadata(
+                        $property->getName(),
+                        ...$typeGuesser($classOrObject, $property)
+                    );
+                },
+                $classOrObject->getProperties(\ReflectionProperty::IS_PUBLIC)
+            ));
+
+            $object->methods(...array_map(
+                function(\ReflectionMethod $method) use($classOrObject, $typeGuesser) {
+                    return new MethodMetadata(
+                        $method->getName(),
+                        new ArgumentMetadataList(...array_map(function(\ReflectionParameter $parameter) use($typeGuesser, $classOrObject) {
+                            return new ArgumentMetadata(
+                                $parameter->getName(),
+                                ...$typeGuesser($classOrObject, $parameter)
+                            );
+                        }, $method->getParameters())),
+                        ...$typeGuesser($classOrObject, $method)
+                    );
+                },
+                $classOrObject->getMethods(\ReflectionMethod::IS_PUBLIC)
+            ));
         } catch (\ReflectionException $e) {
             throw new \RuntimeException(
                 'An error occurred during class metadata building.',
