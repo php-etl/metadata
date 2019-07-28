@@ -2,7 +2,9 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-interface IterableTypeMetadata
+/**
+ * @property TypeMetadata $inner
+ */
+interface IterableTypeMetadata extends TypeMetadata
 {
-
 }
