@@ -2,8 +2,10 @@
 
 namespace Kiboko\Component\ETL\Metadata\Guesser;
 
+use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
+use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
 
@@ -27,14 +29,20 @@ trait TypeMetadataBuildingTrait
         if (!in_array($type, Type::$builtInTypes)) {
             return new ClassTypeMetadata($isFullyQualified ? substr($type, 1) : $this->discoverFQCN($type, $reflector));
         }
+        if (in_array($type, Type::$array)) {
+            return new ArrayTypeMetadata();
+        }
+        if (in_array($type, Type::$null)) {
+            return new NullTypeMetadata();
+        }
 
         return new ScalarTypeMetadata($type);
     }
 
-    private function listType(string $type, ?string $iterated, bool $isFullyQualified, \ReflectionClass $reflector)
+    private function listType(?string $iterated, bool $isFullyQualified, \ReflectionClass $reflector)
     {
         if ($iterated === null) {
-            return new ScalarTypeMetadata($type);
+            return new ArrayTypeMetadata();
         }
 
         return new ListTypeMetadata(

@@ -14,6 +14,7 @@ class Type
     public static $iterable = ['iterable'];
     public static $callable = ['callable'];
     public static $resource = ['resource'];
+    public static $null = ['null'];
 
     public static $builtInTypes = [
         'bool', 'boolean',

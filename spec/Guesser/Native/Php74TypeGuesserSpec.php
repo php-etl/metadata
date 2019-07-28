@@ -2,7 +2,9 @@
 
 namespace spec\Kiboko\Component\ETL\Metadata\Guesser\Native;
 
+use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadata;
 use Kiboko\Component\ETL\Metadata\Guesser;
@@ -57,7 +59,7 @@ class Php74TypeGuesserSpec extends ObjectBehavior
         $this($reflection, $reflection->getProperty('foo')->getType())
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
-                new ScalarTypeMetadata('null')
+                new NullTypeMetadata()
             );
     }
 
@@ -71,7 +73,7 @@ class Php74TypeGuesserSpec extends ObjectBehavior
 
         $this($reflection, $reflection->getProperty('foo')->getType())
             ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('array')
+                new ArrayTypeMetadata()
             );
     }
 
@@ -86,7 +88,7 @@ class Php74TypeGuesserSpec extends ObjectBehavior
 
         $this($reflection, $reflection->getProperty('foo')->getType())
             ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('array')
+                new ArrayTypeMetadata()
             );
     }
 

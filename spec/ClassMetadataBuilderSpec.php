@@ -2,6 +2,7 @@
 
 namespace spec\Kiboko\Component\ETL\Metadata;
 
+use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassMetadata;
 use Kiboko\Component\ETL\Metadata\ClassMetadataBuilder;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
@@ -80,7 +81,8 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
                 foreach ($subject->properties[$property]->types as $typeDeclaration) {
                     if (($typeDeclaration instanceof ClassTypeMetadata && $typeDeclaration->name === $type) ||
                         ($typeDeclaration instanceof CollectionTypeMetadata && $typeDeclaration->type->name === $type) ||
-                        ($typeDeclaration instanceof ListTypeMetadata && in_array($type, ['array', 'iterable']))
+                        ($typeDeclaration instanceof ListTypeMetadata && in_array($type, ['array', 'iterable'])) ||
+                        ($typeDeclaration instanceof ArrayTypeMetadata && in_array($type, ['array']))
                     ) {
                         return true;
                     }
@@ -154,7 +156,8 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
                 foreach ($subject->methods[$method]->returnTypes as $typeDeclaration) {
                     if (($typeDeclaration instanceof ClassTypeMetadata && $typeDeclaration->name === $type) ||
                         ($typeDeclaration instanceof CollectionTypeMetadata && $typeDeclaration->type->name === $type) ||
-                        ($typeDeclaration instanceof ListTypeMetadata && in_array($type, ['array', 'iterable']))
+                        ($typeDeclaration instanceof ListTypeMetadata && in_array($type, ['array', 'iterable'])) ||
+                        ($typeDeclaration instanceof ArrayTypeMetadata && in_array($type, ['array']))
                     ) {
                         return true;
                     }

@@ -4,7 +4,7 @@ namespace Kiboko\Component\ETL\Metadata\Guesser\Native;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Guesser\TypeMetadataBuildingTrait;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 
 class Php74TypeGuesser implements TypeGuesser
 {
@@ -23,7 +23,7 @@ class Php74TypeGuesser implements TypeGuesser
         }
 
         if ($reflector->allowsNull()) {
-            yield new ScalarTypeMetadata('null');
+            yield new NullTypeMetadata();
         }
     }
 }

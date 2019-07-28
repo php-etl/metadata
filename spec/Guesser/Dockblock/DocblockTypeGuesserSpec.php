@@ -2,10 +2,12 @@
 
 namespace spec\Kiboko\Component\ETL\Metadata\Guesser\Docblock;
 
+use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Guesser;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
+use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadata;
 use Phpactor\Docblock\DocblockFactory;
@@ -67,7 +69,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
         $this($reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
-                new ScalarTypeMetadata('null')
+                new NullTypeMetadata()
             );
     }
 
@@ -122,7 +124,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $this($reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('array')
+                new ArrayTypeMetadata()
             );
     }
 
