@@ -3,14 +3,15 @@
 namespace spec\Kiboko\Component\ETL\Metadata\Guesser;
 
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Guesser;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadata;
+use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Phpactor\Docblock\DocblockFactory;
+use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;
 
 class CompositeTypeGuesserSpec extends ObjectBehavior
@@ -18,7 +19,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     public function getMatchers(): array
     {
         return [
-            'matchTypeMetadata' => function(iterable $subject, TypeMetadata ...$expected) {
+            'matchTypeMetadata' => function(iterable $subject, TypeMetadataInterface ...$expected) {
                 foreach ($subject as $item) {
                     if (($offset = array_search($item, $expected, false)) === false) {
                         return false;
@@ -36,7 +37,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
         $this->shouldHaveType(Guesser\CompositeTypeGuesser::class);
     }
@@ -45,7 +46,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -65,7 +66,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -86,7 +87,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -107,11 +108,11 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
-            /** @var string|\stdClass|CompositeTypeGuesser|\PDO */
+            /** @var string|\stdClass|Guesser\Docblock\DocblockTypeGuesser|\PDO */
             public $foo;
         };
 
@@ -120,9 +121,9 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $this($reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
-                new ClassTypeMetadata(\stdClass::class),
-                new ClassTypeMetadata('CompositeTypeGuesser'),
-                new ClassTypeMetadata(\PDO::class)
+                new ClassReferenceMetadata('stdClass'),
+                new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\ETL\Metadata\Guesser\Docblock'),
+                new ClassReferenceMetadata('PDO')
             );
     }
 
@@ -130,7 +131,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -150,7 +151,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -170,7 +171,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -183,7 +184,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $this($reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ListTypeMetadata(
-                    new ClassTypeMetadata(\stdClass::class)
+                    new ClassReferenceMetadata('stdClass')
                 )
             );
     }
@@ -192,7 +193,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -205,8 +206,8 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $this($reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new CollectionTypeMetadata(
-                    new ClassTypeMetadata('Collection'),
-                    new ClassTypeMetadata(\stdClass::class)
+                    new ClassReferenceMetadata('Collection'),
+                    new ClassReferenceMetadata('stdClass')
                 )
             );
     }
@@ -215,7 +216,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -234,7 +235,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -254,7 +255,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -273,7 +274,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -287,7 +288,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
             ->shouldMatchTypeMetadata(
                 new ArrayTypeMetadata(),
                 new ListTypeMetadata(
-                    new ClassTypeMetadata(\stdClass::class)
+                    new ClassReferenceMetadata('stdClass')
                 )
             );
     }
@@ -296,7 +297,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -315,7 +316,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -329,7 +330,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('iterable'),
                 new ListTypeMetadata(
-                    new ClassTypeMetadata(\stdClass::class)
+                    new ClassReferenceMetadata('stdClass')
                 )
             );
     }
@@ -338,7 +339,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new Guesser\Native\Php74TypeGuesser(),
-            new Guesser\Docblock\DocblockTypeGuesser(new DocblockFactory())
+            new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
         $object = new class {
@@ -349,7 +350,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
 
         $this($reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
-                new ClassTypeMetadata(\stdClass::class)
+                new ClassReferenceMetadata('stdClass')
             );
     }
 }

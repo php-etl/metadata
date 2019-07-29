@@ -200,7 +200,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
         };
 
         $this->buildFromObject($object)->shouldNotHaveCompositedProperty('foo');
-        $this->buildFromObject($object)->shouldHavePropertyIsInstanceOf('foo', \stdClass::class);
+        $this->buildFromObject($object)->shouldHavePropertyIsInstanceOf('foo', 'stdClass');
     }
 
     function it_detects_properties_arrays()
@@ -211,7 +211,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
         };
 
         $this->buildFromObject($object)->shouldHaveCompositedProperty('foo');
-        $this->buildFromObject($object)->shouldHaveCompositedPropertyIsInstanceOf('foo', \stdClass::class);
+        $this->buildFromObject($object)->shouldHaveCompositedPropertyIsInstanceOf('foo', 'stdClass');
         $this->buildFromObject($object)->shouldHavePropertyIsType('foo', 'array');
     }
 
@@ -232,7 +232,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
         };
 
         $this->buildFromObject($object)->shouldNotHaveCompositedMethodReturn('foo');
-//        $this->buildFromObject($object)->shouldHaveMethodReturnIsInstanceOf('foo', \stdClass::class);
+//        $this->buildFromObject($object)->shouldHaveMethodReturnIsInstanceOf('foo', 'stdClass');
     }
 
     function it_detects_methods_return_arrays()
@@ -243,7 +243,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
         };
 
 //        $this->buildFromObject($object)->shouldHaveCompositedMethodReturn('foo');
-//        $this->buildFromObject($object)->shouldHaveCompositedMethodReturnIsInstanceOf('foo', \stdClass::class);
+//        $this->buildFromObject($object)->shouldHaveCompositedMethodReturnIsInstanceOf('foo', 'stdClass');
 //        $this->buildFromObject($object)->shouldHaveMethodReturnIsType('foo', 'array');
     }
 }

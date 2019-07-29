@@ -16,22 +16,25 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.2",
-        "phpactor/docblock": "^0.3.0@dev"
+        "phpactor/docblock": "^0.3.0@dev",
+        "nikic/php-parser": "^4.2"
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1",
         "phpunit/phpunit": "^7.0",
         "johnkary/phpunit-speedtrap": "^3.1@dev",
         "mybuilder/phpunit-accelerator": "dev-master",
-        "phpunit/php-invoker": "^2.0@dev"
+        "phpunit/php-invoker": "^2.0@dev",
+        "phpstan/phpstan": "^0.12.0@dev"
     },
     "autoload": {
         "psr-4": {
-            "Kiboko\\Component\\ETL\\Metadata\\": ""
+            "Kiboko\\Component\\ETL\\Metadata\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "spec\\Kiboko\\Component\\ETL\\Metadata\\": "spec/",
             "unit\\Kiboko\\Component\\ETL\\Metadata\\": "unit/",
             "functional\\Kiboko\\Component\\ETL\\Metadata\\": "functional/"
         }

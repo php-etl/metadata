@@ -3,10 +3,10 @@
 namespace spec\Kiboko\Component\ETL\Metadata\Guesser\Native;
 
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadata;
+use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\Guesser;
 use PhpSpec\ObjectBehavior;
 
@@ -15,7 +15,7 @@ class Php74TypeGuesserSpec extends ObjectBehavior
     public function getMatchers(): array
     {
         return [
-            'matchTypeMetadata' => function(iterable $subject, TypeMetadata ...$expected) {
+            'matchTypeMetadata' => function(iterable $subject, TypeMetadataInterface ...$expected) {
                 foreach ($subject as $item) {
                     if (($offset = array_search($item, $expected, false)) === false) {
                         return false;
@@ -131,7 +131,7 @@ class Php74TypeGuesserSpec extends ObjectBehavior
 
         $this($reflection, $reflection->getProperty('foo')->getType())
             ->shouldMatchTypeMetadata(
-                new ClassTypeMetadata(\stdClass::class)
+                new ClassReferenceMetadata('stdClass')
             );
     }
 }
