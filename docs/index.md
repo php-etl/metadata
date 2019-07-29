@@ -89,8 +89,8 @@ Represents an iterable class, with an inner values type enforced,
 numerically indexed.
 
 * public property `type`: a `ClassMetadataInterface` object 
-(see [`ClassTypeMtadata`] and [`ClassReferenceMetadata`])
-* public property `inner`: a [`TypeMetadataInterface`] object, 
+(see [`ClassTypeMetadata`] and [`ClassReferenceMetadata`])
+* public property `inner`: a `TypeMetadataInterface` object, 
 representing the possible inner type
 
 `ListTypeMetadata`
@@ -100,7 +100,7 @@ Represents an iterable, with an inner values type enforced,
 numerically indexed. The variable type is not enforced, can be any of 
 the valid types for `iterable` meta-type.
 
-* public property `inner`: a [`TypeMetadataInterface`] object, 
+* public property `inner`: a `TypeMetadataInterface` object, 
 representing the possible inner type
 
 `MethodMetadata`
@@ -110,10 +110,10 @@ Represents the methods declaration and structure in a [`ClassTypeMetadata`].
 
 * public property `name`: the method name as string
 * public property `argumentList`: the method argument list as an [`ArgumentMetadataList`].
-* public property `returnTypes`: an iterable of [`TypeMetadataInterface`], 
+* public property `returnTypes`: an iterable of `TypeMetadataInterface`, 
 representing the possible return types
 
-Also, see [`PropertyTypeMetadata`]
+Also, see [`PropertyMetadata`]
 
 `NullTypeMetadata`
 ---
@@ -126,10 +126,10 @@ Represents a nullable return type, parameter type or property.
 Represents the properties declaration and structure in a [`ClassTypeMetadata`].
 
 * public property `name`: the method name as string
-* public property `types`: an iterable of [`TypeMetadataInterface`], 
+* public property `types`: an iterable of `TypeMetadataInterface`, 
 representing the possible types
 
-Also, see [`MethodTypeMetadata`]
+Also, see [`MethodMetadata`]
 
 `ScalarTypeMetadata`
 ---
@@ -161,4 +161,4 @@ Also, see [`ArgumentMetadata`]
 [`PropertyMetadata`]: #propertymetadata
 [`MethodMetadata`]: #methodmetadata
 [`ScalarTypeMetadata`]: #scalartypemetadata
-  
+[`VariadicArgumentMetadata`]: #variadicargumentmetadata
