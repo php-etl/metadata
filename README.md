@@ -49,8 +49,9 @@ $guesser = new Guesser\CompositeTypeGuesser(
 );
 ```
 
-Then, use the instance as a functor to automatically initialise the 
-class metadata as shown here:
+Then, use the instance as a functor to automatically discover the types metadata.
+
+Example of a DTO class metadata fetcher:
 
 ```php
 <?php
@@ -64,14 +65,23 @@ class Person
 {
     public string $firstName;
     public string $lastName;
+    public ?string $job;
 }
 
-$reflector = new \ReflectionClass(\Person::class);
+$classOrObject = new \ReflectionClass(\Person::class);
 
 /** @var Metadata\ClassTypeMetadata $metadata */
-$metadata = (new Metadata\ClassTypeMetadata($reflector->getShortName(), $reflector->getNamespaceName()))
-    ->properties(...$guesser($reflector->getProperties(\ReflectionProperty::IS_PUBLIC), $reflector))
-    ->methods(...$guesser($reflector->getMethods(\ReflectionProperty::IS_PUBLIC), $reflector));
+$metadata = (new Metadata\ClassTypeMetadata($classOrObject->getShortName(), $classOrObject->getNamespaceName()))
+    ->properties(...array_map(
+            function(\ReflectionProperty $property) use($classOrObject, $guesser) {
+                return new Metadata\PropertyMetadata(
+                    $property->getName(),
+                    ...$guesser($classOrObject, $property)
+                );
+            },
+            $classOrObject->getProperties(\ReflectionProperty::IS_PUBLIC)
+        )
+    );
 ``` 
 
 PHP version and typed properties
