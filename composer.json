@@ -1,6 +1,6 @@
 {
     "name": "php-etl/metadata",
-    "description": "This library implements the Extract-Transform-Load pattern asynchronously in PHP with the help of iterators and generators",
+    "description": "Describe data structures, to auto-configure and handle data transformation and data manipulation.",
     "type": "library",
     "license": "MIT",
     "authors": [
