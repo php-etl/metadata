@@ -1,0 +1,11 @@
+version: 2
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: docker-compose run --rm composer install
+      - run: docker-compose run --rm phpspec
+      - run: docker-compose run --rm phpstan
+      - run: docker-compose run --rm infection
