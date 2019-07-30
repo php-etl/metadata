@@ -1,11 +1,21 @@
 version: 2
-
 jobs:
   build:
     machine: true
     steps:
       - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
       - run: docker-compose run --rm composer install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+
       - run: docker-compose run --rm phpspec
       - run: docker-compose run --rm phpstan
       - run: docker-compose run --rm infection
