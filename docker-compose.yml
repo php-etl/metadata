@@ -131,13 +131,13 @@ services:
 
   phpstan72:
     extends:
-      service: sh72
+      service: sh72-xdebug
     entrypoint: [ "vendor/bin/phpstan" ]
     restart: "no"
 
   phpstan74:
     extends:
-      service: sh74
+      service: sh74-xdebug
     entrypoint: [ "vendor/bin/phpstan" ]
     restart: "no"
 

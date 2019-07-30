@@ -9,7 +9,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "composer.json" }}
             - v1-dependencies-
-      - run: docker-compose run --rm composer install
+      - run: docker-compose run --rm composer install --ignore-platform-reqs
 
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
