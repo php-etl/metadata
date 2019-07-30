@@ -1,5 +1,0 @@
-suites:
-  acme_suite:
-    namespace: Kiboko\Component\ETL\Metadata
-    psr4_prefix: Kiboko\Component\ETL\Metadata
-    src_path: '%paths.config%'

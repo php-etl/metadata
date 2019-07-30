@@ -232,7 +232,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
         };
 
         $this->buildFromObject($object)->shouldNotHaveCompositedMethodReturn('foo');
-//        $this->buildFromObject($object)->shouldHaveMethodReturnIsInstanceOf('foo', 'stdClass');
+        $this->buildFromObject($object)->shouldHaveMethodReturnIsInstanceOf('foo', 'stdClass');
     }
 
     function it_detects_methods_return_arrays()
@@ -242,8 +242,8 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
             public function foo(){}
         };
 
-//        $this->buildFromObject($object)->shouldHaveCompositedMethodReturn('foo');
-//        $this->buildFromObject($object)->shouldHaveCompositedMethodReturnIsInstanceOf('foo', 'stdClass');
-//        $this->buildFromObject($object)->shouldHaveMethodReturnIsType('foo', 'array');
+        $this->buildFromObject($object)->shouldHaveCompositedMethodReturn('foo');
+        $this->buildFromObject($object)->shouldHaveCompositedMethodReturnIsInstanceOf('foo', 'stdClass');
+        $this->buildFromObject($object)->shouldHaveMethodReturnIsType('foo', 'array');
     }
 }

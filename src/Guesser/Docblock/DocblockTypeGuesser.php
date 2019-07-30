@@ -36,7 +36,7 @@ class DocblockTypeGuesser implements TypeGuesserInterface
     /**
      * @return \Generator<TypeMetadataInterface>
      */
-    public function __invoke(\ReflectionClass $class, \Reflector $reflector): \Iterator
+    public function __invoke(string $tagName, \ReflectionClass $class, \Reflector $reflector): \Iterator
     {
         if (!$reflector instanceof \ReflectionProperty &&
             !$reflector instanceof \ReflectionMethod
@@ -52,7 +52,7 @@ class DocblockTypeGuesser implements TypeGuesserInterface
 
         $docBlock = $this->docblockFactory->create($comment);
         /** @var Tag\VarTag $tag */
-        foreach ($docBlock->tags()->byName('var') as $tag) {
+        foreach ($docBlock->tags()->byName($tagName) as $tag) {
             /** @var DocblockType $type */
             foreach ($tag->types() as $type) {
                 yield $this->guessType(

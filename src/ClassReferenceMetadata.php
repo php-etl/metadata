@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kiboko\Component\ETL\Metadata;
 
 final class ClassReferenceMetadata implements ClassMetadataInterface
@@ -11,8 +13,8 @@ final class ClassReferenceMetadata implements ClassMetadataInterface
 
     public function __construct(string $name, ?string $namespace = null)
     {
-        if (strpos($name, '\\') === 0) {
-            throw new \RuntimeException('Class names should not contain root namespace anchoring backslash.');
+        if (strpos($name, '\\') !== false) {
+            throw new \RuntimeException('Class names should not contain root namespace anchoring backslash or namespace.');
         }
         if ($namespace !== null && strpos($namespace, '\\') === 0) {
             throw new \RuntimeException('Namespace should not contain root namespace anchoring backslash.');

@@ -50,6 +50,8 @@ services:
   composer72:
     extends:
       service: sh72
+    volumes:
+      - composer:/opt/docker/.composer/:cached
     environment:
       COMPOSER_AUTH: >
         {"github-oauth":{"github.com": "${COMPOSER_GITHUB_TOKEN}"}}
@@ -59,6 +61,8 @@ services:
   composer74:
     extends:
       service: sh74
+    volumes:
+      - composer:/opt/docker/.composer/:cached
     environment:
       COMPOSER_AUTH: >
         {"github-oauth":{"github.com": "${COMPOSER_GITHUB_TOKEN}"}}
@@ -72,25 +76,25 @@ services:
   phpunit72:
     extends:
       service: sh72
-    entrypoint: [ "vendor/bin/phpunit", "--configuration=.phpunit.xml" ]
+    entrypoint: [ "vendor/bin/phpunit" ]
     restart: "no"
 
   phpunit72-xdebug:
     extends:
       service: sh72-xdebug
-    entrypoint: [ "vendor/bin/phpunit", "--configuration=.phpunit.xml" ]
+    entrypoint: [ "vendor/bin/phpunit" ]
     restart: "no"
 
   phpunit74:
     extends:
       service: sh74
-    entrypoint: [ "vendor/bin/phpunit", "--configuration=.phpunit.xml" ]
+    entrypoint: [ "vendor/bin/phpunit" ]
     restart: "no"
 
   phpunit74-xdebug:
     extends:
       service: sh74-xdebug
-    entrypoint: [ "vendor/bin/phpunit", "--configuration=.phpunit.xml" ]
+    entrypoint: [ "vendor/bin/phpunit" ]
     restart: "no"
 
   phpspec:
@@ -136,3 +140,27 @@ services:
       service: sh74
     entrypoint: [ "vendor/bin/phpstan" ]
     restart: "no"
+
+  infection:
+    extends:
+      service: infection74
+
+  infection72:
+    extends:
+      service: sh72-xdebug
+    entrypoint: [ "vendor/bin/infection", "--threads=4", "--test-framework=phpspec" ]
+    restart: "no"
+
+  infection74:
+    extends:
+      service: sh74-xdebug
+    entrypoint: [ "vendor/bin/infection", "--threads=4", "--test-framework=phpspec" ]
+    restart: "no"
+
+volumes:
+  composer:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+      o: "size=2048m,uid=1000,gid=1000"

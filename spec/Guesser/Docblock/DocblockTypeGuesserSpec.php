@@ -50,7 +50,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string')
             );
@@ -67,7 +67,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
                 new NullTypeMetadata()
@@ -85,7 +85,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
                 new ScalarTypeMetadata('int')
@@ -103,7 +103,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
                 new ClassReferenceMetadata('stdClass'),
@@ -123,7 +123,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ArrayTypeMetadata()
             );
@@ -140,7 +140,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('iterable')
             );
@@ -157,7 +157,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new ListTypeMetadata(
                     new ClassReferenceMetadata('stdClass')
@@ -176,7 +176,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
 
         $reflection = new \ReflectionObject($object);
 
-        $this($reflection, $reflection->getProperty('foo'))
+        $this('var', $reflection, $reflection->getProperty('foo'))
             ->shouldMatchTypeMetadata(
                 new CollectionTypeMetadata(
                     new ClassReferenceMetadata('Collection'),
