@@ -184,4 +184,50 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
                 )
             );
     }
+
+    function it_is_failing_at_finding_class_file_name(\ReflectionClass $reflection, \ReflectionProperty $property)
+    {
+        $this->beConstructedWith((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory());
+
+        $object = new class {
+            /** @var Inexistent */
+            public $foo;
+        };
+
+        $property->beConstructedWith([$object, 'foo']);
+        $property->getName()->willReturn('foo');
+        $property->getDocComment()->willReturn('/** @var Inexistent */');
+
+        $reflection->beConstructedWith([$object]);
+        $reflection->getShortName()->willReturn(get_class($object));
+        $reflection->isAnonymous()->willReturn(true);
+        $reflection->getFileName()->willReturn(false);
+
+        $this('var', $reflection, $property)->shouldThrow(
+            new \RuntimeException('Could not read class <class@anonymous> source file contents, aborting.')
+        )->duringCurrent();
+    }
+
+    function it_is_failing_at_opening_class_file(\ReflectionClass $reflection, \ReflectionProperty $property)
+    {
+        $this->beConstructedWith((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory());
+
+        $object = new class {
+            /** @var Inexistent */
+            public $foo;
+        };
+
+        $property->beConstructedWith([$object, 'foo']);
+        $property->getName()->willReturn('foo');
+        $property->getDocComment()->willReturn('/** @var Inexistent */');
+
+        $reflection->beConstructedWith([$object]);
+        $reflection->getShortName()->willReturn(get_class($object));
+        $reflection->isAnonymous()->willReturn(true);
+        $reflection->getFileName()->willReturn('non-existent.php');
+
+        $this('var', $reflection, $property)->shouldThrow(
+            new \RuntimeException('Could not read class <class@anonymous> source file non-existent.php contents, aborting.')
+        )->duringCurrent();
+    }
 }

@@ -16,6 +16,6 @@ final class ListTypeMetadata implements IterableTypeMetadataInterface
 
     public function __toString()
     {
-        return ((string) $this->inner).'[]';
+        return $this->inner.'[]';
     }
 }

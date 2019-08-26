@@ -75,8 +75,25 @@ class DocblockTypeGuesser implements TypeGuesserInterface
         $traverser = new NodeTraverser();
         $traverser->addVisitor($nameResolver = new NameResolver());
 
-        if ($classContext->getFileName() === false || ($content = file_get_contents($classContext->getFileName())) === false) {
-            throw new \RuntimeException(strtr('Could not read class file %filename% contents, aborting.', ['%filename%' =>$classContext->getFileName()]));
+        if ($classContext->getFileName() === false) {
+            throw new \RuntimeException(strtr(
+                'Could not read class %class.name% source file contents, aborting.',
+                [
+                    '%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName(),
+                ]
+            ));
+        }
+
+        if (($content = @file_get_contents($classContext->getFileName())) === false) {
+            throw new \RuntimeException(strtr(
+                'Could not read class %class.name% source file %class.filename% contents, aborting.',
+                [
+                    '%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName(),
+                    '%class.filename%' =>$classContext->getFileName()
+                ]),
+                0,
+                new \Exception(error_get_last()['message'])
+            );
         }
 
         if (($ast = $this->parser->parse($content)) === null) {
