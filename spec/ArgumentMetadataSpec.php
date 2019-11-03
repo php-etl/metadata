@@ -21,15 +21,15 @@ class ArgumentMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith('foo', new ScalarTypeMetadata('string'));
 
-        $this->name->shouldBeEqualTo('foo');
+        $this->getName()->shouldReturn('foo');
     }
 
     function it_has_one_type()
     {
         $this->beConstructedWith('foo', new ScalarTypeMetadata('string'));
 
-        $this->types->shouldHaveCount(1);
-        $this->types->shouldIterateLike(new \ArrayIterator([
+        $this->getTypes()->shouldHaveCount(1);
+        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
             new ScalarTypeMetadata('string'),
         ]));
     }
@@ -38,8 +38,8 @@ class ArgumentMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith('foo', new ScalarTypeMetadata('string'), new ScalarTypeMetadata('int'), new NullTypeMetadata());
 
-        $this->types->shouldHaveCount(3);
-        $this->types->shouldIterateLike(new \ArrayIterator([
+        $this->getTypes()->shouldHaveCount(3);
+        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
             new ScalarTypeMetadata('string'),
             new ScalarTypeMetadata('int'),
             new NullTypeMetadata(),

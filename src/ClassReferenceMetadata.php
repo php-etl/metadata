@@ -5,9 +5,9 @@ namespace Kiboko\Component\ETL\Metadata;
 final class ClassReferenceMetadata implements ClassMetadataInterface
 {
     /** @var string|null */
-    public $namespace;
+    private $namespace;
     /** @var string */
-    public $name;
+    private $name;
 
     public function __construct(string $name, ?string $namespace = null)
     {
@@ -20,6 +20,16 @@ final class ClassReferenceMetadata implements ClassMetadataInterface
 
         $this->name = $name;
         $this->namespace = $namespace;
+    }
+
+    public function getNamespace(): ?string
+    {
+        return $this->namespace;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     public function __toString()

@@ -5,7 +5,7 @@ namespace Kiboko\Component\ETL\Metadata;
 final class ListTypeMetadata implements IterableTypeMetadataInterface
 {
     /** @var TypeMetadataInterface */
-    public $inner;
+    private $inner;
 
     public function __construct(TypeMetadataInterface $inner)
     {
@@ -15,5 +15,10 @@ final class ListTypeMetadata implements IterableTypeMetadataInterface
     public function __toString()
     {
         return $this->inner.'[]';
+    }
+
+    public function getInner(): TypeMetadataInterface
+    {
+        return $this->inner;
     }
 }

@@ -4,7 +4,8 @@ namespace Kiboko\Component\ETL\Metadata;
 
 /**
  * @property string $name
+ * @property string $types
  */
-interface RelationMetadataInterface
+interface RelationMetadataInterface extends NamedInterface, TypedInterface
 {
 }

@@ -2,6 +2,6 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-interface ArgumentMetadataInterface extends NamedInterface, TypedInterface
+interface UnaryRelationMetadataInterface extends RelationMetadataInterface
 {
 }

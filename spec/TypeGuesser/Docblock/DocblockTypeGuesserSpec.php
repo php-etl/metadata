@@ -107,7 +107,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
                 new ClassReferenceMetadata('stdClass'),
-                new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\ETL\Metadata\Guesser\Docblock'),
+                new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock'),
                 new ClassReferenceMetadata('PDO')
             );
     }

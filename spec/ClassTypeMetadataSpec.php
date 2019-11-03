@@ -14,30 +14,36 @@ class ClassTypeMetadataSpec extends ObjectBehavior
         $this->shouldHaveType(ClassTypeMetadata::class);
         $this->shouldHaveType(CompositeTypeMetadataInterface::class);
 
-        $this->name->shouldBeEqualTo('stdClass');
-        $this->methods->shouldHaveCount(0);
-        $this->properties->shouldHaveCount(0);
-        $this->namespace->shouldBeNull();
+        $this->getName()->shouldReturn('stdClass');
+        $this->getNamespace()->shouldBeNull();
+        $this->getMethods()->shouldHaveCount(0);
+        $this->getProperties()->shouldHaveCount(0);
+        $this->getFields()->shouldHaveCount(0);
+        $this->getRelations()->shouldHaveCount(0);
     }
 
     function it_can_be_anonymous()
     {
         $this->beConstructedWith(null);
 
-        $this->name->shouldBeNull();
-        $this->methods->shouldHaveCount(0);
-        $this->properties->shouldHaveCount(0);
-        $this->namespace->shouldBeNull();
+        $this->getName()->shouldReturn(null);
+        $this->getNamespace()->shouldReturn(null);
+        $this->getMethods()->shouldHaveCount(0);
+        $this->getProperties()->shouldHaveCount(0);
+        $this->getFields()->shouldHaveCount(0);
+        $this->getRelations()->shouldHaveCount(0);
     }
 
     function it_can_accept_namespaces()
     {
         $this->beConstructedWith('Amet', 'Lorem\\Ipsum\\Dolor\\Sit');
 
-        $this->name->shouldBeEqualTo('Amet');
-        $this->methods->shouldHaveCount(0);
-        $this->properties->shouldHaveCount(0);
-        $this->namespace->shouldBeEqualTo('Lorem\\Ipsum\\Dolor\\Sit');
+        $this->getName()->shouldReturn('Amet');
+        $this->getNamespace()->shouldReturn('Lorem\\Ipsum\\Dolor\\Sit');
+        $this->getMethods()->shouldHaveCount(0);
+        $this->getProperties()->shouldHaveCount(0);
+        $this->getFields()->shouldHaveCount(0);
+        $this->getRelations()->shouldHaveCount(0);
     }
 
     function it_can_be_casted_to_string()

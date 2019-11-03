@@ -3,7 +3,6 @@
 namespace Kiboko\Component\ETL\Metadata\MethodGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MethodMetadata;
 
 final class DummyMethodGuesser implements MethodGuesserInterface
 {

@@ -17,20 +17,6 @@ class ArrayTypeMetadataSpec extends ObjectBehavior
         $this->shouldHaveType(CompositeTypeMetadataInterface::class);
     }
 
-    function it_can_initializes_list()
-    {
-        $this->beConstructedWith(
-            new ArrayEntryMetadata('foo', new ScalarTypeMetadata('string')),
-            new ArrayEntryMetadata('bar', new ScalarTypeMetadata('int'))
-        );
-
-        $this->entries->shouldHaveCount(2);
-        $this->entries->shouldIterateLike(new \ArrayIterator([
-            new ArrayEntryMetadata('foo', new ScalarTypeMetadata('string')),
-            new ArrayEntryMetadata('bar', new ScalarTypeMetadata('int')),
-        ]));
-    }
-
     function it_can_iterate()
     {
         $this->beConstructedWith(

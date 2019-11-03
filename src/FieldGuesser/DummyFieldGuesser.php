@@ -3,7 +3,6 @@
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\FieldMetadataInterface;
 
 final class DummyFieldGuesser implements FieldGuesserInterface
 {

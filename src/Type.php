@@ -74,26 +74,23 @@ final class Type
             return is_a((string) $expected, (string) $actual);
         }
         if ($expected instanceof ListTypeMetadata && $actual instanceof ListTypeMetadata) {
-            return self::is($expected->inner, $actual->inner);
+            return self::is($expected->getInner(), $actual->getInner());
         }
         if ($expected instanceof CollectionTypeMetadata && $actual instanceof CollectionTypeMetadata) {
-            return self::is($expected->type, $actual->type) &&
-                is_a((string) $expected->inner, (string) $actual->inner);
+            return self::is($expected->getType(), $actual->getType()) &&
+                is_a((string) $expected->getInner(), (string) $actual->getInner());
         }
-        if ($expected instanceof ScalarTypeMetadata && $actual instanceof ScalarTypeMetadata &&
-            $expected->name === $actual->name
-        ) {
-            return (in_array($expected->name, self::$boolean) && in_array($actual->name, self::$boolean)) ||
-                (in_array($expected->name, self::$integer) && in_array($actual->name, self::$integer)) ||
-                (in_array($expected->name, self::$float) && in_array($actual->name, self::$float)) ||
-                (in_array($expected->name, self::$numberMeta) && in_array($actual->name, self::$numberCompatible)) ||
-                (in_array($expected->name, self::$integer) && in_array($actual->name, self::$numberMeta)) ||
-                (in_array($expected->name, self::$float) && in_array($actual->name, self::$numberMeta)) ||
-                (in_array($expected->name, self::$string) && in_array($actual->name, self::$string)) ||
-                (in_array($expected->name, self::$array) && in_array($actual->name, self::$array)) ||
-                (in_array($expected->name, self::$iterable) && (in_array($actual->name, self::$iterable) || in_array($actual->name, self::$array))) ||
-                (in_array($expected->name, self::$callable) && (in_array($actual->name, self::$callable) || in_array($actual->name, self::$array))) ||
-                (in_array($expected->name, self::$resource) && in_array($actual->name, self::$resource))
+        if ($expected instanceof ScalarTypeMetadata && $actual instanceof ScalarTypeMetadata) {
+            return ((string) $expected) === ((string) $actual) ||
+                (in_array(((string) $expected), self::$boolean) && in_array(((string) $actual), self::$boolean)) ||
+                (in_array(((string) $expected), self::$integer) && in_array(((string) $actual), self::$integer)) ||
+                (in_array(((string) $expected), self::$float) && in_array(((string) $actual), self::$float)) ||
+                (in_array(((string) $expected), self::$numberCompatible) && in_array(((string) $actual), self::$numberMeta)) ||
+                (in_array(((string) $expected), self::$string) && in_array(((string) $actual), self::$string)) ||
+                (in_array(((string) $expected), self::$array) && in_array(((string) $actual), self::$array)) ||
+                (in_array(((string) $expected), self::$iterable) && (in_array(((string) $actual), self::$iterable) || in_array(((string) $actual), self::$array))) ||
+                (in_array(((string) $expected), self::$callable) && (in_array(((string) $actual), self::$callable) || in_array(((string) $actual), self::$array))) ||
+                (in_array(((string) $expected), self::$resource) && in_array(((string) $actual), self::$resource))
             ;
         }
 

@@ -3,15 +3,15 @@
 namespace spec\Kiboko\Component\ETL\Metadata;
 
 use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
-use Kiboko\Component\ETL\Metadata\ArgumentMetadataList;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
-class ArgumentMetadataListSpec extends ObjectBehavior
+class ArgumentListMetadataSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(ArgumentMetadataList::class);
+        $this->shouldHaveType(ArgumentListMetadata::class);
         $this->shouldHaveType(\IteratorAggregate::class);
     }
 
@@ -22,8 +22,8 @@ class ArgumentMetadataListSpec extends ObjectBehavior
             new ArgumentMetadata('bar', new ScalarTypeMetadata('int'))
         );
 
-        $this->arguments->shouldHaveCount(2);
-        $this->arguments->shouldIterateLike(new \ArrayIterator([
+        $this->shouldHaveCount(2);
+        $this->shouldIterateLike(new \ArrayIterator([
             new ArgumentMetadata('foo', new ScalarTypeMetadata('string')),
             new ArgumentMetadata('bar', new ScalarTypeMetadata('int')),
         ]));

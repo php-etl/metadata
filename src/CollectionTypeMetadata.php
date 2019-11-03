@@ -5,9 +5,9 @@ namespace Kiboko\Component\ETL\Metadata;
 final class CollectionTypeMetadata implements IterableTypeMetadataInterface
 {
     /** @var ClassMetadataInterface */
-    public $type;
+    private $type;
     /** @var TypeMetadataInterface */
-    public $inner;
+    private $inner;
 
     public function __construct(ClassMetadataInterface $type, TypeMetadataInterface $inner)
     {
@@ -18,5 +18,15 @@ final class CollectionTypeMetadata implements IterableTypeMetadataInterface
     public function __toString()
     {
         return sprintf('%s<%s>', (string) $this->type, (string) $this->inner);
+    }
+
+    public function getType(): ClassMetadataInterface
+    {
+        return $this->type;
+    }
+
+    public function getInner(): TypeMetadataInterface
+    {
+        return $this->inner;
     }
 }

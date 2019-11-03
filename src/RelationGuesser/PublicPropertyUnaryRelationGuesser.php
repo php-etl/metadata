@@ -11,14 +11,14 @@ final class PublicPropertyUnaryRelationGuesser implements RelationGuesserInterfa
 {
     public function __invoke(ClassTypeMetadata $class): \Iterator
     {
-        foreach ($class->properties as $property) {
-            $types = iterator_to_array($this->filterTypes(...$property->types));
+        foreach ($class->getProperties() as $property) {
+            $types = iterator_to_array($this->filterTypes(...$property->getTypes()));
             if (count($types) <= 0) {
                 continue;
             }
 
             yield new UnaryRelationMetadata(
-                $property->name,
+                $property->getName(),
                 ...$types
             );
         }

@@ -5,7 +5,7 @@ namespace Kiboko\Component\ETL\Metadata;
 final class ArrayTypeMetadata implements \IteratorAggregate, CompositeTypeMetadataInterface
 {
     /** @var ArrayEntryMetadata[] */
-    public $entries;
+    private $entries;
 
     public function __construct(ArrayEntryMetadata ...$entries)
     {

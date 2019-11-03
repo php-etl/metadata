@@ -12,8 +12,8 @@ class ClassReferenceMetadataSpec extends ObjectBehavior
         $this->beConstructedWith(\stdClass::class);
         $this->shouldHaveType(ClassReferenceMetadata::class);
 
-        $this->name->shouldBeEqualTo('stdClass');
-        $this->namespace->shouldBeNull();
+        $this->getName()->shouldBeEqualTo('stdClass');
+        $this->getNamespace()->shouldBeNull();
     }
 
     function it_can_not_be_anonymous()
@@ -26,8 +26,8 @@ class ClassReferenceMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith('Amet', 'Lorem\\Ipsum\\Dolor\\Sit');
 
-        $this->name->shouldBeEqualTo('Amet');
-        $this->namespace->shouldBeEqualTo('Lorem\\Ipsum\\Dolor\\Sit');
+        $this->getName()->shouldBeEqualTo('Amet');
+        $this->getNamespace()->shouldBeEqualTo('Lorem\\Ipsum\\Dolor\\Sit');
     }
 
     function it_can_be_casted_to_string()

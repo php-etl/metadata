@@ -4,14 +4,7 @@ namespace Kiboko\Component\ETL\Metadata;
 
 final class VirtualFieldMetadata extends FieldMetadata
 {
-    /** @var MethodMetadata */
-    public $accessor;
-    /** @var MethodMetadata */
-    public $mutator;
-    /** @var MethodMetadata */
-    public $checker;
-    /** @var MethodMetadata */
-    public $remover;
+    use VirtualUnaryTrait;
 
     public function __construct(
         string $name,
@@ -22,6 +15,7 @@ final class VirtualFieldMetadata extends FieldMetadata
         TypeMetadataInterface ...$types
     ) {
         parent::__construct($name, ...$types);
+
         $this->accessor = $accessor;
         $this->mutator = $mutator;
         $this->checker = $checker;

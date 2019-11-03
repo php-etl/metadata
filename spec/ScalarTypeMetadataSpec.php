@@ -27,12 +27,6 @@ class ScalarTypeMetadataSpec extends ObjectBehavior
         $this->shouldThrow(new \RuntimeException('The type "invalid" is not a built in PHP type.'))->duringInstantiation();
     }
 
-    function it_should_have_a_name()
-    {
-        $this->beConstructedWith('string');
-        $this->name->shouldBeEqualTo('string');
-    }
-
     function it_can_be_casted_to_string()
     {
         $this->beConstructedWith('string');

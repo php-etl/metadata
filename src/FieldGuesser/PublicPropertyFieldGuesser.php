@@ -5,6 +5,7 @@ namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\FieldMetadata;
+use Kiboko\Component\ETL\Metadata\PropertyMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 
@@ -12,15 +13,16 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {
     public function __invoke(ClassTypeMetadata $class): \Iterator
     {
-        foreach ($class->properties as $property) {
-            $types = iterator_to_array($this->filterTypes(...$property->types));
+        /** @var PropertyMetadata $property */
+        foreach ($class->getProperties() as $property) {
+            $types = iterator_to_array($this->filterTypes(...$property->getTypes()));
             if (count($types) <= 0) {
                 continue;
             }
 
             yield new FieldMetadata(
-                $property->name,
-                ...array_values($property->types)
+                $property->getName(),
+                ...array_values($property->getTypes())
             );
         }
     }

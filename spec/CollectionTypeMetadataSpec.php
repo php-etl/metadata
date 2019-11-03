@@ -26,7 +26,7 @@ class CollectionTypeMetadataSpec extends ObjectBehavior
             new ClassTypeMetadata(\stdClass::class),
             new ScalarTypeMetadata('string')
         );
-        $this->type->shouldBeLike(new ClassTypeMetadata(\stdClass::class));
+        $this->getType()->shouldBeLike(new ClassTypeMetadata(\stdClass::class));
     }
 
     function it_should_have_an_inner_type()
@@ -35,7 +35,7 @@ class CollectionTypeMetadataSpec extends ObjectBehavior
             new ClassTypeMetadata(\stdClass::class),
             new ScalarTypeMetadata('string')
         );
-        $this->inner->shouldBeLike(new ScalarTypeMetadata('string'));
+        $this->getInner()->shouldBeLike(new ScalarTypeMetadata('string'));
     }
 
     function it_can_be_casted_to_string()

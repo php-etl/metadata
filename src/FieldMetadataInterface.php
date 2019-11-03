@@ -6,6 +6,6 @@ namespace Kiboko\Component\ETL\Metadata;
  * @property string $name
  * @property Type[] $types
  */
-interface FieldMetadataInterface
+interface FieldMetadataInterface extends NamedInterface, TypedInterface
 {
 }

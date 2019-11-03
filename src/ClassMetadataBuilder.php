@@ -71,13 +71,13 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
                 );
             }
 
-            $metadata->properties(...($this->propertyGuesser)($classOrObject, $metadata));
+            $metadata->addProperties(...($this->propertyGuesser)($classOrObject, $metadata));
 
-            $metadata->methods(...($this->methodGuesser)($classOrObject, $metadata));
+            $metadata->addMethods(...($this->methodGuesser)($classOrObject, $metadata));
 
-            $metadata->fields(...($this->fieldGuesser)($metadata));
+            $metadata->addFields(...($this->fieldGuesser)($metadata));
 
-            $metadata->relations(...($this->relationGuesser)($metadata));
+            $metadata->addRelations(...($this->relationGuesser)($metadata));
         } catch (\ReflectionException $e) {
             throw new \RuntimeException(
                 'An error occurred during class metadata building.',

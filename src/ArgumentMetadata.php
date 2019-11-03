@@ -4,10 +4,8 @@ namespace Kiboko\Component\ETL\Metadata;
 
 final class ArgumentMetadata implements ArgumentMetadataInterface
 {
-    /** @var string */
-    public $name;
-    /** @var TypeMetadataInterface[] */
-    public $types;
+    use NamedTrait;
+    use TypedTrait;
 
     public function __construct(string $name, TypeMetadataInterface ...$type)
     {

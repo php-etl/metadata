@@ -72,7 +72,7 @@ $classOrObject = new \ReflectionClass(\Person::class);
 
 /** @var Metadata\ClassTypeMetadata $metadata */
 $metadata = (new Metadata\ClassTypeMetadata($classOrObject->getShortName(), $classOrObject->getNamespaceName()))
-    ->properties(...array_map(
+    ->addProperties(...array_map(
             function(\ReflectionProperty $property) use($classOrObject, $guesser) {
                 return new Metadata\PropertyMetadata(
                     $property->getName(),

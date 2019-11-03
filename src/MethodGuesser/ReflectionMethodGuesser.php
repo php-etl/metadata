@@ -3,7 +3,7 @@
 namespace Kiboko\Component\ETL\Metadata\MethodGuesser;
 
 use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
-use Kiboko\Component\ETL\Metadata\ArgumentMetadataList;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
@@ -25,7 +25,7 @@ final class ReflectionMethodGuesser implements MethodGuesserInterface
             function(\ReflectionMethod $method) use($classOrObject) {
                 return new MethodMetadata(
                     $method->getName(),
-                    new ArgumentMetadataList(...array_map(function(\ReflectionParameter $parameter) use($classOrObject) {
+                    new ArgumentListMetadata(...array_map(function(\ReflectionParameter $parameter) use($classOrObject) {
                         if ($parameter->isVariadic()) {
                             return new VariadicArgumentMetadata(
                                 $parameter->getName(),

@@ -2,20 +2,9 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class VirtualUnaryRelationMetadata implements RelationMetadataInterface
+final class VirtualUnaryRelationMetadata extends UnaryRelationMetadata
 {
-    /** @var string */
-    public $name;
-    /** @var TypeMetadataInterface[] */
-    public $types;
-    /** @var MethodMetadata */
-    public $accessor;
-    /** @var MethodMetadata */
-    public $mutator;
-    /** @var MethodMetadata */
-    public $checker;
-    /** @var MethodMetadata */
-    public $remover;
+    use VirtualUnaryTrait;
 
     public function __construct(
         string $name,
@@ -25,8 +14,8 @@ final class VirtualUnaryRelationMetadata implements RelationMetadataInterface
         ?MethodMetadata $remover = null,
         TypeMetadataInterface ...$types
     ) {
-        $this->name = $name;
-        $this->types = $types;
+        parent::__construct($name, ...$types);
+
         $this->accessor = $accessor;
         $this->mutator = $mutator;
         $this->checker = $checker;

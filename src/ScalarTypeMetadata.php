@@ -5,7 +5,7 @@ namespace Kiboko\Component\ETL\Metadata;
 final class ScalarTypeMetadata implements TypeMetadataInterface
 {
     /** @var string */
-    public $name;
+    private $name;
 
     public function __construct(string $name)
     {

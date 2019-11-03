@@ -3,7 +3,7 @@
 namespace spec\Kiboko\Component\ETL\Metadata;
 
 use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
-use Kiboko\Component\ETL\Metadata\ArgumentMetadataList;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
@@ -16,11 +16,11 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         $this->beConstructedWith('foo');
         $this->shouldHaveType(VirtualFieldMetadata::class);
 
-        $this->name->shouldBeEqualTo('foo');
-        $this->accessor->shouldBeNull();
-        $this->mutator->shouldBeNull();
-        $this->checker->shouldBeNull();
-        $this->remover->shouldBeNull();
+        $this->getName()->shouldReturn('foo');
+        $this->getAccessor()->shouldReturn(null);
+        $this->getMutator()->shouldReturn(null);
+        $this->getChecker()->shouldReturn(null);
+        $this->getRemover()->shouldReturn(null);
     }
 
     function it_is_using_accessor()
@@ -29,15 +29,15 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
             'foo',
             new MethodMetadata(
                 'getFoo',
-                new ArgumentMetadataList(),
+                new ArgumentListMetadata(),
                 new ScalarTypeMetadata('string')
             )
         );
 
-        $this->accessor->shouldBeAnInstanceOf(MethodMetadata::class);
-        $this->mutator->shouldBeNull();
-        $this->checker->shouldBeNull();
-        $this->remover->shouldBeNull();
+        $this->getAccessor()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getMutator()->shouldReturn(null);
+        $this->getChecker()->shouldReturn(null);
+        $this->getRemover()->shouldReturn(null);
     }
 
     function it_is_using_mutator()
@@ -47,14 +47,14 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
             null,
             new MethodMetadata(
                 'setFoo',
-                new ArgumentMetadataList(new ArgumentMetadata('foo', new ScalarTypeMetadata('string')))
+                new ArgumentListMetadata(new ArgumentMetadata('foo', new ScalarTypeMetadata('string')))
             )
         );
 
-        $this->accessor->shouldBeNull();
-        $this->mutator->shouldBeAnInstanceOf(MethodMetadata::class);
-        $this->checker->shouldBeNull();
-        $this->remover->shouldBeNull();
+        $this->getAccessor()->shouldReturn(null);
+        $this->getMutator()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getChecker()->shouldReturn(null);
+        $this->getRemover()->shouldReturn(null);
     }
 
     function it_is_using_checker()
@@ -65,15 +65,15 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
             null,
             new MethodMetadata(
                 'hasFoo',
-                new ArgumentMetadataList(),
+                new ArgumentListMetadata(),
                 new ScalarTypeMetadata('bool')
             )
         );
 
-        $this->accessor->shouldBeNull();
-        $this->mutator->shouldBeNull();
-        $this->checker->shouldBeAnInstanceOf(MethodMetadata::class);
-        $this->remover->shouldBeNull();
+        $this->getAccessor()->shouldReturn(null);
+        $this->getMutator()->shouldReturn(null);
+        $this->getChecker()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getRemover()->shouldReturn(null);
     }
 
     function it_is_using_remover()
@@ -85,13 +85,13 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
             null,
             new MethodMetadata(
                 'unsetFoo',
-                new ArgumentMetadataList()
+                new ArgumentListMetadata()
             )
         );
 
-        $this->accessor->shouldBeNull();
-        $this->mutator->shouldBeNull();
-        $this->checker->shouldBeNull();
-        $this->remover->shouldBeAnInstanceOf(MethodMetadata::class);
+        $this->getAccessor()->shouldReturn(null);
+        $this->getMutator()->shouldReturn(null);
+        $this->getChecker()->shouldReturn(null);
+        $this->getRemover()->shouldReturnAnInstanceOf(MethodMetadata::class);
     }
 }

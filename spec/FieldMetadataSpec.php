@@ -16,21 +16,21 @@ final class FieldMetadataSpec extends ObjectBehavior
         $this->beConstructedWith('foo');
         $this->shouldHaveType(FieldMetadata::class);
 
-        $this->name->shouldBeEqualTo('foo');
+        $this->getName()->shouldReturn('foo');
     }
 
     function it_is_accepting_one_scalar_type()
     {
         $this->beConstructedWith('foo', new ScalarTypeMetadata('string'));
 
-        $this->types->shouldHaveCount(1);
+        $this->getTypes()->shouldHaveCount(1);
     }
 
     function it_is_accepting_one_class_type()
     {
         $this->beConstructedWith('foo', new ClassTypeMetadata('stdClass'));
 
-        $this->types->shouldHaveCount(1);
+        $this->getTypes()->shouldHaveCount(1);
     }
 
     function it_is_accepting_one_collection_type()
@@ -43,7 +43,7 @@ final class FieldMetadataSpec extends ObjectBehavior
             )
         );
 
-        $this->types->shouldHaveCount(1);
+        $this->getTypes()->shouldHaveCount(1);
     }
 
     function it_is_accepting_one_list_type()
@@ -55,7 +55,7 @@ final class FieldMetadataSpec extends ObjectBehavior
             )
         );
 
-        $this->types->shouldHaveCount(1);
+        $this->getTypes()->shouldHaveCount(1);
     }
 
     function it_is_accepting_multiple_types()
@@ -73,8 +73,8 @@ final class FieldMetadataSpec extends ObjectBehavior
             )
         );
 
-        $this->types->shouldHaveCount(4);
-        $this->types->shouldIterateLike(new \ArrayIterator([
+        $this->getTypes()->shouldHaveCount(4);
+        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
             new ScalarTypeMetadata('string'),
             new ClassTypeMetadata('stdClass'),
             new CollectionTypeMetadata(

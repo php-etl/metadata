@@ -2,6 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-interface ArgumentMetadataInterface extends NamedInterface, TypedInterface
+interface NamedInterface
 {
+    public function getName(): string;
 }

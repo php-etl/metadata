@@ -17,6 +17,6 @@ final class UnaryRelationMetadataSpec extends ObjectBehavior
     function it_is_named(CompositeTypeMetadataInterface $type)
     {
         $this->beConstructedWith('foo', $type);
-        $this->name->shouldBeEqualTo('foo');
+        $this->getName()->shouldReturn('foo');
     }
 }

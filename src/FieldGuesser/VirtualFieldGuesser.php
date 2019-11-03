@@ -29,10 +29,10 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
     {
         $methodCandidates = [];
         /** @var MethodMetadata $method */
-        foreach ($class->methods as $method) {
-            if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->name, $matches) &&
-                Type::isOneOf(new ScalarTypeMetadata('bool'), $method->returnTypes) &&
-                count($method->argumentList->arguments) === 0
+        foreach ($class->getMethods() as $method) {
+            if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
+                Type::isOneOf(new ScalarTypeMetadata('bool'), ...$method->getReturnTypes()) &&
+                count($method->getArguments()) === 0
             ) {
                 $fieldName = $this->inflector->camelize($matches['fieldName']);
                 if (!$this->isSingular($fieldName)) {
@@ -43,8 +43,8 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
                 }
 
                 $methodCandidates[$fieldName]['is'] = $method;
-            } else if (preg_match('/(?<action>set)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->name, $matches) &&
-                count($method->argumentList->arguments) === 1
+            } else if (preg_match('/(?<action>set)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
+                count($method->getArguments()) === 1
             ) {
                 $action = $matches['action'];
                 $fieldName = $this->inflector->camelize($matches['fieldName']);
@@ -56,8 +56,8 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
                 }
 
                 $methodCandidates[$fieldName][$action] = $method;
-            } else if (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->name, $matches) &&
-                count($method->argumentList->arguments) === 0
+            } else if (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
+                count($method->getArguments()) === 0
             ) {
                 $action = $matches['action'];
                 $fieldName = $this->inflector->camelize($matches['fieldName']);
