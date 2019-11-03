@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Guesser\Docblock;
+namespace Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock;
 
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\Guesser\TypeMetadataBuildingTrait;
+use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;

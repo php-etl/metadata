@@ -2,16 +2,18 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class VariadicArgumentMetadata implements ArgumentMetadataInterface
+class UnaryRelationDefinition implements RelationDefinitionInterface
 {
     /** @var string */
     public $name;
     /** @var TypeMetadataInterface[] */
     public $types;
 
-    public function __construct(string $name, TypeMetadataInterface ...$type)
-    {
+    public function __construct(
+        string $name,
+        CompositeTypeMetadataInterface ...$types
+    ) {
         $this->name = $name;
-        $this->types = $type;
+        $this->types = $types;
     }
 }

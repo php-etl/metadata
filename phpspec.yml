@@ -13,9 +13,9 @@ extensions:
     whitelist:
       - src
 formatter.name: pretty
-stop_on_failure: true
+stop_on_failure: false
 suites:
-  acme_suite:
+  metadata_suite:
     namespace: Kiboko\Component\ETL\Metadata
     psr4_prefix: Kiboko\Component\ETL\Metadata
     src_path: '%paths.config%'

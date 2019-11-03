@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Kiboko\Component\ETL\Metadata;
 
@@ -14,6 +12,10 @@ final class ClassTypeMetadata implements ClassMetadataInterface
     public $properties;
     /** @var MethodMetadata[] */
     public $methods;
+    /** @var FieldDefinition[] */
+    public $fields;
+    /** @var RelationDefinitionInterface[] */
+    public $relations;
 
     public function __construct(?string $name, ?string $namespace = null)
     {
@@ -43,6 +45,24 @@ final class ClassTypeMetadata implements ClassMetadataInterface
     {
         foreach ($methods as $method) {
             $this->methods[$method->name] = $method;
+        }
+
+        return $this;
+    }
+
+    public function fields(FieldDefinitionInterface ...$fields): self
+    {
+        foreach ($fields as $field) {
+            $this->fields[$field->name] = $field;
+        }
+
+        return $this;
+    }
+
+    public function relations(RelationDefinitionInterface ...$relations): self
+    {
+        foreach ($relations as $relation) {
+            $this->relations[$relation->name] = $relation;
         }
 
         return $this;

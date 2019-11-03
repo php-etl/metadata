@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-interface CompositeTypeMetadataInterface extends TypeMetadataInterface
+/**
+ * @property string $name
+ */
+interface RelationDefinitionInterface
 {
 }

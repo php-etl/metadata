@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata\Guesser\Docblock;
+namespace spec\Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock;
 
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\Guesser;
+use Kiboko\Component\ETL\Metadata\TypeGuesser;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
@@ -36,7 +36,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->beConstructedWith((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory());
-        $this->shouldHaveType(Guesser\Docblock\DocblockTypeGuesser::class);
+        $this->shouldHaveType(TypeGuesser\Docblock\DocblockTypeGuesser::class);
     }
 
     function it_is_discovering_one_scalar_type()
@@ -97,7 +97,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
         $this->beConstructedWith((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory());
 
         $object = new class {
-            /** @var string|\stdClass|Guesser\Docblock\DocblockTypeGuesser|\PDO */
+            /** @var string|\stdClass|TypeGuesser\Docblock\DocblockTypeGuesser|\PDO */
             public $foo;
         };
 

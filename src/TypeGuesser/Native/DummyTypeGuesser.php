@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Guesser\Native;
+namespace Kiboko\Component\ETL\Metadata\TypeGuesser\Native;
 
 class DummyTypeGuesser implements TypeGuesserInterface
 {

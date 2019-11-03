@@ -1,166 +1,58 @@
-version: '2'
+version: '2.2'
 
 services:
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      - BLACKFIRE_SERVER_ID
+      - BLACKFIRE_SERVER_TOKEN
+
+  sh:
+    extends:
+      service: sh74
+
+  sh-xdebug:
+    extends:
+      service: sh74-xdebug
+
   sh72:
-    build:
-      context: .docker/php@7.2/cli
+    image: kiboko/php:7.2-cli-blackfire
     user: docker:docker
     volumes:
-      - ./.docker/php@7.2/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
       - ./.docker/php@7.2/cli-xdebug/config/security.ini:/usr/local/etc/php/conf.d/security.ini:ro
       - ./:/var/www/html
     restart: "no"
+    command: [ "sleep", "31536000" ]
+    environment:
+      - BLACKFIRE_CLIENT_ID
+      - BLACKFIRE_CLIENT_TOKEN
 
   sh72-xdebug:
-    build:
-      context: .docker/php@7.2/cli-xdebug
+    image: kiboko/php:7.2-cli-xdebug
     user: docker:docker
     volumes:
-      - ./.docker/php@7.2/cli-xdebug/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
       - ./.docker/php@7.2/cli-xdebug/config/security.ini:/usr/local/etc/php/conf.d/security.ini:ro
-      - ./.docker/php@7.2/cli-xdebug/config/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
       - ./:/var/www/html
     restart: "no"
+    command: [ "sleep", "31536000" ]
 
   sh74:
-    build:
-      context: .docker/php@7.4/cli
+    image: kiboko/php:7.4-cli
     user: docker:docker
     volumes:
-      - ./.docker/php@7.4/cli/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
-      - ./.docker/php@7.2/cli-xdebug/config/security.ini:/usr/local/etc/php/conf.d/security.ini:ro
+      - ./.docker/php@7.4/cli/config/security.ini:/usr/local/etc/php/conf.d/security.ini:ro
       - ./:/var/www/html
     restart: "no"
+    command: [ "sleep", "31536000" ]
+    environment:
+      - BLACKFIRE_CLIENT_ID
+      - BLACKFIRE_CLIENT_TOKEN
 
   sh74-xdebug:
-    build:
-      context: .docker/php@7.4/cli-xdebug
+    image: kiboko/php:7.4-cli-xdebug
     user: docker:docker
     volumes:
-      - ./.docker/php@7.4/cli-xdebug/config/memory.ini:/usr/local/etc/php/conf.d/memory.ini:ro
-      - ./.docker/php@7.2/cli-xdebug/config/security.ini:/usr/local/etc/php/conf.d/security.ini:ro
-      - ./.docker/php@7.4/cli-xdebug/config/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+      - ./.docker/php@7.4/cli-xdebug/config/security.ini:/usr/local/etc/php/conf.d/security.ini:ro
       - ./:/var/www/html
     restart: "no"
-
-  composer:
-    extends:
-      service: composer74
-
-  composer72:
-    extends:
-      service: sh72
-    volumes:
-      - composer:/opt/docker/.composer/:cached
-    environment:
-      COMPOSER_AUTH: >
-        {"github-oauth":{"github.com": "${COMPOSER_GITHUB_TOKEN}"}}
-    entrypoint: [ "composer" ]
-    restart: "no"
-
-  composer74:
-    extends:
-      service: sh74
-    volumes:
-      - composer:/opt/docker/.composer/:cached
-    environment:
-      COMPOSER_AUTH: >
-        {"github-oauth":{"github.com": "${COMPOSER_GITHUB_TOKEN}"}}
-    entrypoint: [ "composer" ]
-    restart: "no"
-
-  phpunit:
-    extends:
-      service: phpunit74-xdebug
-
-  phpunit72:
-    extends:
-      service: sh72
-    entrypoint: [ "vendor/bin/phpunit" ]
-    restart: "no"
-
-  phpunit72-xdebug:
-    extends:
-      service: sh72-xdebug
-    entrypoint: [ "vendor/bin/phpunit" ]
-    restart: "no"
-
-  phpunit74:
-    extends:
-      service: sh74
-    entrypoint: [ "vendor/bin/phpunit" ]
-    restart: "no"
-
-  phpunit74-xdebug:
-    extends:
-      service: sh74-xdebug
-    entrypoint: [ "vendor/bin/phpunit" ]
-    restart: "no"
-
-  phpspec:
-    extends:
-      service: phpspec74-xdebug
-
-  phpspec72:
-    extends:
-      service: sh72
-    entrypoint: [ "vendor/bin/phpspec" ]
-    restart: "no"
-
-  phpspec72-xdebug:
-    extends:
-      service: sh72-xdebug
-    entrypoint: [ "vendor/bin/phpspec" ]
-    restart: "no"
-
-  phpspec74:
-    extends:
-      service: sh74
-    entrypoint: [ "vendor/bin/phpspec" ]
-    restart: "no"
-
-  phpspec74-xdebug:
-    extends:
-      service: sh74-xdebug
-    entrypoint: [ "vendor/bin/phpspec" ]
-    restart: "no"
-
-  phpstan:
-    extends:
-      service: phpstan74
-
-  phpstan72:
-    extends:
-      service: sh72-xdebug
-    entrypoint: [ "vendor/bin/phpstan" ]
-    restart: "no"
-
-  phpstan74:
-    extends:
-      service: sh74-xdebug
-    entrypoint: [ "vendor/bin/phpstan" ]
-    restart: "no"
-
-  infection:
-    extends:
-      service: infection74
-
-  infection72:
-    extends:
-      service: sh72-xdebug
-    entrypoint: [ "vendor/bin/infection", "--threads=4", "--test-framework=phpspec" ]
-    restart: "no"
-
-  infection74:
-    extends:
-      service: sh74-xdebug
-    entrypoint: [ "vendor/bin/infection", "--threads=4", "--test-framework=phpspec" ]
-    restart: "no"
-
-volumes:
-  composer:
-    driver: local
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-      o: "size=2048m,uid=1000,gid=1000"
+    command: [ "sleep", "31536000" ]

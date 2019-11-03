@@ -36,13 +36,13 @@ automatic type guesser. It can be initialised with the following code:
 ```php
 <?php
 
-use Kiboko\Component\ETL\Metadata\Guesser;
+use Kiboko\Component\ETL\Metadata\TypeGuesser;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 
-$guesser = new Guesser\CompositeTypeGuesser(
-    new Guesser\Native\Php74TypeGuesser(),
-    new Guesser\Docblock\DocblockTypeGuesser(
+$guesser = new TypeGuesser\CompositeTypeGuesser(
+    new TypeGuesser\Native\Php74TypeGuesser(),
+    new TypeGuesser\Docblock\DocblockTypeGuesser(
         (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
         new DocblockFactory()
     )
@@ -57,7 +57,7 @@ Example of a DTO class metadata fetcher:
 <?php
 
 use Kiboko\Component\ETL\Metadata;
-use Kiboko\Component\ETL\Metadata\Guesser\TypeGuesserInterface;
+use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
 
 /** @var TypeGuesserInterface $guesser */
 

@@ -1,10 +1,8 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Kiboko\Component\ETL\Metadata;
 
-use Kiboko\Component\ETL\Metadata\Guesser;
+use Kiboko\Component\ETL\Metadata\TypeGuesser;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 
@@ -51,11 +49,11 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
                 );
             }
 
-            $typeGuesser = new Guesser\CompositeTypeGuesser(
-                version_compare(PHP_VERSION, '5.4.0') >= 0 ?
-                    new Guesser\Native\Php74TypeGuesser() :
-                    new Guesser\Native\DummyTypeGuesser(),
-                new Guesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
+            $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
+                version_compare(PHP_VERSION, '7.4.0') >= 0 ?
+                    new TypeGuesser\Native\Php74TypeGuesser() :
+                    new TypeGuesser\Native\DummyTypeGuesser(),
+                new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
             );
 
             $object->properties(...array_map(
