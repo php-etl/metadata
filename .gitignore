@@ -1,4 +1,5 @@
 vendor/
 reports/
 .idea/
+!.idea/runConfigurations/*
 .env
