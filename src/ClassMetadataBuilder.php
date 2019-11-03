@@ -2,23 +2,30 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-use Kiboko\Component\ETL\Metadata\FieldGuesser\FieldGuesserInterface;
-use Kiboko\Component\ETL\Metadata\RelationGuesser\RelationGuesserInterface;
-use Kiboko\Component\ETL\Metadata\TypeGuesser;
-use Phpactor\Docblock\DocblockFactory;
-use PhpParser\ParserFactory;
+use Kiboko\Component\ETL\Metadata\FieldGuesser;
+use Kiboko\Component\ETL\Metadata\MethodGuesser;
+use Kiboko\Component\ETL\Metadata\PropertyGuesser;
+use Kiboko\Component\ETL\Metadata\RelationGuesser;
 
 final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {
-    /** @var FieldGuesserInterface */
+    /** @var PropertyGuesser\PropertyGuesserInterface */
+    private $propertyGuesser;
+    /** @var MethodGuesser\MethodGuesserInterface */
+    private $methodGuesser;
+    /** @var FieldGuesser\FieldGuesserInterface */
     private $fieldGuesser;
-    /** @var RelationGuesserInterface */
+    /** @var RelationGuesser\RelationGuesserInterface */
     private $relationGuesser;
 
     public function __construct(
-        FieldGuesserInterface $fieldGuesser,
-        RelationGuesserInterface $relationGuesser
+        PropertyGuesser\PropertyGuesserInterface $propertyGuesser,
+        MethodGuesser\MethodGuesserInterface $methodGuesser,
+        FieldGuesser\FieldGuesserInterface $fieldGuesser,
+        RelationGuesser\RelationGuesserInterface $relationGuesser
     ) {
+        $this->propertyGuesser = $propertyGuesser;
+        $this->methodGuesser = $methodGuesser;
         $this->fieldGuesser = $fieldGuesser;
         $this->relationGuesser = $relationGuesser;
     }
@@ -56,56 +63,21 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
         try {
             $fqcn = $classOrObject->getName();
             if (($index = strrpos($fqcn, '\\')) === false) {
-                $object = new ClassTypeMetadata($fqcn);
+                $metadata = new ClassTypeMetadata($fqcn);
             } else {
-                $object = new ClassTypeMetadata(
+                $metadata = new ClassTypeMetadata(
                     substr($fqcn, $index + 1),
                     substr($fqcn, 0, $index)
                 );
             }
 
-            $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-                version_compare(PHP_VERSION, '7.4.0') >= 0 ?
-                    new TypeGuesser\Native\Php74TypeGuesser() :
-                    new TypeGuesser\Native\DummyTypeGuesser(),
-                new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
-            );
+            $metadata->properties(...($this->propertyGuesser)($classOrObject, $metadata));
 
-            $object->properties(...array_map(
-                function(\ReflectionProperty $property) use($classOrObject, $typeGuesser) {
-                    return new PropertyMetadata(
-                        $property->getName(),
-                        ...$typeGuesser($classOrObject, $property)
-                    );
-                },
-                $classOrObject->getProperties(\ReflectionProperty::IS_PUBLIC)
-            ));
+            $metadata->methods(...($this->methodGuesser)($classOrObject, $metadata));
 
-            $object->methods(...array_map(
-                function(\ReflectionMethod $method) use($classOrObject, $typeGuesser) {
-                    return new MethodMetadata(
-                        $method->getName(),
-                        new ArgumentMetadataList(...array_map(function(\ReflectionParameter $parameter) use($typeGuesser, $classOrObject) {
-                            if ($parameter->isVariadic()) {
-                                return new VariadicArgumentMetadata(
-                                    $parameter->getName(),
-                                    ...$typeGuesser($classOrObject, $parameter)
-                                );
-                            }
-                            return new ArgumentMetadata(
-                                $parameter->getName(),
-                                ...$typeGuesser($classOrObject, $parameter)
-                            );
-                        }, $method->getParameters())),
-                        ...$typeGuesser($classOrObject, $method)
-                    );
-                },
-                $classOrObject->getMethods(\ReflectionMethod::IS_PUBLIC)
-            ));
+            $metadata->fields(...($this->fieldGuesser)($metadata));
 
-            $object->fields(...($this->fieldGuesser)($this));
-
-            $object->relations(...($this->relationGuesser)($this));
+            $metadata->relations(...($this->relationGuesser)($metadata));
         } catch (\ReflectionException $e) {
             throw new \RuntimeException(
                 'An error occurred during class metadata building.',
@@ -114,6 +86,6 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
             );
         }
 
-        return $object;
+        return $metadata;
     }
 }

@@ -8,7 +8,7 @@ use Kiboko\Component\ETL\Metadata\FieldMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 
-class PublicPropertyFieldGuesser implements FieldGuesserInterface
+final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {
     public function __invoke(ClassTypeMetadata $class): \Iterator
     {

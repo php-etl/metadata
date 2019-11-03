@@ -11,7 +11,7 @@ use Kiboko\Component\ETL\Metadata\Type;
 use Kiboko\Component\ETL\Metadata\VirtualMultipleRelationMetadata;
 use Kiboko\Component\ETL\Metadata\VirtualUnaryRelationMetadata;
 
-class VirtualRelationGuesser implements RelationGuesserInterface
+final class VirtualRelationGuesser implements RelationGuesserInterface
 {
     /** @var Inflector */
     private $inflector;
@@ -31,7 +31,7 @@ class VirtualRelationGuesser implements RelationGuesserInterface
         return $this->inflector->singularize($field) === $field;
     }
 
-    public function __invoke(ClassTypeMetadata $class): \Generator
+    public function __invoke(ClassTypeMetadata $class): \Iterator
     {
         $methodCandidates = [];
         /** @var MethodMetadata $method */

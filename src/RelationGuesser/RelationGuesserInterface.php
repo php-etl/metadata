@@ -8,9 +8,7 @@ use Kiboko\Component\ETL\Metadata\RelationMetadataInterface;
 interface RelationGuesserInterface
 {
     /**
-     * @param ClassTypeMetadata $class
-     *
      * @return RelationMetadataInterface[]|\Generator
      */
-    public function __invoke(ClassTypeMetadata $class): \Generator;
+    public function __invoke(ClassTypeMetadata $class): \Iterator;
 }

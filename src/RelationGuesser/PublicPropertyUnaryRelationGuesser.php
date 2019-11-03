@@ -7,9 +7,9 @@ use Kiboko\Component\ETL\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\UnaryRelationMetadata;
 
-class PublicPropertyUnaryRelationGuesser implements RelationGuesserInterface
+final class PublicPropertyUnaryRelationGuesser implements RelationGuesserInterface
 {
-    public function __invoke(ClassTypeMetadata $class): \Generator
+    public function __invoke(ClassTypeMetadata $class): \Iterator
     {
         foreach ($class->properties as $property) {
             $types = iterator_to_array($this->filterTypes(...$property->types));

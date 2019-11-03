@@ -7,8 +7,17 @@ use Kiboko\Component\ETL\Metadata\ClassMetadataBuilder;
 use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\ETL\Metadata\FieldGuesser\DummyFieldGuesser;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
+use Kiboko\Component\ETL\Metadata\MethodGuesser\DummyMethodGuesser;
+use Kiboko\Component\ETL\Metadata\MethodGuesser\ReflectionMethodGuesser;
+use Kiboko\Component\ETL\Metadata\PropertyGuesser\DummyPropertyGuesser;
+use Kiboko\Component\ETL\Metadata\PropertyGuesser\ReflectionPropertyGuesser;
+use Kiboko\Component\ETL\Metadata\RelationGuesser\DummyRelationGuesser;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\ETL\Metadata\TypeGuesser;
+use Phpactor\Docblock\DocblockFactory;
+use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;
 
 class ClassMetadataBuilderSpec extends ObjectBehavior
@@ -173,11 +182,14 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
+        $this->beConstructedWith(new DummyPropertyGuesser(), new DummyMethodGuesser(), new DummyFieldGuesser(), new DummyRelationGuesser());
         $this->shouldHaveType(ClassMetadataBuilder::class);
     }
 
     function it_accepts_anonymous_classes()
     {
+        $this->beConstructedWith(new DummyPropertyGuesser(), new DummyMethodGuesser(), new DummyFieldGuesser(), new DummyRelationGuesser());
+
         $object = new class {};
 
         $this->buildFromObject($object)->shouldReturnAnInstanceOf(ClassTypeMetadata::class);
@@ -185,6 +197,8 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_reads_properties()
     {
+        $this->beConstructedWith(new DummyPropertyGuesser(), new DummyMethodGuesser(), new DummyFieldGuesser(), new DummyRelationGuesser());
+
         $object = new class {
             public $foo;
         };
@@ -194,6 +208,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_detects_properties_type()
     {
+        $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
+            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Docblock\DocblockTypeGuesser(
+                (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
+                new DocblockFactory()
+            )
+        );
+
+        $this->beConstructedWith(
+            new ReflectionPropertyGuesser($typeGuesser),
+            new DummyMethodGuesser(),
+            new DummyFieldGuesser(),
+            new DummyRelationGuesser()
+        );
+
         $object = new class {
             /** @var \stdClass */
             public $foo;
@@ -205,6 +234,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_detects_properties_arrays()
     {
+        $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
+            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Docblock\DocblockTypeGuesser(
+                (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
+                new DocblockFactory()
+            )
+        );
+
+        $this->beConstructedWith(
+            new ReflectionPropertyGuesser($typeGuesser),
+            new DummyMethodGuesser(),
+            new DummyFieldGuesser(),
+            new DummyRelationGuesser()
+        );
+
         $object = new class {
             /** @var \stdClass[] */
             public $foo;
@@ -217,6 +261,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_reads_methods()
     {
+        $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
+            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Docblock\DocblockTypeGuesser(
+                (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
+                new DocblockFactory()
+            )
+        );
+
+        $this->beConstructedWith(
+            new DummyPropertyGuesser(),
+            new ReflectionMethodGuesser($typeGuesser),
+            new DummyFieldGuesser(),
+            new DummyRelationGuesser()
+        );
+
         $object = new class {
             public function foo() {}
         };
@@ -226,6 +285,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_detects_methods_return_type()
     {
+        $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
+            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Docblock\DocblockTypeGuesser(
+                (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
+                new DocblockFactory()
+            )
+        );
+
+        $this->beConstructedWith(
+            new DummyPropertyGuesser(),
+            new ReflectionMethodGuesser($typeGuesser),
+            new DummyFieldGuesser(),
+            new DummyRelationGuesser()
+        );
+
         $object = new class {
             /** @return \stdClass */
             public function foo(){}
@@ -237,6 +311,21 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
 
     function it_detects_methods_return_arrays()
     {
+        $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
+            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Docblock\DocblockTypeGuesser(
+                (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
+                new DocblockFactory()
+            )
+        );
+
+        $this->beConstructedWith(
+            new DummyPropertyGuesser(),
+            new ReflectionMethodGuesser($typeGuesser),
+            new DummyFieldGuesser(),
+            new DummyRelationGuesser()
+        );
+
         $object = new class {
             /** @return \stdClass[] */
             public function foo(){}

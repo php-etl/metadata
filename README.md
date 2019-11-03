@@ -40,7 +40,7 @@ use Kiboko\Component\ETL\Metadata\TypeGuesser;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 
-$guesser = new TypeGuesser\CompositeTypeGuesser(
+$typeGuesser = new TypeGuesser\CompositeTypeGuesser(
     new TypeGuesser\Native\Php74TypeGuesser(),
     new TypeGuesser\Docblock\DocblockTypeGuesser(
         (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
@@ -96,6 +96,8 @@ use Kiboko\Component\ETL\Metadata;
 
 /** @var Metadata\ClassMetadataBuilder $metadataBuilder */
 $metadataBuilder = new Metadata\ClassMetadataBuilder(
+    new Metadata\PropertyGuesser\ReflectionPropertyGuesser($typeGuesser),
+    new Metadata\MethodGuesser\ReflectionMethodGuesser($typeGuesser),
     new Metadata\FieldGuesser\FieldGuesserChain(
         new Metadata\FieldGuesser\PublicPropertyFieldGuesser(),
         new Metadata\FieldGuesser\VirtualFieldGuesser()

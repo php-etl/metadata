@@ -10,7 +10,7 @@ use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
 use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
 
-class VirtualFieldGuesser implements FieldGuesserInterface
+final class VirtualFieldGuesser implements FieldGuesserInterface
 {
     /** @var Inflector */
     private $inflector;

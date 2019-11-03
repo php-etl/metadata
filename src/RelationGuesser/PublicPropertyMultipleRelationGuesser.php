@@ -8,9 +8,9 @@ use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MultipleRelationMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 
-class PublicPropertyMultipleRelationGuesser implements RelationGuesserInterface
+final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInterface
 {
-    public function __invoke(ClassTypeMetadata $class): \Generator
+    public function __invoke(ClassTypeMetadata $class): \Iterator
     {
         foreach ($class->properties as $property) {
             $types = iterator_to_array($this->filterTypes(...$property->types));

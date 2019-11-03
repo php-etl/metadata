@@ -4,7 +4,7 @@ namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 
-class FieldGuesserChain implements FieldGuesserInterface
+final class FieldGuesserChain implements FieldGuesserInterface
 {
     /** @var FieldGuesserInterface[] */
     private $inner;
