@@ -4,7 +4,8 @@ namespace Kiboko\Component\ETL\Metadata;
 
 /**
  * @property string $name
+ * @property Type[] $types
  */
-interface RelationDefinitionInterface
+interface FieldMetadataInterface
 {
 }

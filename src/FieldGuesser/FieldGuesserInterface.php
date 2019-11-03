@@ -3,13 +3,14 @@
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\FieldMetadataInterface;
 
 interface FieldGuesserInterface
 {
     /**
      * @param ClassTypeMetadata $class
      *
-     * @return FieldDefinitionInterface[]|\Generator
+     * @return FieldMetadataInterface[]|\Generator
      */
     public function __invoke(ClassTypeMetadata $class): \Iterator;
 }

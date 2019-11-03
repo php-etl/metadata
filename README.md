@@ -84,6 +84,32 @@ $metadata = (new Metadata\ClassTypeMetadata($classOrObject->getShortName(), $cla
     );
 ``` 
 
+Automatic class metadata guessing
+---
+
+In order to simplify the class metadata building, there is a metadata guesser you can 
+use to ease the building of metadata.
+
+```php
+<?php
+use Kiboko\Component\ETL\Metadata;
+
+/** @var Metadata\ClassMetadataBuilder $metadataBuilder */
+$metadataBuilder = new Metadata\ClassMetadataBuilder(
+    new Metadata\FieldGuesser\FieldGuesserChain(
+        new Metadata\FieldGuesser\PublicPropertyFieldGuesser(),
+        new Metadata\FieldGuesser\VirtualFieldGuesser()
+    ),
+    new Metadata\RelationGuesser\RelationGuesserChain(
+        new Metadata\RelationGuesser\PublicPropertyUnaryRelationGuesser(),
+        new Metadata\RelationGuesser\PublicPropertyMultipleRelationGuesser(),
+        new Metadata\RelationGuesser\VirtualRelationGuesser()
+    )
+);
+
+$metadata = $metadataBuilder->buildFromFQCN('FooBarBundle\\Entity\\Foo');
+```
+
 PHP version and typed properties
 ---
 

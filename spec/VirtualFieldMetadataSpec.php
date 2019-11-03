@@ -6,15 +6,15 @@ use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
 use Kiboko\Component\ETL\Metadata\ArgumentMetadataList;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\VirtualFieldDefinition;
+use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
 use PhpSpec\ObjectBehavior;
 
-final class VirtualFieldDefinitionSpec extends ObjectBehavior
+final class VirtualFieldMetadataSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
         $this->beConstructedWith('foo');
-        $this->shouldHaveType(VirtualFieldDefinition::class);
+        $this->shouldHaveType(VirtualFieldMetadata::class);
 
         $this->name->shouldBeEqualTo('foo');
         $this->accessor->shouldBeNull();

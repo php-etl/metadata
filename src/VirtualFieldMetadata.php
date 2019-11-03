@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-class VirtualFieldDefinition extends FieldDefinition
+final class VirtualFieldMetadata extends FieldMetadata
 {
     /** @var MethodMetadata */
     public $accessor;

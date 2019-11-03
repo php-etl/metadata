@@ -8,6 +8,7 @@ use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
+use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
 
 class VirtualFieldGuesser implements FieldGuesserInterface
 {
@@ -81,7 +82,7 @@ class VirtualFieldGuesser implements FieldGuesserInterface
                 continue;
             }
 
-            yield new VirtualFieldDefinition(
+            yield new VirtualFieldMetadata(
                 $fieldName,
                 $accessor,
                 $mutator,

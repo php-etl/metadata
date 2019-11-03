@@ -4,17 +4,17 @@ namespace spec\Kiboko\Component\ETL\Metadata;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\FieldDefinition;
+use Kiboko\Component\ETL\Metadata\FieldMetadata;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
-final class FieldDefinitionSpec extends ObjectBehavior
+final class FieldMetadataSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
         $this->beConstructedWith('foo');
-        $this->shouldHaveType(FieldDefinition::class);
+        $this->shouldHaveType(FieldMetadata::class);
 
         $this->name->shouldBeEqualTo('foo');
     }

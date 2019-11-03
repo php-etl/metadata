@@ -3,7 +3,7 @@
 namespace spec\Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassMetadataBuilder;
-use Kiboko\Component\ETL\Metadata\FieldDefinition;
+use Kiboko\Component\ETL\Metadata\FieldMetadata;
 use Kiboko\Component\ETL\Metadata\FieldGuesser\FieldGuesserInterface;
 use Kiboko\Component\ETL\Metadata\FieldGuesser\PublicPropertyFieldGuesser;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
@@ -30,7 +30,7 @@ final class PublicPropertyFieldGuesserSpec extends ObjectBehavior
 
         $this->__invoke($metadata)
             ->shouldIterateLike(new \ArrayIterator([
-                new FieldDefinition('foo', new ScalarTypeMetadata('string')),
+                new FieldMetadata('foo', new ScalarTypeMetadata('string')),
             ]))
         ;
     }

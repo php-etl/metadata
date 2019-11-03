@@ -3,10 +3,10 @@
 namespace spec\Kiboko\Component\ETL\Metadata;
 
 use Kiboko\Component\ETL\Metadata\CompositeTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\VirtualUnaryRelationDefinition;
+use Kiboko\Component\ETL\Metadata\VirtualUnaryRelationMetadata;
 use PhpSpec\ObjectBehavior;
 
-final class VirtualUnaryRelationDefinitionSpec extends ObjectBehavior
+final class VirtualUnaryRelationMetadataSpec extends ObjectBehavior
 {
     function it_is_initializable(CompositeTypeMetadataInterface $type)
     {
@@ -18,6 +18,6 @@ final class VirtualUnaryRelationDefinitionSpec extends ObjectBehavior
             null,
             $type
         );
-        $this->shouldHaveType(VirtualUnaryRelationDefinition::class);
+        $this->shouldHaveType(VirtualUnaryRelationMetadata::class);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-class FieldDefinition implements FieldDefinitionInterface
+class FieldMetadata implements FieldMetadataInterface
 {
     /** @var string */
     public $name;

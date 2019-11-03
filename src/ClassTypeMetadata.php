@@ -12,9 +12,9 @@ final class ClassTypeMetadata implements ClassMetadataInterface
     public $properties;
     /** @var MethodMetadata[] */
     public $methods;
-    /** @var FieldDefinition[] */
+    /** @var FieldMetadata[] */
     public $fields;
-    /** @var RelationDefinitionInterface[] */
+    /** @var RelationMetadataInterface[] */
     public $relations;
 
     public function __construct(?string $name, ?string $namespace = null)
@@ -50,7 +50,7 @@ final class ClassTypeMetadata implements ClassMetadataInterface
         return $this;
     }
 
-    public function fields(FieldDefinitionInterface ...$fields): self
+    public function fields(FieldMetadataInterface ...$fields): self
     {
         foreach ($fields as $field) {
             $this->fields[$field->name] = $field;
@@ -59,7 +59,7 @@ final class ClassTypeMetadata implements ClassMetadataInterface
         return $this;
     }
 
-    public function relations(RelationDefinitionInterface ...$relations): self
+    public function relations(RelationMetadataInterface ...$relations): self
     {
         foreach ($relations as $relation) {
             $this->relations[$relation->name] = $relation;

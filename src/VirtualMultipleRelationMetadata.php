@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-class VirtualUnaryRelationDefinition implements RelationDefinitionInterface
+final class VirtualMultipleRelationMetadata implements RelationMetadataInterface
 {
     /** @var string */
     public $name;
@@ -13,23 +13,31 @@ class VirtualUnaryRelationDefinition implements RelationDefinitionInterface
     /** @var MethodMetadata */
     public $mutator;
     /** @var MethodMetadata */
-    public $checker;
+    public $adder;
     /** @var MethodMetadata */
     public $remover;
+    /** @var MethodMetadata */
+    public $walker;
+    /** @var MethodMetadata */
+    public $counter;
 
     public function __construct(
         string $name,
         ?MethodMetadata $accessor = null,
         ?MethodMetadata $mutator = null,
-        ?MethodMetadata $checker = null,
+        ?MethodMetadata $adder = null,
         ?MethodMetadata $remover = null,
+        ?MethodMetadata $walker = null,
+        ?MethodMetadata $counter = null,
         TypeMetadataInterface ...$types
     ) {
         $this->name = $name;
         $this->types = $types;
         $this->accessor = $accessor;
         $this->mutator = $mutator;
-        $this->checker = $checker;
+        $this->adder = $adder;
         $this->remover = $remover;
+        $this->walker = $walker;
+        $this->counter = $counter;
     }
 }

@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
+namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\FieldMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
+use Kiboko\Component\ETL\Metadata\MultipleRelationMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 
-class PublicPropertyFieldGuesser implements FieldGuesserInterface
+class PublicPropertyMultipleRelationGuesser implements RelationGuesserInterface
 {
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadata $class): \Generator
     {
         foreach ($class->properties as $property) {
             $types = iterator_to_array($this->filterTypes(...$property->types));
@@ -18,9 +18,9 @@ class PublicPropertyFieldGuesser implements FieldGuesserInterface
                 continue;
             }
 
-            yield new FieldMetadata(
+            yield new MultipleRelationMetadata(
                 $property->name,
-                ...array_values($property->types)
+                ...$types
             );
         }
     }
@@ -28,8 +28,8 @@ class PublicPropertyFieldGuesser implements FieldGuesserInterface
     private function filterTypes(TypeMetadataInterface ...$types): \Generator
     {
         foreach ($types as $type) {
-            if (!$type instanceof ScalarTypeMetadata &&
-                !$type instanceof ArrayTypeMetadata
+            if (!$type instanceof ListTypeMetadata &&
+                !$type instanceof CollectionTypeMetadata
             ) {
                 continue;
             }

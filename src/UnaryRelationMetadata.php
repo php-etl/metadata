@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-class UnaryRelationDefinition implements RelationDefinitionInterface
+final class UnaryRelationMetadata implements RelationMetadataInterface
 {
     /** @var string */
     public $name;

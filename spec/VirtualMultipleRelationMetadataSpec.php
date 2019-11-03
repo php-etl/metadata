@@ -3,10 +3,10 @@
 namespace spec\Kiboko\Component\ETL\Metadata;
 
 use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\VirtualMultipleRelationDefinition;
+use Kiboko\Component\ETL\Metadata\VirtualMultipleRelationMetadata;
 use PhpSpec\ObjectBehavior;
 
-final class VirtualMultipleRelationDefinitionSpec extends ObjectBehavior
+final class VirtualMultipleRelationMetadataSpec extends ObjectBehavior
 {
     function it_is_initializable(IterableTypeMetadataInterface $type)
     {
@@ -20,6 +20,6 @@ final class VirtualMultipleRelationDefinitionSpec extends ObjectBehavior
             null,
             $type
         );
-        $this->shouldHaveType(VirtualMultipleRelationDefinition::class);
+        $this->shouldHaveType(VirtualMultipleRelationMetadata::class);
     }
 }

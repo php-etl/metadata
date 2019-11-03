@@ -2,12 +2,27 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
+use Kiboko\Component\ETL\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Component\ETL\Metadata\RelationGuesser\RelationGuesserInterface;
 use Kiboko\Component\ETL\Metadata\TypeGuesser;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 
 final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {
+    /** @var FieldGuesserInterface */
+    private $fieldGuesser;
+    /** @var RelationGuesserInterface */
+    private $relationGuesser;
+
+    public function __construct(
+        FieldGuesserInterface $fieldGuesser,
+        RelationGuesserInterface $relationGuesser
+    ) {
+        $this->fieldGuesser = $fieldGuesser;
+        $this->relationGuesser = $relationGuesser;
+    }
+
     public function buildFromReference(ClassReferenceMetadata $class): ClassTypeMetadata
     {
         return $this->buildFromFQCN((string) $class);
@@ -87,6 +102,10 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
                 },
                 $classOrObject->getMethods(\ReflectionMethod::IS_PUBLIC)
             ));
+
+            $object->fields(...($this->fieldGuesser)($this));
+
+            $object->relations(...($this->relationGuesser)($this));
         } catch (\ReflectionException $e) {
             throw new \RuntimeException(
                 'An error occurred during class metadata building.',
