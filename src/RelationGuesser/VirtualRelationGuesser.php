@@ -2,8 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
-use Doctrine\Inflector\Inflector;
-use Doctrine\Inflector\Rules\English;
+use Doctrine\Common\Inflector\Inflector;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
@@ -18,7 +17,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
     public function __construct()
     {
-        $this->inflector = (new English\InflectorFactory())();
+        $this->inflector = new Inflector();
     }
 
     private function isPlural(string $field): bool

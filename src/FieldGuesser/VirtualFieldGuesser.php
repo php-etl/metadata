@@ -2,8 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
-use Doctrine\Inflector\Inflector;
-use Doctrine\Inflector\Rules\English;
+use Doctrine\Common\Inflector\Inflector;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
@@ -17,7 +16,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
     public function __construct(?Inflector $inflector = null)
     {
-        $this->inflector = $inflector ?? (new English\InflectorFactory())();
+        $this->inflector = $inflector ?? new Inflector();
     }
 
     private function isSingular(string $field): bool
