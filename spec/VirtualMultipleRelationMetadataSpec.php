@@ -12,13 +12,13 @@ final class VirtualMultipleRelationMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             'foo',
+            $type,
             null,
             null,
             null,
             null,
             null,
-            null,
-            $type
+            null
         );
         $this->shouldHaveType(VirtualMultipleRelationMetadata::class);
     }

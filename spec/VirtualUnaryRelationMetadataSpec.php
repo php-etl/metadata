@@ -12,11 +12,11 @@ final class VirtualUnaryRelationMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             'foo',
+            $type,
             null,
             null,
             null,
-            null,
-            $type
+            null
         );
         $this->shouldHaveType(VirtualUnaryRelationMetadata::class);
     }

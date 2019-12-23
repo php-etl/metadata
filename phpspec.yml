@@ -12,6 +12,7 @@ extensions:
       - vendor
     whitelist:
       - src
+  KibokoPhpSpecExtension\MetadataExtension:
 formatter.name: pretty
 stop_on_failure: false
 suites:

@@ -7,9 +7,9 @@ final class ArgumentMetadata implements ArgumentMetadataInterface
     use NamedTrait;
     use TypedTrait;
 
-    public function __construct(string $name, TypeMetadataInterface ...$type)
+    public function __construct(string $name, TypeMetadataInterface $type)
     {
         $this->name = $name;
-        $this->types = $type;
+        $this->type = $type;
     }
 }

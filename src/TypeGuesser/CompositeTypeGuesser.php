@@ -2,7 +2,9 @@
 
 namespace Kiboko\Component\ETL\Metadata\TypeGuesser;
 
+use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
 
 class CompositeTypeGuesser implements TypeGuesserInterface
 {
@@ -19,10 +21,21 @@ class CompositeTypeGuesser implements TypeGuesserInterface
         $this->docblockGuesser = $docblockGuesser;
     }
 
-    /**
-     * @return \Generator<TypeMetadataInterface>
-     */
-    public function __invoke(\ReflectionClass $class, \Reflector $reflector): \Iterator
+    public function __invoke(\ReflectionClass $class, \Reflector $reflector): TypeMetadataInterface
+    {
+        $types = iterator_to_array($this->walkTypes($class, $reflector), false);
+
+        if (count($types) <= 0) {
+            return new MixedTypeMetadata();
+        }
+        if (count($types) > 1) {
+            return new UnionTypeMetadata(...$types);
+        }
+
+        return reset($types);
+    }
+
+    private function walkTypes(\ReflectionClass $class, \Reflector $reflector): \Generator
     {
         if (!$reflector instanceof \ReflectionProperty &&
             !$reflector instanceof \ReflectionMethod &&

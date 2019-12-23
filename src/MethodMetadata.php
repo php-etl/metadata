@@ -8,14 +8,14 @@ final class MethodMetadata implements NamedInterface
 
     /** @var ArgumentListMetadata*/
     private $arguments;
-    /** @var TypeMetadataInterface[] */
-    private $returnTypes;
+    /** @var TypeMetadataInterface */
+    private $returnType;
 
-    public function __construct(string $name, ArgumentListMetadata $argumentList, TypeMetadataInterface ...$returnTypes)
+    public function __construct(string $name, ArgumentListMetadata $argumentList, ?TypeMetadataInterface $returnType = null)
     {
         $this->name = $name;
         $this->arguments = $argumentList;
-        $this->returnTypes = $returnTypes;
+        $this->returnType = $returnType ?? new VoidTypeMetadata();
     }
 
     public function getArguments(): ArgumentListMetadata
@@ -23,9 +23,8 @@ final class MethodMetadata implements NamedInterface
         return $this->arguments;
     }
 
-    /** @return iterable<TypeMetadataInterface> */
-    public function getReturnTypes(): iterable
+    public function getReturnType(): TypeMetadataInterface
     {
-        return $this->returnTypes;
+        return $this->returnType;
     }
 }

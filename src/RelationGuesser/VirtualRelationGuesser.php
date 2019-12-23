@@ -57,7 +57,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
                 $methodCandidates[$relationName][$action] = $method;
             } else if (preg_match('/count(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                Type::isOneOf(new ScalarTypeMetadata('integer'), ...$method->getReturnTypes()) &&
+                Type::is($method->getReturnType(), new ScalarTypeMetadata('integer')) &&
                 count($method->getArguments()) === 0
             ) {
                 $relationName = $this->inflector->camelize($matches['relationName']);
@@ -67,7 +67,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
                 $methodCandidates[$relationName]['count'] = $method;
             } else if (preg_match('/walk(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                Type::isOneOf(new ScalarTypeMetadata('iterable'), ...$method->getReturnTypes()) &&
+                Type::is($method->getReturnType(), new ScalarTypeMetadata('iterable')) &&
                 count($method->getArguments()) === 0
             ) {
                 $relationName = $this->inflector->camelize($matches['relationName']);

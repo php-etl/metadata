@@ -4,6 +4,5 @@ namespace Kiboko\Component\ETL\Metadata;
 
 interface TypedInterface
 {
-    /** @return TypeMetadataInterface[] */
-    public function getTypes(): iterable;
+    public function getType(): TypeMetadataInterface;
 }

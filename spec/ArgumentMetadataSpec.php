@@ -6,6 +6,7 @@ use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
 use Kiboko\Component\ETL\Metadata\ArgumentMetadataInterface;
 use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 class ArgumentMetadataSpec extends ObjectBehavior
@@ -28,18 +29,15 @@ class ArgumentMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith('foo', new ScalarTypeMetadata('string'));
 
-        $this->getTypes()->shouldHaveCount(1);
-        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
-            new ScalarTypeMetadata('string'),
-        ]));
+        $this->getType()->shouldBeLike(new ScalarTypeMetadata('string'));
     }
 
     function it_has_several_types()
     {
-        $this->beConstructedWith('foo', new ScalarTypeMetadata('string'), new ScalarTypeMetadata('int'), new NullTypeMetadata());
+        $this->beConstructedWith('foo', new UnionTypeMetadata(new ScalarTypeMetadata('string'), new ScalarTypeMetadata('int'), new NullTypeMetadata()));
 
-        $this->getTypes()->shouldHaveCount(3);
-        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
+        $this->getType()->shouldHaveCount(3);
+        $this->getType()->shouldIterateLike(new \ArrayIterator([
             new ScalarTypeMetadata('string'),
             new ScalarTypeMetadata('int'),
             new NullTypeMetadata(),

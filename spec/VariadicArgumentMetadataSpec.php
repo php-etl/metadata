@@ -5,6 +5,7 @@ namespace spec\Kiboko\Component\ETL\Metadata;
 use Kiboko\Component\ETL\Metadata\ArgumentMetadataInterface;
 use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\VariadicArgumentMetadata;
 use PhpSpec\ObjectBehavior;
 
@@ -28,21 +29,26 @@ class VariadicArgumentMetadataSpec extends ObjectBehavior
     {
         $this->beConstructedWith('foo', new ScalarTypeMetadata('string'));
 
-        $this->getTypes()->shouldHaveCount(1);
-        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
-            new ScalarTypeMetadata('string'),
-        ]));
+        $this->getType()->shouldBeLike(new ScalarTypeMetadata('string'));
     }
 
-    function it_has_several_types()
+    function it_has_union_type()
     {
-        $this->beConstructedWith('foo', new ScalarTypeMetadata('string'), new ScalarTypeMetadata('int'), new NullTypeMetadata());
+        $this->beConstructedWith(
+            'foo',
+            new UnionTypeMetadata(
+                new ScalarTypeMetadata('string'),
+                new ScalarTypeMetadata('int'),
+                new NullTypeMetadata()
+            )
+        );
 
-        $this->getTypes()->shouldHaveCount(3);
-        $this->getTypes()->shouldIterateLike(new \ArrayIterator([
-            new ScalarTypeMetadata('string'),
-            new ScalarTypeMetadata('int'),
-            new NullTypeMetadata(),
-        ]));
+        $this->getType()->shouldBeLike(
+            new UnionTypeMetadata(
+                new ScalarTypeMetadata('string'),
+                new ScalarTypeMetadata('int'),
+                new NullTypeMetadata()
+            )
+        );
     }
 }

@@ -9,9 +9,9 @@ class FieldMetadata implements FieldMetadataInterface
 
     public function __construct(
         string $name,
-        TypeMetadataInterface ...$types
+        TypeMetadataInterface $type
     ) {
         $this->name = $name;
-        $this->types = $types;
+        $this->type = $type;
     }
 }

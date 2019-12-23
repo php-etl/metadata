@@ -5,6 +5,7 @@ namespace spec\Kiboko\Component\ETL\Metadata;
 use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
 use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
 use PhpSpec\ObjectBehavior;
@@ -13,7 +14,7 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->beConstructedWith('foo');
+        $this->beConstructedWith('foo', new MixedTypeMetadata());
         $this->shouldHaveType(VirtualFieldMetadata::class);
 
         $this->getName()->shouldReturn('foo');
@@ -23,10 +24,11 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         $this->getRemover()->shouldReturn(null);
     }
 
-    function it_is_using_accessor()
+    function it_is_using_an_accessor()
     {
         $this->beConstructedWith(
             'foo',
+            new MixedTypeMetadata(),
             new MethodMetadata(
                 'getFoo',
                 new ArgumentListMetadata(),
@@ -40,14 +42,17 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         $this->getRemover()->shouldReturn(null);
     }
 
-    function it_is_using_mutator()
+    function it_is_using_a_mutator()
     {
         $this->beConstructedWith(
             'foo',
+            new MixedTypeMetadata(),
             null,
             new MethodMetadata(
                 'setFoo',
-                new ArgumentListMetadata(new ArgumentMetadata('foo', new ScalarTypeMetadata('string')))
+                new ArgumentListMetadata(
+                    new ArgumentMetadata('foo', new ScalarTypeMetadata('string'))
+                )
             )
         );
 
@@ -57,10 +62,11 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         $this->getRemover()->shouldReturn(null);
     }
 
-    function it_is_using_checker()
+    function it_is_using_a_checker()
     {
         $this->beConstructedWith(
             'foo',
+            new MixedTypeMetadata(),
             null,
             null,
             new MethodMetadata(
@@ -76,10 +82,11 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         $this->getRemover()->shouldReturn(null);
     }
 
-    function it_is_using_remover()
+    function it_is_using_a_remover()
     {
         $this->beConstructedWith(
             'foo',
+            new MixedTypeMetadata(),
             null,
             null,
             null,

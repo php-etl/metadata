@@ -5,9 +5,12 @@ namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\FieldMetadata;
+use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
 use Kiboko\Component\ETL\Metadata\PropertyMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
+use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {
@@ -15,28 +18,56 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
     {
         /** @var PropertyMetadata $property */
         foreach ($class->getProperties() as $property) {
-            $types = iterator_to_array($this->filterTypes(...$property->getTypes()));
-            if (count($types) <= 0) {
+            try {
+                yield new FieldMetadata(
+                    $property->getName(),
+                    $this->filterTypes($property->getType())
+                );
+            } catch (IncompatibleTypeException $e) {
                 continue;
             }
-
-            yield new FieldMetadata(
-                $property->getName(),
-                ...array_values($property->getTypes())
-            );
         }
     }
 
-    private function filterTypes(TypeMetadataInterface ...$types): \Generator
+    private function filterTypes(TypeMetadataInterface $type): TypeMetadataInterface
     {
-        foreach ($types as $type) {
-            if (!$type instanceof ScalarTypeMetadata &&
-                !$type instanceof ArrayTypeMetadata
-            ) {
+        if (!$type instanceof UnionTypeMetadataInterface) {
+            if (!$type instanceof ScalarTypeMetadata && !$type instanceof ArrayTypeMetadata) {
+                throw new IncompatibleTypeException(strtr(
+                    'Expected to have at least one scalar or array type, got none compatible: %actual%.',
+                    [
+                        '%actual%' => (string) $type,
+                    ]
+                ));
+            }
+
+            return $type;
+        }
+
+        $filtered = [];
+        foreach ($type as $inner) {
+            if (!$type instanceof ScalarTypeMetadata && !$type instanceof ArrayTypeMetadata) {
                 continue;
             }
 
-            yield $type;
+            $filtered[] = $inner;
         }
+
+        if (count($filtered) <= 0) {
+            throw new IncompatibleTypeException(strtr(
+                'Expected to have at least one scalar or array type, got none compatible: %actual%.',
+                [
+                    '%actual%' => implode(', ', array_map(function(TypeMetadataInterface $inner) {
+                        return (string) $inner;
+                    }, iterator_to_array($type))),
+                ]
+            ));
+        }
+
+        if (count($filtered) > 1) {
+            return new UnionTypeMetadata(...$filtered);
+        }
+
+        return reset($filtered);
     }
 }

@@ -9,30 +9,13 @@ use Kiboko\Component\ETL\Metadata\TypeGuesser;
 use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
 use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;
 
 class CompositeTypeGuesserSpec extends ObjectBehavior
 {
-    public function getMatchers(): array
-    {
-        return [
-            'matchTypeMetadata' => function(iterable $subject, TypeMetadataInterface ...$expected) {
-                foreach ($subject as $item) {
-                    if (($offset = array_search($item, $expected, false)) === false) {
-                        return false;
-                    }
-
-                    array_splice($expected, $offset, 1);
-                }
-
-                return count($expected) <= 0;
-            }
-        ];
-    }
-
     function it_is_initializable()
     {
         $this->beConstructedWith(
@@ -57,9 +40,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('string')
-            );
+            ->shouldBeLike(new ScalarTypeMetadata('string'));
     }
 
     function it_is_discovering_one_nullable_scalar_type()
@@ -77,9 +58,11 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('string'),
-                new NullTypeMetadata()
+            ->shouldBeLike(
+                new UnionTypeMetadata(
+                    new ScalarTypeMetadata('string'),
+                    new NullTypeMetadata()
+                )
             );
     }
 
@@ -98,9 +81,11 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('string'),
-                new ScalarTypeMetadata('int')
+            ->shouldBeLike(
+                new UnionTypeMetadata(
+                    new ScalarTypeMetadata('string'),
+                    new ScalarTypeMetadata('int')
+                )
             );
     }
 
@@ -119,11 +104,13 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('string'),
-                new ClassReferenceMetadata('stdClass'),
-                new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock'),
-                new ClassReferenceMetadata('PDO')
+            ->shouldBeLike(
+                new UnionTypeMetadata(
+                    new ScalarTypeMetadata('string'),
+                    new ClassReferenceMetadata('stdClass'),
+                    new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock'),
+                    new ClassReferenceMetadata('PDO')
+                )
             );
     }
 
@@ -142,7 +129,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ArrayTypeMetadata()
             );
     }
@@ -162,7 +149,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ScalarTypeMetadata('iterable')
             );
     }
@@ -182,7 +169,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ListTypeMetadata(
                     new ClassReferenceMetadata('stdClass')
                 )
@@ -204,7 +191,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new CollectionTypeMetadata(
                     new ClassReferenceMetadata('Collection'),
                     new ClassReferenceMetadata('stdClass')
@@ -226,7 +213,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ScalarTypeMetadata('string')
             );
     }
@@ -245,9 +232,11 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('string'),
-                new NullTypeMetadata()
+            ->shouldBeLike(
+                new UnionTypeMetadata(
+                    new ScalarTypeMetadata('string'),
+                    new NullTypeMetadata()
+                )
             );
     }
 
@@ -265,7 +254,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ArrayTypeMetadata()
             );
     }
@@ -285,10 +274,12 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ArrayTypeMetadata(),
-                new ListTypeMetadata(
-                    new ClassReferenceMetadata('stdClass')
+            ->shouldBeLike(
+                new UnionTypeMetadata(
+                    new ArrayTypeMetadata(),
+                    new ListTypeMetadata(
+                        new ClassReferenceMetadata('stdClass')
+                    )
                 )
             );
     }
@@ -307,7 +298,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ScalarTypeMetadata('iterable')
             );
     }
@@ -327,10 +318,12 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
-                new ScalarTypeMetadata('iterable'),
-                new ListTypeMetadata(
-                    new ClassReferenceMetadata('stdClass')
+            ->shouldBeLike(
+                new UnionTypeMetadata(
+                    new ScalarTypeMetadata('iterable'),
+                    new ListTypeMetadata(
+                        new ClassReferenceMetadata('stdClass')
+                    )
                 )
             );
     }
@@ -349,7 +342,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
         $reflection = new \ReflectionObject($object);
 
         $this($reflection, $reflection->getProperty('foo'))
-            ->shouldMatchTypeMetadata(
+            ->shouldBeLike(
                 new ClassReferenceMetadata('stdClass')
             );
     }

@@ -8,13 +8,13 @@ final class VirtualFieldMetadata extends FieldMetadata
 
     public function __construct(
         string $name,
+        TypeMetadataInterface $type,
         ?MethodMetadata $accessor = null,
         ?MethodMetadata $mutator = null,
         ?MethodMetadata $checker = null,
-        ?MethodMetadata $remover = null,
-        TypeMetadataInterface ...$types
+        ?MethodMetadata $remover = null
     ) {
-        parent::__construct($name, ...$types);
+        parent::__construct($name, $type);
 
         $this->accessor = $accessor;
         $this->mutator = $mutator;

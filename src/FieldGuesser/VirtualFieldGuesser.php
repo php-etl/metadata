@@ -31,7 +31,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         /** @var MethodMetadata $method */
         foreach ($class->getMethods() as $method) {
             if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                Type::isOneOf(new ScalarTypeMetadata('bool'), ...$method->getReturnTypes()) &&
+                Type::is($method->getReturnType(), new ScalarTypeMetadata('bool')) &&
                 count($method->getArguments()) === 0
             ) {
                 $fieldName = $this->inflector->camelize($matches['fieldName']);

@@ -21,6 +21,11 @@ final class ScalarTypeMetadata implements TypeMetadataInterface
         $this->name = $name;
     }
 
+    public static function is(TypeMetadataInterface $other): bool
+    {
+        return $other instanceof self;
+    }
+
     public function __toString()
     {
         return $this->name;

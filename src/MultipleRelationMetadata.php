@@ -7,11 +7,9 @@ class MultipleRelationMetadata implements MultipleRelationMetadataInterface
     use NamedTrait;
     use TypedTrait;
 
-    public function __construct(
-        string $name,
-        IterableTypeMetadataInterface ...$types
-    ) {
+    public function __construct(string $name, IterableTypeMetadataInterface $types)
+    {
         $this->name = $name;
-        $this->types = $types;
+        $this->type = $types;
     }
 }

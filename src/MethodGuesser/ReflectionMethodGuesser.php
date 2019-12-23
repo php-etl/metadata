@@ -37,7 +37,7 @@ final class ReflectionMethodGuesser implements MethodGuesserInterface
                             ...($this->typeGuesser)($classOrObject, $parameter)
                         );
                     }, $method->getParameters())),
-                    ...($this->typeGuesser)($classOrObject, $method)
+                    ($this->typeGuesser)($classOrObject, $method)
                 );
             },
             $classOrObject->getMethods(\ReflectionMethod::IS_PUBLIC)

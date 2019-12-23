@@ -41,18 +41,21 @@ final class Type
     ];
 
     /**
-     * @param TypeMetadataInterface[] $left
-     * @param TypeMetadataInterface[] $right
+     * @param UnionTypeMetadata $left
+     * @param UnionTypeMetadata $right
      *
-     * @return TypeMetadataInterface[]
+     * @return UnionTypeMetadata
      */
-    public static function isSubsetOf(iterable $left, iterable $right): iterable
+    public static function isSubsetOf(UnionTypeMetadata $left, iterable $right): UnionTypeMetadata
     {
+        $types = [];
         foreach ($left as $type) {
             if (self::isOneOf($type, ...$right)) {
-                yield $type;
+                $types[] = $type;
             }
         }
+
+        return new UnionTypeMetadata(...$types);
     }
 
     public static function isOneOf(TypeMetadataInterface $expected, TypeMetadataInterface ...$actual): bool
@@ -66,34 +69,43 @@ final class Type
         return false;
     }
 
-    public static function is(TypeMetadataInterface $expected, TypeMetadataInterface $actual): bool
+    public static function isCompatible(TypeMetadataInterface $left, TypeMetadataInterface $right): bool
     {
-        if (($expected instanceof ClassTypeMetadata || $expected instanceof ClassReferenceMetadata) &&
-            ($actual instanceof ClassTypeMetadata || $actual instanceof ClassReferenceMetadata)
+        if ($left instanceof UnionTypeMetadata) {
+            return self::is($left, self::isSubsetOf($left, $right));
+        }
+
+        return self::is($left, $right);
+    }
+
+    public static function is(TypeMetadataInterface $left, TypeMetadataInterface $right): bool
+    {
+        if (($left instanceof ClassTypeMetadata || $left instanceof ClassReferenceMetadata) &&
+            ($right instanceof ClassTypeMetadata || $right instanceof ClassReferenceMetadata)
         ) {
-            return is_a((string) $expected, (string) $actual);
+            return (((string) $left === (string) $right) || is_a((string) $left, (string) $right, true));
         }
-        if ($expected instanceof ListTypeMetadata && $actual instanceof ListTypeMetadata) {
-            return self::is($expected->getInner(), $actual->getInner());
+        if ($left instanceof ListTypeMetadata && $right instanceof ListTypeMetadata) {
+            return self::is($left->getInner(), $right->getInner());
         }
-        if ($expected instanceof CollectionTypeMetadata && $actual instanceof CollectionTypeMetadata) {
-            return self::is($expected->getType(), $actual->getType()) &&
-                is_a((string) $expected->getInner(), (string) $actual->getInner());
+        if ($left instanceof CollectionTypeMetadata && $right instanceof CollectionTypeMetadata) {
+            return self::is($left->getType(), $right->getType())
+                && (((string) $left === (string) $right) || is_a((string) $left->getInner(), (string) $right->getInner()));
         }
-        if ($expected instanceof ScalarTypeMetadata && $actual instanceof ScalarTypeMetadata) {
-            return ((string) $expected) === ((string) $actual) ||
-                (in_array(((string) $expected), self::$boolean) && in_array(((string) $actual), self::$boolean)) ||
-                (in_array(((string) $expected), self::$integer) && in_array(((string) $actual), self::$integer)) ||
-                (in_array(((string) $expected), self::$float) && in_array(((string) $actual), self::$float)) ||
-                (in_array(((string) $expected), self::$numberCompatible) && in_array(((string) $actual), self::$numberMeta)) ||
-                (in_array(((string) $expected), self::$string) && in_array(((string) $actual), self::$string)) ||
-                (in_array(((string) $expected), self::$array) && in_array(((string) $actual), self::$array)) ||
-                (in_array(((string) $expected), self::$iterable) && (in_array(((string) $actual), self::$iterable) || in_array(((string) $actual), self::$array))) ||
-                (in_array(((string) $expected), self::$callable) && (in_array(((string) $actual), self::$callable) || in_array(((string) $actual), self::$array))) ||
-                (in_array(((string) $expected), self::$resource) && in_array(((string) $actual), self::$resource))
+        if ($left instanceof ScalarTypeMetadata && $right instanceof ScalarTypeMetadata) {
+            return ((string) $left) === ((string) $right)
+                || (in_array((string) $left, self::$boolean) && in_array((string) $right, self::$boolean))
+                || (in_array((string) $left, self::$integer) && in_array((string) $right, self::$integer))
+                || (in_array((string) $left, self::$float) && in_array((string) $right, self::$float))
+                || (in_array((string) $left, self::$numberCompatible) && in_array((string) $right, self::$numberMeta))
+                || (in_array((string) $left, self::$string) && in_array((string) $right, self::$string))
+                || (in_array((string) $left, self::$array) && in_array((string) $right, self::$array))
+                || (in_array((string) $left, self::$iterable) && (in_array((string) $right, self::$iterable) || in_array((string) $left, self::$array)))
+                || (in_array((string) $left, self::$callable) && (in_array((string) $right, self::$callable) || in_array((string) $left, self::$array)))
+                || (in_array((string) $left, self::$resource) && in_array((string) $right, self::$resource))
             ;
         }
 
-        return $expected == $actual;
+        return $left == $right;
     }
 }
