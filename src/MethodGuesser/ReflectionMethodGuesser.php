@@ -29,12 +29,12 @@ final class ReflectionMethodGuesser implements MethodGuesserInterface
                         if ($parameter->isVariadic()) {
                             return new VariadicArgumentMetadata(
                                 $parameter->getName(),
-                                ...($this->typeGuesser)($classOrObject, $parameter)
+                                ($this->typeGuesser)($classOrObject, $parameter)
                             );
                         }
                         return new ArgumentMetadata(
                             $parameter->getName(),
-                            ...($this->typeGuesser)($classOrObject, $parameter)
+                            ($this->typeGuesser)($classOrObject, $parameter)
                         );
                     }, $method->getParameters())),
                     ($this->typeGuesser)($classOrObject, $method)
