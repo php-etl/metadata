@@ -3,9 +3,9 @@
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CompositeTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\CompositeUnionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
+use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\IterableUnionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MultipleRelationMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
@@ -26,12 +26,12 @@ final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInte
         }
     }
 
-    private function filterTypes(TypeMetadataInterface $type): CompositeTypeMetadataInterface
+    private function filterTypes(TypeMetadataInterface $type): IterableTypeMetadataInterface
     {
         if (!$type instanceof UnionTypeMetadataInterface) {
-            if (!$type instanceof CompositeTypeMetadataInterface) {
+            if (!$type instanceof IterableTypeMetadataInterface) {
                 throw new IncompatibleTypeException(strtr(
-                    'Expected to have at least one composite type, got none compatible: %actual%.',
+                    'Expected to have at least one iterable type, got none compatible: %actual%.',
                     [
                         '%actual%' => (string) $type,
                     ]
@@ -43,7 +43,7 @@ final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInte
 
         $filtered = [];
         foreach ($type as $inner) {
-            if (!$type instanceof CompositeTypeMetadataInterface) {
+            if (!$type instanceof IterableTypeMetadataInterface) {
                 continue;
             }
 
@@ -62,7 +62,7 @@ final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInte
         }
 
         if (count($filtered) > 1) {
-            return new CompositeUnionTypeMetadata(...$filtered);
+            return new IterableUnionTypeMetadata(...$filtered);
         }
 
         return reset($filtered);

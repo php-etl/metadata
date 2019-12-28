@@ -3,11 +3,8 @@
 namespace Kiboko\Component\ETL\Metadata\PropertyGuesser;
 
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\PropertyMetadata;
 use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
-use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\VoidTypeMetadata;
 
 final class ReflectionPropertyGuesser implements PropertyGuesserInterface
 {
