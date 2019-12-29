@@ -3,10 +3,13 @@
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Doctrine\Common\Inflector\Inflector;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
+use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
@@ -26,6 +29,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
     public function __invoke(ClassTypeMetadata $class): \Iterator
     {
+        $typesCandidates = [];
         $methodCandidates = [];
         /** @var MethodMetadata $method */
         foreach ($class->getMethods() as $method) {
@@ -50,10 +54,14 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
                 if (!$this->isSingular($fieldName)) {
                     continue;
                 }
+                if (!isset($typesCandidates[$fieldName])) {
+                    $typesCandidates[$fieldName] = [];
+                }
                 if (!isset($methodCandidates[$fieldName])) {
                     $methodCandidates[$fieldName] = [];
                 }
 
+                array_push($typesCandidates[$fieldName], ...$this->extractArgumentTypes($method->getArguments()));
                 $methodCandidates[$fieldName][$action] = $method;
             } else if (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 count($method->getArguments()) === 0
@@ -62,6 +70,9 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
                 $fieldName = $this->inflector->camelize($matches['fieldName']);
                 if (!$this->isSingular($fieldName)) {
                     continue;
+                }
+                if (!isset($typesCandidates[$fieldName])) {
+                    $typesCandidates[$fieldName] = [];
                 }
                 if (!isset($methodCandidates[$fieldName])) {
                     $methodCandidates[$fieldName] = [];
@@ -83,11 +94,24 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
             yield new VirtualFieldMetadata(
                 $fieldName,
+                $this->guessType($typesCandidates),
                 $accessor,
                 $mutator,
                 $actions['has'] ?? null,
                 $actions['unset'] ?? $actions['remove'] ?? null
             );
         }
+    }
+
+    private function extractArgumentTypes(ArgumentListMetadata $arguments): iterable
+    {
+        foreach ($arguments as $argument) {
+            yield $argument->getType();
+        }
+    }
+
+    private function guessType(TypeMetadataInterface ...$types): TypeMetadataInterface
+    {
+        return reset($types) ?? new MixedTypeMetadata();
     }
 }
