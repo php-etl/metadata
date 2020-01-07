@@ -1,5 +1,5 @@
 extensions:
-  LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension:
+  FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
     format:
       - html
       - clover
@@ -12,7 +12,7 @@ extensions:
       - vendor
     whitelist:
       - src
-  KibokoPhpSpecExtension\MetadataExtension:
+  Kiboko\Component\ETL\PHPSpecExtension\Metadata\MetadataExtension:
 formatter.name: pretty
 stop_on_failure: false
 suites:
