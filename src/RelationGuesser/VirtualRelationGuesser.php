@@ -2,12 +2,14 @@
 
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
-use Doctrine\Inflector\Inflector;
-use Doctrine\Inflector\Rules\English;
+use Doctrine\Common\Inflector\Inflector;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
+use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\VirtualMultipleRelationMetadata;
 use Kiboko\Component\ETL\Metadata\VirtualUnaryRelationMetadata;
 
@@ -16,9 +18,9 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
     /** @var Inflector */
     private $inflector;
 
-    public function __construct()
+    public function __construct(?Inflector $inflector = null)
     {
-        $this->inflector = (new English\InflectorFactory())();
+        $this->inflector = $inflector ?? new Inflector();
     }
 
     private function isPlural(string $field): bool
@@ -33,6 +35,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
     public function __invoke(ClassTypeMetadata $class): \Iterator
     {
+        $typesCandidates = [];
         $methodCandidates = [];
         /** @var MethodMetadata $method */
         foreach ($class->getMethods() as $method) {
@@ -41,20 +44,28 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
             ) {
                 $action = $matches['action'];
                 $relationName = $this->inflector->camelize($matches['relationName']);
+                if (!isset($typesCandidates[$relationName])) {
+                    $typesCandidates[$relationName] = [];
+                }
                 if (!isset($methodCandidates[$relationName])) {
                     $methodCandidates[$relationName] = [];
                 }
 
+                array_push($typesCandidates[$relationName], $method->getReturnType());
                 $methodCandidates[$relationName][$action] = $method;
             } else if (preg_match('/(?<action>unset|get)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 count($method->getArguments()) === 0
             ) {
                 $action = $matches['action'];
                 $relationName = $this->inflector->camelize($matches['relationName']);
+                if (!isset($typesCandidates[$relationName])) {
+                    $typesCandidates[$relationName] = [];
+                }
                 if (!isset($methodCandidates[$relationName])) {
                     $methodCandidates[$relationName] = [];
                 }
 
+                array_push($typesCandidates[$relationName], ...$this->extractArgumentTypes($method->getArguments()));
                 $methodCandidates[$relationName][$action] = $method;
             } else if (preg_match('/count(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 Type::is($method->getReturnType(), new ScalarTypeMetadata('integer')) &&
@@ -83,6 +94,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
             if ($this->isPlural($relationName)) {
                 yield new VirtualMultipleRelationMetadata(
                     $relationName,
+                    $this->guessType(...$typesCandidates[$relationName]),
                     $actions['get'] ?? null,
                     $actions['set'] ?? null,
                     $actions['add'] ?? null,
@@ -94,6 +106,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
             if ($this->isSingular($relationName)) {
                 yield new VirtualUnaryRelationMetadata(
                     $relationName,
+                    $this->guessType(...array_values($typesCandidates[$relationName])),
                     $actions['get'] ?? $actions['is'] ?? null,
                     $actions['set'] ?? null,
                     $actions['has'] ?? null,
@@ -101,5 +114,17 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
                 );
             }
         }
+    }
+
+    private function extractArgumentTypes(ArgumentListMetadata $arguments): iterable
+    {
+        foreach ($arguments as $argument) {
+            yield $argument->getType();
+        }
+    }
+
+    private function guessType(TypeMetadataInterface ...$types): TypeMetadataInterface
+    {
+        return reset($types) ?? new MixedTypeMetadata();
     }
 }

@@ -70,8 +70,7 @@ final class HaveCompositedPropertyIsType extends BasicMatcher
 
         return new NotEqualException(sprintf(
             'Expected the property %s to not be a composite type.',
-            $this->presenter->presentValue($property),
-            $this->presenter->presentValue($type)
+            $this->presenter->presentValue($property)
         ), $type, $subject->getProperty($property)->getType());
     }
 }

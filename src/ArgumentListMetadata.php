@@ -12,6 +12,9 @@ final class ArgumentListMetadata implements \IteratorAggregate, \Countable
         $this->arguments = $arguments;
     }
 
+    /**
+     * @return \ArrayIterator|\Traversable|ArgumentMetadata[]
+     */
     public function getIterator()
     {
         return new \ArrayIterator($this->arguments);
