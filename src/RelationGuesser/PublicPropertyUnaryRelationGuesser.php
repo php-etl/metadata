@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\CompositeUnionTypeMetadata;
 use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
@@ -12,7 +12,7 @@ use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyUnaryRelationGuesser implements RelationGuesserInterface
 {
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         foreach ($class->getProperties() as $property) {
             try {

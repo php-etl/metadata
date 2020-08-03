@@ -3,9 +3,9 @@
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Doctrine\Common\Inflector\Inflector;
-use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\MethodMetadataInterface;
 use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
@@ -14,8 +14,7 @@ use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
 {
-    /** @var Inflector */
-    private $inflector;
+    private Inflector $inflector;
 
     public function __construct(?Inflector $inflector = null)
     {
@@ -27,11 +26,11 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         return $this->inflector->singularize($field) === $field;
     }
 
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         $typesCandidates = [];
         $methodCandidates = [];
-        /** @var MethodMetadata $method */
+        /** @var MethodMetadataInterface $method */
         foreach ($class->getMethods() as $method) {
             if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 Type::is($method->getReturnType(), new ScalarTypeMetadata('bool')) &&
@@ -83,9 +82,9 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         }
 
         foreach ($methodCandidates as $fieldName => $actions) {
-            /** @var MethodMetadata $accessor */
+            /** @var MethodMetadataInterface $accessor */
             $accessor = $actions['get'] ?? $actions['is'] ?? null;
-            /** @var MethodMetadata $mutator */
+            /** @var MethodMetadataInterface $mutator */
             $mutator = $actions['set'] ?? null;
 
             if (!isset($accessor) && !isset($mutator)) {
@@ -103,7 +102,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         }
     }
 
-    private function extractArgumentTypes(ArgumentListMetadata $arguments): iterable
+    private function extractArgumentTypes(ArgumentListMetadataInterface $arguments): iterable
     {
         foreach ($arguments as $argument) {
             yield $argument->getType();

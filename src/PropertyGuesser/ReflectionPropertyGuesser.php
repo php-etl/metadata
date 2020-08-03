@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\PropertyGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\PropertyMetadata;
 use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
 
@@ -16,7 +16,7 @@ final class ReflectionPropertyGuesser implements PropertyGuesserInterface
         $this->typeGuesser = $typeGuesser;
     }
 
-    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadata $class): \Iterator
+    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {
         yield from array_map(
             function(\ReflectionProperty $property) use($classOrObject) {

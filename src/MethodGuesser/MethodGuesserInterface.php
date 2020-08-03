@@ -2,13 +2,13 @@
 
 namespace Kiboko\Component\ETL\Metadata\MethodGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\MethodMetadataInterface;
 
 interface MethodGuesserInterface
 {
     /**
-     * @return MethodMetadata[]|\Iterator
+     * @return MethodMetadataInterface[]|\Iterator
      */
-    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadata $class): \Iterator;
+    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator;
 }

@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class PropertyMetadata implements NamedInterface, TypedInterface
+final class PropertyMetadata implements PropertyMetadataInterface
 {
     use NamedTrait;
     use TypedTrait;

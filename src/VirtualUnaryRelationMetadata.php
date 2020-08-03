@@ -9,10 +9,10 @@ final class VirtualUnaryRelationMetadata extends UnaryRelationMetadata
     public function __construct(
         string $name,
         TypeMetadataInterface $type,
-        ?MethodMetadata $accessor = null,
-        ?MethodMetadata $mutator = null,
-        ?MethodMetadata $checker = null,
-        ?MethodMetadata $remover = null
+        ?MethodMetadataInterface $accessor = null,
+        ?MethodMetadataInterface $mutator = null,
+        ?MethodMetadataInterface $checker = null,
+        ?MethodMetadataInterface $remover = null
     ) {
         parent::__construct($name, $type);
 

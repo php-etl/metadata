@@ -2,10 +2,10 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class ArgumentListMetadata implements \IteratorAggregate, \Countable
+final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMetadataInterface
 {
     /** @var ArgumentMetadataInterface[] */
-    private $arguments;
+    private iterable $arguments;
 
     public function __construct(ArgumentMetadataInterface ...$arguments)
     {
@@ -13,7 +13,7 @@ final class ArgumentListMetadata implements \IteratorAggregate, \Countable
     }
 
     /**
-     * @return \ArrayIterator|\Traversable|ArgumentMetadata[]
+     * @return \ArrayIterator|\Traversable|ArgumentMetadataInterface[]
      */
     public function getIterator()
     {

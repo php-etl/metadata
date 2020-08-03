@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class ListTypeMetadata implements IterableTypeMetadataInterface
+final class ListTypeMetadata implements ListTypeMetadataInterface
 {
     /** @var TypeMetadataInterface */
     private $inner;

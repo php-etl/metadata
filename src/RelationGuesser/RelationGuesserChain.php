@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 
 final class RelationGuesserChain implements RelationGuesserInterface
 {
@@ -14,7 +14,7 @@ final class RelationGuesserChain implements RelationGuesserInterface
         $this->inner = $inner;
     }
 
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         foreach ($this->inner as $guesser) {
             yield from $guesser($class);

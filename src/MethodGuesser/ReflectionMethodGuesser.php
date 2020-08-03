@@ -4,7 +4,7 @@ namespace Kiboko\Component\ETL\Metadata\MethodGuesser;
 
 use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
 use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
 use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
 use Kiboko\Component\ETL\Metadata\VariadicArgumentMetadata;
@@ -19,7 +19,7 @@ final class ReflectionMethodGuesser implements MethodGuesserInterface
         $this->typeGuesser = $typeGuesser;
     }
 
-    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadata $class): \Iterator
+    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {
         yield from array_map(
             function(\ReflectionMethod $method) use($classOrObject) {

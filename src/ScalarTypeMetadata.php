@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class ScalarTypeMetadata implements TypeMetadataInterface
+final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
 {
     /** @var string */
     private $name;

@@ -2,12 +2,10 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class CollectionTypeMetadata implements IterableTypeMetadataInterface
+final class CollectionTypeMetadata implements CollectionTypeMetadataInterface
 {
-    /** @var ClassMetadataInterface */
-    private $type;
-    /** @var TypeMetadataInterface */
-    private $inner;
+    private ClassMetadataInterface $type;
+    private TypeMetadataInterface $inner;
 
     public function __construct(ClassMetadataInterface $type, TypeMetadataInterface $inner)
     {

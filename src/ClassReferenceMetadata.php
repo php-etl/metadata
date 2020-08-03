@@ -2,12 +2,10 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class ClassReferenceMetadata implements ClassMetadataInterface
+final class ClassReferenceMetadata implements ClassReferenceMetadataInterface
 {
-    /** @var string|null */
-    private $namespace;
-    /** @var string */
-    private $name;
+    private ?string $namespace;
+    private string $name;
 
     public function __construct(string $name, ?string $namespace = null)
     {

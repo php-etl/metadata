@@ -80,15 +80,15 @@ final class Type
 
     public static function is(TypeMetadataInterface $left, TypeMetadataInterface $right): bool
     {
-        if (($left instanceof ClassTypeMetadata || $left instanceof ClassReferenceMetadata) &&
-            ($right instanceof ClassTypeMetadata || $right instanceof ClassReferenceMetadata)
+        if (($left instanceof ClassTypeMetadataInterface || $left instanceof ClassReferenceMetadataInterface) &&
+            ($right instanceof ClassTypeMetadataInterface || $right instanceof ClassReferenceMetadataInterface)
         ) {
             return (((string) $left === (string) $right) || is_a((string) $left, (string) $right, true));
         }
         if ($left instanceof ListTypeMetadata && $right instanceof ListTypeMetadata) {
             return self::is($left->getInner(), $right->getInner());
         }
-        if ($left instanceof CollectionTypeMetadata && $right instanceof CollectionTypeMetadata) {
+        if ($left instanceof CollectionTypeMetadataInterface && $right instanceof CollectionTypeMetadataInterface) {
             return self::is($left->getType(), $right->getType())
                 && (((string) $left === (string) $right) || is_a((string) $left->getInner(), (string) $right->getInner()));
         }

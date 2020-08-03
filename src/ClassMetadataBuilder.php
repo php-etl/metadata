@@ -9,14 +9,10 @@ use Kiboko\Component\ETL\Metadata\RelationGuesser;
 
 final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {
-    /** @var PropertyGuesser\PropertyGuesserInterface */
-    private $propertyGuesser;
-    /** @var MethodGuesser\MethodGuesserInterface */
-    private $methodGuesser;
-    /** @var FieldGuesser\FieldGuesserInterface */
-    private $fieldGuesser;
-    /** @var RelationGuesser\RelationGuesserInterface */
-    private $relationGuesser;
+    private PropertyGuesser\PropertyGuesserInterface $propertyGuesser;
+    private MethodGuesser\MethodGuesserInterface $methodGuesser;
+    private FieldGuesser\FieldGuesserInterface $fieldGuesser;
+    private RelationGuesser\RelationGuesserInterface $relationGuesser;
 
     public function __construct(
         PropertyGuesser\PropertyGuesserInterface $propertyGuesser,
@@ -30,12 +26,12 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
         $this->relationGuesser = $relationGuesser;
     }
 
-    public function buildFromReference(ClassReferenceMetadata $class): ClassTypeMetadata
+    public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface
     {
         return $this->buildFromFQCN((string) $class);
     }
 
-    public function buildFromFQCN(string $className): ClassTypeMetadata
+    public function buildFromFQCN(string $className): ClassTypeMetadataInterface
     {
         try {
             return $this->build(new \ReflectionClass($className));
@@ -53,12 +49,12 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
         }
     }
 
-    public function buildFromObject(object $object): ClassTypeMetadata
+    public function buildFromObject(object $object): ClassTypeMetadataInterface
     {
         return $this->build(new \ReflectionObject($object));
     }
 
-    public function build(\ReflectionClass $classOrObject): ClassTypeMetadata
+    public function build(\ReflectionClass $classOrObject): ClassTypeMetadataInterface
     {
         try {
             $fqcn = $classOrObject->getName();

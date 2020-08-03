@@ -4,11 +4,11 @@ namespace Kiboko\Component\ETL\Metadata;
 
 interface ClassMetadataBuilderInterface
 {
-    public function buildFromReference(ClassReferenceMetadata $class): ClassTypeMetadata;
+    public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface;
     
-    public function buildFromFQCN(string $className): ClassTypeMetadata;
+    public function buildFromFQCN(string $className): ClassTypeMetadataInterface;
 
-    public function buildFromObject(object $object): ClassTypeMetadata;
+    public function buildFromObject(object $object): ClassTypeMetadataInterface;
 
-    public function build(\ReflectionClass $classOrObject): ClassTypeMetadata;
+    public function build(\ReflectionClass $classOrObject): ClassTypeMetadataInterface;
 }

@@ -2,23 +2,21 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class MethodMetadata implements NamedInterface
+final class MethodMetadata implements MethodMetadataInterface
 {
     use NamedTrait;
 
-    /** @var ArgumentListMetadata*/
-    private $arguments;
-    /** @var TypeMetadataInterface */
-    private $returnType;
+    private ArgumentListMetadataInterface $arguments;
+    private TypeMetadataInterface $returnType;
 
-    public function __construct(string $name, ArgumentListMetadata $argumentList, ?TypeMetadataInterface $returnType = null)
+    public function __construct(string $name, ArgumentListMetadataInterface $argumentList, ?TypeMetadataInterface $returnType = null)
     {
         $this->name = $name;
         $this->arguments = $argumentList;
         $this->returnType = $returnType ?? new VoidTypeMetadata();
     }
 
-    public function getArguments(): ArgumentListMetadata
+    public function getArguments(): ArgumentListMetadataInterface
     {
         return $this->arguments;
     }

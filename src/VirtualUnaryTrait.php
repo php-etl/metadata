@@ -4,31 +4,27 @@ namespace Kiboko\Component\ETL\Metadata;
 
 trait VirtualUnaryTrait
 {
-    /** @var MethodMetadata */
-    private $accessor;
-    /** @var MethodMetadata */
-    private $mutator;
-    /** @var MethodMetadata */
-    private $checker;
-    /** @var MethodMetadata */
-    private $remover;
+    private ?MethodMetadataInterface $accessor;
+    private ?MethodMetadataInterface $mutator;
+    private ?MethodMetadataInterface $checker;
+    private ?MethodMetadataInterface $remover;
 
-    public function getAccessor(): ?MethodMetadata
+    public function getAccessor(): ?MethodMetadataInterface
     {
         return $this->accessor;
     }
 
-    public function getMutator(): ?MethodMetadata
+    public function getMutator(): ?MethodMetadataInterface
     {
         return $this->mutator;
     }
 
-    public function getChecker(): ?MethodMetadata
+    public function getChecker(): ?MethodMetadataInterface
     {
         return $this->checker;
     }
 
-    public function getRemover(): ?MethodMetadata
+    public function getRemover(): ?MethodMetadataInterface
     {
         return $this->remover;
     }

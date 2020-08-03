@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
 use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\IterableUnionTypeMetadata;
@@ -12,7 +12,7 @@ use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInterface
 {
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         foreach ($class->getProperties() as $property) {
             try {

@@ -3,10 +3,10 @@
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
 use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\FieldMetadata;
 use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
-use Kiboko\Component\ETL\Metadata\PropertyMetadata;
+use Kiboko\Component\ETL\Metadata\PropertyMetadataInterface;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
 use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
@@ -14,9 +14,9 @@ use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
-        /** @var PropertyMetadata $property */
+        /** @var PropertyMetadataInterface $property */
         foreach ($class->getProperties() as $property) {
             try {
                 yield new FieldMetadata(

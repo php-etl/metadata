@@ -3,9 +3,9 @@
 namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
 
 use Doctrine\Common\Inflector\Inflector;
-use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\MethodMetadataInterface;
 use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\Type;
@@ -33,11 +33,11 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
         return $this->inflector->singularize($field) === $field;
     }
 
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         $typesCandidates = [];
         $methodCandidates = [];
-        /** @var MethodMetadata $method */
+        /** @var MethodMetadataInterface $method */
         foreach ($class->getMethods() as $method) {
             if (preg_match('/(?<action>set|remove|add|has)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 count($method->getArguments()) === 1
@@ -116,7 +116,7 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
         }
     }
 
-    private function extractArgumentTypes(ArgumentListMetadata $arguments): iterable
+    private function extractArgumentTypes(ArgumentListMetadataInterface $arguments): iterable
     {
         foreach ($arguments as $argument) {
             yield $argument->getType();

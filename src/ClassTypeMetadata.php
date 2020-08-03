@@ -2,20 +2,18 @@
 
 namespace Kiboko\Component\ETL\Metadata;
 
-final class ClassTypeMetadata implements ClassMetadataInterface
+final class ClassTypeMetadata implements ClassTypeMetadataInterface
 {
-    /** @var string|null */
-    private $namespace;
-    /** @var string|null */
-    private $name;
-    /** @var PropertyMetadata[] */
-    private $properties;
-    /** @var MethodMetadata[] */
-    private $methods;
+    private ?string $namespace;
+    private ?string $name;
+    /** @var PropertyMetadataInterface[] */
+    private iterable $properties;
+    /** @var MethodMetadataInterface[] */
+    private iterable $methods;
     /** @var FieldMetadata[] */
-    private $fields;
+    private iterable $fields;
     /** @var RelationMetadataInterface[] */
-    private $relations;
+    private iterable $relations;
 
     public function __construct(?string $name, ?string $namespace = null)
     {
@@ -45,14 +43,14 @@ final class ClassTypeMetadata implements ClassMetadataInterface
     }
 
     /**
-     * @return iterable<PropertyMetadata>|PropertyMetadata[]
+     * @return iterable<PropertyMetadataInterface>|PropertyMetadataInterface[]
      */
     public function getProperties(): iterable
     {
         return new \ArrayIterator($this->properties);
     }
 
-    public function getProperty(string $name): PropertyMetadata
+    public function getProperty(string $name): PropertyMetadataInterface
     {
         if (!isset($this->properties[$name])) {
             throw new \OutOfBoundsException(strtr('There is no property named %property%', [
@@ -63,7 +61,7 @@ final class ClassTypeMetadata implements ClassMetadataInterface
         return $this->properties[$name];
     }
 
-    public function addProperties(PropertyMetadata ...$properties): self
+    public function addProperties(PropertyMetadataInterface ...$properties): self
     {
         foreach ($properties as $property) {
             $this->properties[$property->getName()] = $property;
@@ -73,14 +71,14 @@ final class ClassTypeMetadata implements ClassMetadataInterface
     }
 
     /**
-     * @return iterable<MethodMetadata>|MethodMetadata[]
+     * @return iterable<MethodMetadataInterface>|MethodMetadataInterface[]
      */
     public function getMethods(): iterable
     {
         return new \ArrayIterator($this->methods);
     }
 
-    public function getMethod(string $name): MethodMetadata
+    public function getMethod(string $name): MethodMetadataInterface
     {
         if (!isset($this->methods[$name])) {
             throw new \OutOfBoundsException(strtr('There is no method named %method%', [
@@ -91,7 +89,7 @@ final class ClassTypeMetadata implements ClassMetadataInterface
         return $this->methods[$name];
     }
 
-    public function addMethods(MethodMetadata ...$methods): self
+    public function addMethods(MethodMetadataInterface ...$methods): self
     {
         foreach ($methods as $method) {
             $this->methods[$method->getName()] = $method;

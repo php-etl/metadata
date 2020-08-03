@@ -4,45 +4,39 @@ namespace Kiboko\Component\ETL\Metadata;
 
 trait VirtualMultipleTrait
 {
-    /** @var MethodMetadata */
-    private $accessor;
-    /** @var MethodMetadata */
-    private $mutator;
-    /** @var MethodMetadata */
-    private $adder;
-    /** @var MethodMetadata */
-    private $remover;
-    /** @var MethodMetadata */
-    private $walker;
-    /** @var MethodMetadata */
-    private $counter;
+    private ?MethodMetadataInterface $accessor;
+    private ?MethodMetadataInterface $mutator;
+    private ?MethodMetadataInterface $adder;
+    private ?MethodMetadataInterface $remover;
+    private ?MethodMetadataInterface $walker;
+    private ?MethodMetadataInterface $counter;
 
-    public function getAccessor(): ?MethodMetadata
+    public function getAccessor(): ?MethodMetadataInterface
     {
         return $this->accessor;
     }
 
-    public function getMutator(): ?MethodMetadata
+    public function getMutator(): ?MethodMetadataInterface
     {
         return $this->mutator;
     }
 
-    public function getAdder(): ?MethodMetadata
+    public function getAdder(): ?MethodMetadataInterface
     {
         return $this->adder;
     }
 
-    public function getRemover(): ?MethodMetadata
+    public function getRemover(): ?MethodMetadataInterface
     {
         return $this->remover;
     }
 
-    public function getWalker(): ?MethodMetadata
+    public function getWalker(): ?MethodMetadataInterface
     {
         return $this->walker;
     }
 
-    public function counter(): ?MethodMetadata
+    public function counter(): ?MethodMetadataInterface
     {
         return $this->counter;
     }

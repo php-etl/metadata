@@ -15,7 +15,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "phpactor/docblock": "^0.3.0@dev",
         "nikic/php-parser": "^4.2",
         "doctrine/inflector": "^1.3"

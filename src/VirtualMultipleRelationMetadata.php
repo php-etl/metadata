@@ -9,12 +9,12 @@ final class VirtualMultipleRelationMetadata extends MultipleRelationMetadata
     public function __construct(
         string $name,
         TypeMetadataInterface $type,
-        ?MethodMetadata $accessor = null,
-        ?MethodMetadata $mutator = null,
-        ?MethodMetadata $adder = null,
-        ?MethodMetadata $remover = null,
-        ?MethodMetadata $walker = null,
-        ?MethodMetadata $counter = null
+        ?MethodMetadataInterface $accessor = null,
+        ?MethodMetadataInterface $mutator = null,
+        ?MethodMetadataInterface $adder = null,
+        ?MethodMetadataInterface $remover = null,
+        ?MethodMetadataInterface $walker = null,
+        ?MethodMetadataInterface $counter = null
     ) {
         parent::__construct($name, $type);
 

@@ -4,8 +4,7 @@ namespace Kiboko\Component\ETL\Metadata;
 
 trait TypedTrait
 {
-    /** @var TypeMetadataInterface */
-    private $type;
+    private TypeMetadataInterface $type;
 
     public function getType(): TypeMetadataInterface
     {

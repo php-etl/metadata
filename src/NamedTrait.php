@@ -4,8 +4,7 @@ namespace Kiboko\Component\ETL\Metadata;
 
 trait NamedTrait
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function getName(): string
     {

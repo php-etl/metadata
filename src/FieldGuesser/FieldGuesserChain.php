@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 
 final class FieldGuesserChain implements FieldGuesserInterface
 {
@@ -14,7 +14,7 @@ final class FieldGuesserChain implements FieldGuesserInterface
         $this->inner = $inner;
     }
 
-    public function __invoke(ClassTypeMetadata $class): \Iterator
+    public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         foreach ($this->inner as $guesser) {
             yield from $guesser($class);

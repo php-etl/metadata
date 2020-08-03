@@ -2,11 +2,11 @@
 
 namespace Kiboko\Component\ETL\Metadata\PropertyGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
 
 final class DummyPropertyGuesser implements PropertyGuesserInterface
 {
-    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadata $class): \Iterator
+    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {
         return new \EmptyIterator();
     }

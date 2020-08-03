@@ -5,6 +5,7 @@ namespace spec\Kiboko\Component\ETL\Metadata;
 use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
 use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
 use Kiboko\Component\ETL\Metadata\MethodMetadata;
+use Kiboko\Component\ETL\Metadata\MethodMetadataInterface;
 use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
 use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
@@ -36,7 +37,7 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
             )
         );
 
-        $this->getAccessor()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getAccessor()->shouldReturnAnInstanceOf(MethodMetadataInterface::class);
         $this->getMutator()->shouldReturn(null);
         $this->getChecker()->shouldReturn(null);
         $this->getRemover()->shouldReturn(null);
@@ -57,7 +58,7 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         );
 
         $this->getAccessor()->shouldReturn(null);
-        $this->getMutator()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getMutator()->shouldReturnAnInstanceOf(MethodMetadataInterface::class);
         $this->getChecker()->shouldReturn(null);
         $this->getRemover()->shouldReturn(null);
     }
@@ -78,7 +79,7 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
 
         $this->getAccessor()->shouldReturn(null);
         $this->getMutator()->shouldReturn(null);
-        $this->getChecker()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getChecker()->shouldReturnAnInstanceOf(MethodMetadataInterface::class);
         $this->getRemover()->shouldReturn(null);
     }
 
@@ -99,6 +100,6 @@ final class VirtualFieldMetadataSpec extends ObjectBehavior
         $this->getAccessor()->shouldReturn(null);
         $this->getMutator()->shouldReturn(null);
         $this->getChecker()->shouldReturn(null);
-        $this->getRemover()->shouldReturnAnInstanceOf(MethodMetadata::class);
+        $this->getRemover()->shouldReturnAnInstanceOf(MethodMetadataInterface::class);
     }
 }

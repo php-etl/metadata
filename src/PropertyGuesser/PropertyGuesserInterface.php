@@ -2,13 +2,13 @@
 
 namespace Kiboko\Component\ETL\Metadata\PropertyGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\PropertyMetadata;
+use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\ETL\Metadata\PropertyMetadataInterface;
 
 interface PropertyGuesserInterface
 {
     /**
-     * @return PropertyMetadata[]|\Generator
+     * @return PropertyMetadataInterface[]|\Generator
      */
-    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadata $class): \Iterator;
+    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator;
 }
