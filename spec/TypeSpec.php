@@ -1768,7 +1768,7 @@ class TypeSpec extends ObjectBehavior
     {
         $this->is(
             new ScalarTypeMetadata('binary'),
-            new ScalarTypeMetadata('binary')
+            new ScalarTypeMetadata('string')
         )->shouldReturn(false);
     }
 
