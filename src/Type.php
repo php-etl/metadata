@@ -17,6 +17,8 @@ final class Type
     /** @internal */
     public static $string = ['string'];
     /** @internal */
+    public static $binary = ['binary'];
+    /** @internal */
     public static $array = ['array'];
     /** @internal */
     public static $iterable = ['iterable'];
@@ -32,7 +34,7 @@ final class Type
         'int', 'integer',
         'float', 'decimal', 'double',
         'numeric', 'number',
-        'string',
+        'string', 'binary',
         'array', 'iterable',
         'object',
         'callable',
@@ -99,6 +101,7 @@ final class Type
                 || (in_array((string) $left, self::$float) && in_array((string) $right, self::$float))
                 || (in_array((string) $left, self::$numberCompatible) && in_array((string) $right, self::$numberMeta))
                 || (in_array((string) $left, self::$string) && in_array((string) $right, self::$string))
+                || (in_array((string) $left, self::$binary) && in_array((string) $right, self::$binary))
                 || (in_array((string) $left, self::$array) && in_array((string) $right, self::$array))
                 || (in_array((string) $left, self::$iterable) && (in_array((string) $right, self::$iterable) || in_array((string) $left, self::$array)))
                 || (in_array((string) $left, self::$callable) && (in_array((string) $right, self::$callable) || in_array((string) $left, self::$array)))
