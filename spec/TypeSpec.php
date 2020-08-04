@@ -100,6 +100,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_a_null_against_a_binary()
+    {
+        $this->is(
+            new NullTypeMetadata(),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_a_null_against_an_iterable()
     {
         $this->is(
@@ -241,6 +249,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ScalarTypeMetadata('bool'),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_bool_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('bool'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -388,6 +404,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_a_boolean_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('boolean'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_a_boolean_against_an_iterable()
     {
         $this->is(
@@ -529,6 +553,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ScalarTypeMetadata('int'),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_an_int_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('int'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -676,6 +708,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_an_integer_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('integer'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_an_integer_against_an_iterable()
     {
         $this->is(
@@ -817,6 +857,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ScalarTypeMetadata('float'),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_float_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('float'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -964,6 +1012,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_a_decimal_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('decimal'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_a_decimal_against_an_iterable()
     {
         $this->is(
@@ -1105,6 +1161,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ScalarTypeMetadata('double'),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_double_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('double'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -1252,6 +1316,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_a_numeric_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('numeric'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_a_numeric_against_an_iterable()
     {
         $this->is(
@@ -1393,6 +1465,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ScalarTypeMetadata('number'),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_number_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('number'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -1540,6 +1620,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(true);
     }
 
+    function it_tests_a_string_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('string'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_a_string_against_an_iterable()
     {
         $this->is(
@@ -1592,6 +1680,158 @@ class TypeSpec extends ObjectBehavior
     {
         $this->is(
             new ScalarTypeMetadata('string'),
+            new ListTypeMetadata(new NullTypeMetadata())
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_null()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new NullTypeMetadata()
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_bool()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('bool')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_boolean()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('boolean')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_an_int()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('int')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_an_integer()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('integer')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_float()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('float')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_decimal()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('decimal')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_double()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('double')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_numeric()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('numeric')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_number()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('number')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_string()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(true);
+    }
+
+    function it_tests_a_binary_against_an_iterable()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('iterable')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_callable()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('callable')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_resource()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ScalarTypeMetadata('resource')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_an_array()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ArrayTypeMetadata()
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_class()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new ClassTypeMetadata(null)
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_collection()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
+            new CollectionTypeMetadata(new ClassTypeMetadata(null), new NullTypeMetadata())
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_binary_against_a_list()
+    {
+        $this->is(
+            new ScalarTypeMetadata('binary'),
             new ListTypeMetadata(new NullTypeMetadata())
         )->shouldReturn(false);
     }
@@ -1680,7 +1920,15 @@ class TypeSpec extends ObjectBehavior
     {
         $this->is(
             new ScalarTypeMetadata('iterable'),
-            new ScalarTypeMetadata('string')
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_an_iterable_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('iterable'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -1828,6 +2076,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_an_callable_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('callable'),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_an_callable_against_an_iterable()
     {
         $this->is(
@@ -1969,6 +2225,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ScalarTypeMetadata('resource'),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_resource_against_a_binary()
+    {
+        $this->is(
+            new ScalarTypeMetadata('resource'),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -2116,6 +2380,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_an_array_against_a_binary()
+    {
+        $this->is(
+            new ArrayTypeMetadata(),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_an_array_against_an_iterable()
     {
         $this->is(
@@ -2257,6 +2529,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ClassTypeMetadata(null),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_class_against_a_binary()
+    {
+        $this->is(
+            new ClassTypeMetadata(null),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
@@ -2433,6 +2713,14 @@ class TypeSpec extends ObjectBehavior
         )->shouldReturn(false);
     }
 
+    function it_tests_a_collection_against_a_binary()
+    {
+        $this->is(
+            new CollectionTypeMetadata(new ClassTypeMetadata(null), new NullTypeMetadata()),
+            new ScalarTypeMetadata('binary')
+        )->shouldReturn(false);
+    }
+
     function it_tests_a_collection_against_an_iterable()
     {
         $this->is(
@@ -2590,6 +2878,14 @@ class TypeSpec extends ObjectBehavior
         $this->is(
             new ListTypeMetadata(new NullTypeMetadata()),
             new ScalarTypeMetadata('string')
+        )->shouldReturn(false);
+    }
+
+    function it_tests_a_list_against_a_binary()
+    {
+        $this->is(
+            new ListTypeMetadata(new NullTypeMetadata()),
+            new ScalarTypeMetadata('binary')
         )->shouldReturn(false);
     }
 
