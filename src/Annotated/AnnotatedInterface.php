@@ -4,5 +4,5 @@ namespace Kiboko\Component\ETL\Metadata\Annotated;
 
 interface AnnotatedInterface
 {
-    public function getAnnotation(): string;
+    public function getAnnotation(): ?string;
 }

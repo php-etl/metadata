@@ -6,7 +6,7 @@ trait AnnotatedTrait
 {
     private ?string $annotation;
 
-    public function getAnnotation(): string
+    public function getAnnotation(): ?string
     {
         return $this->annotation;
     }
