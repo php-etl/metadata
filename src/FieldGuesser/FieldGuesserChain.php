@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
+namespace Kiboko\Component\Metadata\FieldGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
 
 final class FieldGuesserChain implements FieldGuesserInterface
 {

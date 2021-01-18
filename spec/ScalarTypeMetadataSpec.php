@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class ScalarTypeMetadataSpec extends ObjectBehavior

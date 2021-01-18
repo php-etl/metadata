@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata;
+namespace Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\FieldGuesser;
-use Kiboko\Component\ETL\Metadata\MethodGuesser;
-use Kiboko\Component\ETL\Metadata\PropertyGuesser;
-use Kiboko\Component\ETL\Metadata\RelationGuesser;
+use Kiboko\Component\Metadata\FieldGuesser;
+use Kiboko\Component\Metadata\MethodGuesser;
+use Kiboko\Component\Metadata\PropertyGuesser;
+use Kiboko\Component\Metadata\RelationGuesser;
 
 final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {

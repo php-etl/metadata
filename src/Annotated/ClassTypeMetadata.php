@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Annotated;
+namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\FieldMetadataInterface;
-use Kiboko\Component\ETL\Metadata\MethodMetadataInterface;
-use Kiboko\Component\ETL\Metadata\PropertyMetadataInterface;
-use Kiboko\Component\ETL\Metadata\RelationMetadataInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\FieldMetadataInterface;
+use Kiboko\Component\Metadata\MethodMetadataInterface;
+use Kiboko\Component\Metadata\PropertyMetadataInterface;
+use Kiboko\Component\Metadata\RelationMetadataInterface;
 
 final class ClassTypeMetadata implements ClassTypeMetadataInterface, AnnotatedInterface
 {

@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\MethodGuesser;
+namespace Kiboko\Component\Metadata\MethodGuesser;
 
-use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
-use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\MethodMetadata;
-use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
-use Kiboko\Component\ETL\Metadata\VariadicArgumentMetadata;
+use Kiboko\Component\Metadata\ArgumentMetadata;
+use Kiboko\Component\Metadata\ArgumentListMetadata;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\MethodMetadata;
+use Kiboko\Component\Metadata\TypeGuesser\TypeGuesserInterface;
+use Kiboko\Component\Metadata\VariadicArgumentMetadata;
 
 final class ReflectionMethodGuesser implements MethodGuesserInterface
 {

@@ -17,6 +17,6 @@ formatter.name: pretty
 stop_on_failure: false
 suites:
   metadata_suite:
-    namespace: Kiboko\Component\ETL\Metadata
-    psr4_prefix: Kiboko\Component\ETL\Metadata
+    namespace: Kiboko\Component\Metadata
+    psr4_prefix: Kiboko\Component\Metadata
     src_path: '%paths.config%'

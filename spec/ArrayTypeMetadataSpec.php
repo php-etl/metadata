@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ArrayEntryMetadata;
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CompositeTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\ArrayEntryMetadata;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\CompositeTypeMetadataInterface;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 class ArrayTypeMetadataSpec extends ObjectBehavior

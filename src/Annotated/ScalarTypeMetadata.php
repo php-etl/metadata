@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Annotated;
+namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadataInterface;
+use Kiboko\Component\Metadata\ScalarTypeMetadataInterface;
 
 final class ScalarTypeMetadata implements ScalarTypeMetadataInterface, AnnotatedInterface
 {

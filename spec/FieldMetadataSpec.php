@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\FieldMetadata;
-use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
+use Kiboko\Component\Metadata\ClassTypeMetadata;
+use Kiboko\Component\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\Metadata\FieldMetadata;
+use Kiboko\Component\Metadata\ListTypeMetadata;
+use Kiboko\Component\Metadata\MixedTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\UnionTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 final class FieldMetadataSpec extends ObjectBehavior

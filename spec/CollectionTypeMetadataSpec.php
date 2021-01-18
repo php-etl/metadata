@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\ClassTypeMetadata;
+use Kiboko\Component\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 class CollectionTypeMetadataSpec extends ObjectBehavior

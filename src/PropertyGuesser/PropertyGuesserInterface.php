@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\PropertyGuesser;
+namespace Kiboko\Component\Metadata\PropertyGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\PropertyMetadataInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\PropertyMetadataInterface;
 
 interface PropertyGuesserInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
+use Kiboko\Component\Metadata\ListTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 class ListTypeMetadataSpec extends ObjectBehavior

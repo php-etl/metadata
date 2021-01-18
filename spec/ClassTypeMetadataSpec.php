@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CompositeTypeMetadataInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadata;
+use Kiboko\Component\Metadata\CompositeTypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class ClassTypeMetadataSpec extends ObjectBehavior

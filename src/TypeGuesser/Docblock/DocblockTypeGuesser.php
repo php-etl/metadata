@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock;
+namespace Kiboko\Component\Metadata\TypeGuesser\Docblock;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
-use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
-use Kiboko\Component\ETL\Metadata\Type;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
+use Kiboko\Component\Metadata\ListTypeMetadata;
+use Kiboko\Component\Metadata\Type;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Phpactor\Docblock\DocblockFactory;
 use Phpactor\Docblock\DocblockType;
 use Phpactor\Docblock\Tag;

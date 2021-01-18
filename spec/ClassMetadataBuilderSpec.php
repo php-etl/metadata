@@ -1,17 +1,17 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ClassMetadataBuilder;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\FieldGuesser\DummyFieldGuesser;
-use Kiboko\Component\ETL\Metadata\FieldGuesser\PublicPropertyFieldGuesser;
-use Kiboko\Component\ETL\Metadata\MethodGuesser\DummyMethodGuesser;
-use Kiboko\Component\ETL\Metadata\MethodGuesser\ReflectionMethodGuesser;
-use Kiboko\Component\ETL\Metadata\PropertyGuesser\DummyPropertyGuesser;
-use Kiboko\Component\ETL\Metadata\PropertyGuesser\ReflectionPropertyGuesser;
-use Kiboko\Component\ETL\Metadata\RelationGuesser\DummyRelationGuesser;
-use Kiboko\Component\ETL\Metadata\TypeGuesser;
+use Kiboko\Component\Metadata\ClassMetadataBuilder;
+use Kiboko\Component\Metadata\ClassTypeMetadata;
+use Kiboko\Component\Metadata\FieldGuesser\DummyFieldGuesser;
+use Kiboko\Component\Metadata\FieldGuesser\PublicPropertyFieldGuesser;
+use Kiboko\Component\Metadata\MethodGuesser\DummyMethodGuesser;
+use Kiboko\Component\Metadata\MethodGuesser\ReflectionMethodGuesser;
+use Kiboko\Component\Metadata\PropertyGuesser\DummyPropertyGuesser;
+use Kiboko\Component\Metadata\PropertyGuesser\ReflectionPropertyGuesser;
+use Kiboko\Component\Metadata\RelationGuesser\DummyRelationGuesser;
+use Kiboko\Component\Metadata\TypeGuesser;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;

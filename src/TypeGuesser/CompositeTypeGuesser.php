@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\TypeGuesser;
+namespace Kiboko\Component\Metadata\TypeGuesser;
 
-use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
+use Kiboko\Component\Metadata\MixedTypeMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\UnionTypeMetadata;
 
 class CompositeTypeGuesser implements TypeGuesserInterface
 {

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace spec\Kiboko\Component\ETL\Metadata\FieldGuesser;
+namespace spec\Kiboko\Component\Metadata\FieldGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\FieldGuesser\FieldGuesserChain;
-use Kiboko\Component\ETL\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadata;
+use Kiboko\Component\Metadata\FieldGuesser\FieldGuesserChain;
+use Kiboko\Component\Metadata\FieldGuesser\FieldGuesserInterface;
 use PhpSpec\ObjectBehavior;
 
 final class FieldGuesserChainSpec extends ObjectBehavior

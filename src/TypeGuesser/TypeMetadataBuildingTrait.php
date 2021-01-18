@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\TypeGuesser;
+namespace Kiboko\Component\Metadata\TypeGuesser;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassMetadataInterface;
-use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
-use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\Type;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\ClassMetadataInterface;
+use Kiboko\Component\Metadata\ClassReferenceMetadata;
+use Kiboko\Component\Metadata\NullTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\Type;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
 
 trait TypeMetadataBuildingTrait
 {

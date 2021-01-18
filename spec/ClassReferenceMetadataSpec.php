@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
+use Kiboko\Component\Metadata\ClassReferenceMetadata;
 use PhpSpec\ObjectBehavior;
 
 class ClassReferenceMetadataSpec extends ObjectBehavior

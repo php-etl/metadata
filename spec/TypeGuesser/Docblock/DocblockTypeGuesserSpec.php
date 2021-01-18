@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock;
+namespace spec\Kiboko\Component\Metadata\TypeGuesser\Docblock;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
-use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeGuesser;
-use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
-use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\ClassReferenceMetadata;
+use Kiboko\Component\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\Metadata\TypeGuesser;
+use Kiboko\Component\Metadata\ListTypeMetadata;
+use Kiboko\Component\Metadata\NullTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;
@@ -107,7 +107,7 @@ class DocblockTypeGuesserSpec extends ObjectBehavior
             ->shouldMatchTypeMetadata(
                 new ScalarTypeMetadata('string'),
                 new ClassReferenceMetadata('stdClass'),
-                new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\ETL\Metadata\TypeGuesser\Docblock'),
+                new ClassReferenceMetadata('DocblockTypeGuesser', 'Kiboko\Component\Metadata\TypeGuesser\Docblock'),
                 new ClassReferenceMetadata('PDO')
             );
     }

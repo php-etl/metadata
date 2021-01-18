@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\RelationGuesser;
+namespace Kiboko\Component\Metadata\RelationGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
-use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\IterableUnionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\MultipleRelationMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\IncompatibleTypeException;
+use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
+use Kiboko\Component\Metadata\IterableUnionTypeMetadata;
+use Kiboko\Component\Metadata\MultipleRelationMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInterface
 {

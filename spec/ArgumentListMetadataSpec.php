@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ArgumentMetadata;
-use Kiboko\Component\ETL\Metadata\ArgumentListMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\ArgumentMetadata;
+use Kiboko\Component\Metadata\ArgumentListMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 class ArgumentListMetadataSpec extends ObjectBehavior

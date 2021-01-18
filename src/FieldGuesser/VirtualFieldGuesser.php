@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
+namespace Kiboko\Component\Metadata\FieldGuesser;
 
 use Doctrine\Common\Inflector\Inflector;
-use Kiboko\Component\ETL\Metadata\ArgumentListMetadataInterface;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\MethodMetadataInterface;
-use Kiboko\Component\ETL\Metadata\MixedTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\Type;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\VirtualFieldMetadata;
+use Kiboko\Component\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\MethodMetadataInterface;
+use Kiboko\Component\Metadata\MixedTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\Type;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\VirtualFieldMetadata;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
 {

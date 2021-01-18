@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\FieldGuesser;
+namespace Kiboko\Component\Metadata\FieldGuesser;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\FieldMetadata;
-use Kiboko\Component\ETL\Metadata\IncompatibleTypeException;
-use Kiboko\Component\ETL\Metadata\PropertyMetadataInterface;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\UnionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\UnionTypeMetadataInterface;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\FieldMetadata;
+use Kiboko\Component\Metadata\IncompatibleTypeException;
+use Kiboko\Component\Metadata\PropertyMetadataInterface;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\UnionTypeMetadata;
+use Kiboko\Component\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {

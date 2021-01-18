@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\NullTypeMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class NullTypeMetadataSpec extends ObjectBehavior

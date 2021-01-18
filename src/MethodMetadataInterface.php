@@ -1,6 +1,6 @@
 <?php
 
-namespace Kiboko\Component\ETL\Metadata;
+namespace Kiboko\Component\Metadata;
 
 interface MethodMetadataInterface extends NamedInterface
 {

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Annotated;
+namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\ETL\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Component\Metadata\ArgumentListMetadataInterface;
 
 final class ArgumentListMetadata implements ArgumentListMetadataInterface, AnnotatedInterface
 {

@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\IterableTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\MultipleRelationMetadata;
+use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
+use Kiboko\Component\Metadata\MultipleRelationMetadata;
 use PhpSpec\ObjectBehavior;
 
 final class MultipleRelationMetadataSpec extends ObjectBehavior

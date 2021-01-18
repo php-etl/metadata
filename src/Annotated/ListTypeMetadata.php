@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Annotated;
+namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\ETL\Metadata\ListTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\ListTypeMetadataInterface;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
 
 final class ListTypeMetadata implements ListTypeMetadataInterface, AnnotatedInterface
 {

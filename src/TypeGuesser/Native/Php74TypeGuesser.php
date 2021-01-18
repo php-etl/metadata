@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\TypeGuesser\Native;
+namespace Kiboko\Component\Metadata\TypeGuesser\Native;
 
-use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
-use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
-use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
+use Kiboko\Component\Metadata\ClassReferenceMetadata;
+use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
+use Kiboko\Component\Metadata\NullTypeMetadata;
 
 class Php74TypeGuesser implements TypeGuesserInterface
 {

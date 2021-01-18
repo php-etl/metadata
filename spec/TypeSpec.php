@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace spec\Kiboko\Component\ETL\Metadata;
+namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadata;
-use Kiboko\Component\ETL\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ListTypeMetadata;
-use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\ClassTypeMetadata;
+use Kiboko\Component\Metadata\CollectionTypeMetadata;
+use Kiboko\Component\Metadata\ListTypeMetadata;
+use Kiboko\Component\Metadata\NullTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 
 class TypeSpec extends ObjectBehavior

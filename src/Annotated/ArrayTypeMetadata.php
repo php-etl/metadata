@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\Annotated;
+namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadataInterface;
+use Kiboko\Component\Metadata\ArrayTypeMetadataInterface;
 
 final class ArrayTypeMetadata implements ArrayTypeMetadataInterface, AnnotatedInterface
 {

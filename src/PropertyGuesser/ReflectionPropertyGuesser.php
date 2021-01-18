@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\Metadata\PropertyGuesser;
+namespace Kiboko\Component\Metadata\PropertyGuesser;
 
-use Kiboko\Component\ETL\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\PropertyMetadata;
-use Kiboko\Component\ETL\Metadata\TypeGuesser\TypeGuesserInterface;
+use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Component\Metadata\PropertyMetadata;
+use Kiboko\Component\Metadata\TypeGuesser\TypeGuesserInterface;
 
 final class ReflectionPropertyGuesser implements PropertyGuesserInterface
 {

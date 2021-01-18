@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Kiboko\Component\ETL\Metadata\TypeGuesser\Native;
+namespace spec\Kiboko\Component\Metadata\TypeGuesser\Native;
 
-use Kiboko\Component\ETL\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ClassReferenceMetadata;
-use Kiboko\Component\ETL\Metadata\NullTypeMetadata;
-use Kiboko\Component\ETL\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\ETL\Metadata\TypeMetadataInterface;
-use Kiboko\Component\ETL\Metadata\TypeGuesser;
+use Kiboko\Component\Metadata\ArrayTypeMetadata;
+use Kiboko\Component\Metadata\ClassReferenceMetadata;
+use Kiboko\Component\Metadata\NullTypeMetadata;
+use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\TypeGuesser;
 use PhpSpec\ObjectBehavior;
 
 class Php74TypeGuesserSpec extends ObjectBehavior
