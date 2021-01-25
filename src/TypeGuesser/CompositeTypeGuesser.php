@@ -8,10 +8,8 @@ use Kiboko\Component\Metadata\UnionTypeMetadata;
 
 class CompositeTypeGuesser implements TypeGuesserInterface
 {
-    /** @var Native\TypeGuesserInterface */
-    private $php74Guesser;
-    /** @var Docblock\TypeGuesserInterface */
-    private $docblockGuesser;
+    private Native\TypeGuesserInterface $php74Guesser;
+    private Docblock\TypeGuesserInterface $docblockGuesser;
 
     public function __construct(
         Native\TypeGuesserInterface $php74Guesser,

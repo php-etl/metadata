@@ -11,8 +11,7 @@ use Kiboko\Component\Metadata\VariadicArgumentMetadata;
 
 final class ReflectionMethodGuesser implements MethodGuesserInterface
 {
-    /** @var TypeGuesserInterface */
-    private $typeGuesser;
+    private TypeGuesserInterface $typeGuesser;
 
     public function __construct(TypeGuesserInterface $typeGuesser)
     {

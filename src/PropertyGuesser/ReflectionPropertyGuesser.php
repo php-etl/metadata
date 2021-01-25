@@ -8,8 +8,7 @@ use Kiboko\Component\Metadata\TypeGuesser\TypeGuesserInterface;
 
 final class ReflectionPropertyGuesser implements PropertyGuesserInterface
 {
-    /** @var TypeGuesserInterface */
-    private $typeGuesser;
+    private TypeGuesserInterface $typeGuesser;
 
     public function __construct(TypeGuesserInterface $typeGuesser)
     {

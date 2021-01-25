@@ -4,8 +4,7 @@ namespace Kiboko\Component\Metadata;
 
 final class ListTypeMetadata implements ListTypeMetadataInterface
 {
-    /** @var TypeMetadataInterface */
-    private $inner;
+    private TypeMetadataInterface $inner;
 
     public function __construct(TypeMetadataInterface $inner)
     {

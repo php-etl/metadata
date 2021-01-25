@@ -4,8 +4,7 @@ namespace Kiboko\Component\Metadata;
 
 final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $name)
     {

@@ -20,10 +20,8 @@ class DocblockTypeGuesser implements TypeGuesserInterface
 {
     use TypeMetadataBuildingTrait;
 
-    /** @var DocblockFactory */
-    private $docblockFactory;
-    /** @var Parser */
-    private $parser;
+    private DocblockFactory $docblockFactory;
+    private Parser $parser;
 
     public function __construct(
         Parser $parser,
