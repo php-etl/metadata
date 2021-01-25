@@ -24,7 +24,7 @@ final class CompositeUnionTypeMetadata implements CompositeTypeMetadataInterface
 
     public function __toString()
     {
-        return implode('|', array_map(function(CompositeTypeMetadataInterface $type) {
+        return implode('|', array_map(function (CompositeTypeMetadataInterface $type) {
             return (string) $type;
         }, $this->types));
     }

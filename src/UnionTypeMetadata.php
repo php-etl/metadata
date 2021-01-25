@@ -24,7 +24,7 @@ final class UnionTypeMetadata implements UnionTypeMetadataInterface
 
     public function __toString()
     {
-        return implode('|', array_map(function(TypeMetadataInterface $type) {
+        return implode('|', array_map(function (TypeMetadataInterface $type) {
             return (string) $type;
         }, $this->types));
     }

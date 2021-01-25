@@ -19,7 +19,7 @@ final class ReflectionPropertyGuesser implements PropertyGuesserInterface
     public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {
         yield from array_map(
-            function(\ReflectionProperty $property) use($classOrObject) {
+            function (\ReflectionProperty $property) use ($classOrObject) {
                 return new PropertyMetadata($property->getName(), ($this->typeGuesser)($classOrObject, $property));
             },
             $classOrObject->getProperties(\ReflectionProperty::IS_PUBLIC)

@@ -57,7 +57,7 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
             throw new IncompatibleTypeException(strtr(
                 'Expected to have at least one scalar or array type, got none compatible: %actual%.',
                 [
-                    '%actual%' => implode(', ', array_map(function(TypeMetadataInterface $inner) {
+                    '%actual%' => implode(', ', array_map(function (TypeMetadataInterface $inner) {
                         return (string) $inner;
                     }, iterator_to_array($type))),
                 ]

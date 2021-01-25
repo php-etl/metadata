@@ -24,7 +24,7 @@ final class IterableUnionTypeMetadata implements IterableTypeMetadataInterface, 
 
     public function __toString()
     {
-        return implode('|', array_map(function(IterableTypeMetadataInterface $type) {
+        return implode('|', array_map(function (IterableTypeMetadataInterface $type) {
             return (string) $type;
         }, $this->types));
     }

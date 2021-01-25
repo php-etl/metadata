@@ -54,7 +54,7 @@ final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInte
             throw new IncompatibleTypeException(strtr(
                 'Expected to have at least one composite type, got none compatible: %actual%.',
                 [
-                    '%actual%' => implode(', ', array_map(function(TypeMetadataInterface $inner) {
+                    '%actual%' => implode(', ', array_map(function (TypeMetadataInterface $inner) {
                         return (string) $inner;
                     }, iterator_to_array($type))),
                 ]

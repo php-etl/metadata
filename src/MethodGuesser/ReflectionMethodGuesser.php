@@ -22,10 +22,10 @@ final class ReflectionMethodGuesser implements MethodGuesserInterface
     public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {
         yield from array_map(
-            function(\ReflectionMethod $method) use($classOrObject) {
+            function (\ReflectionMethod $method) use ($classOrObject) {
                 return new MethodMetadata(
                     $method->getName(),
-                    new ArgumentListMetadata(...array_map(function(\ReflectionParameter $parameter) use($classOrObject) {
+                    new ArgumentListMetadata(...array_map(function (\ReflectionParameter $parameter) use ($classOrObject) {
                         if ($parameter->isVariadic()) {
                             return new VariadicArgumentMetadata(
                                 $parameter->getName(),

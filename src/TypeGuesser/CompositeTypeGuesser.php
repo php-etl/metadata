@@ -50,7 +50,7 @@ class CompositeTypeGuesser implements TypeGuesserInterface
             $reflector->getType() !== null
         ) {
             yield from ($this->php74Guesser)($class, $reflector->getType());
-        } else if ($reflector instanceof \ReflectionMethod && $reflector->getReturnType() !== null) {
+        } elseif ($reflector instanceof \ReflectionMethod && $reflector->getReturnType() !== null) {
             yield from ($this->php74Guesser)($class, $reflector->getReturnType());
         }
 
@@ -61,7 +61,7 @@ class CompositeTypeGuesser implements TypeGuesserInterface
             yield from ($this->docblockGuesser)('var', $class, $reflector);
         }
         if ($reflector instanceof \ReflectionParameter) {
-// FIXME: implement the way od discovering parameter docblocks
+            // FIXME: implement the way od discovering parameter docblocks
 //            yield from ($this->docblockGuesser)('param', $class, $reflector);
         }
     }

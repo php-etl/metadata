@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector;
 use Kiboko\Component\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\Metadata\MethodMetadataInterface;
@@ -14,11 +14,11 @@ use Kiboko\Component\Metadata\VirtualFieldMetadata;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
 {
-    private Inflector $inflector;
+    private Inflector\Inflector $inflector;
 
-    public function __construct(?Inflector $inflector = null)
+    public function __construct(?Inflector\Inflector $inflector = null)
     {
-        $this->inflector = $inflector ?? new Inflector();
+        $this->inflector = $inflector ?? Inflector\InflectorFactory::createForLanguage(Inflector\Language::ENGLISH)->build();
     }
 
     private function isSingular(string $field): bool
@@ -45,7 +45,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
                 }
 
                 $methodCandidates[$fieldName]['is'] = $method;
-            } else if (preg_match('/(?<action>set)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
+            } elseif (preg_match('/(?<action>set)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 count($method->getArguments()) === 1
             ) {
                 $action = $matches['action'];
@@ -62,7 +62,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
                 array_push($typesCandidates[$fieldName], ...$this->extractArgumentTypes($method->getArguments()));
                 $methodCandidates[$fieldName][$action] = $method;
-            } else if (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
+            } elseif (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 count($method->getArguments()) === 0
             ) {
                 $action = $matches['action'];
