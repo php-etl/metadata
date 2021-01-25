@@ -36,7 +36,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_reads_properties()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -60,7 +60,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_detects_properties_type()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -86,7 +86,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_detects_properties_arrays()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -113,7 +113,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_reads_methods()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -137,7 +137,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_detects_methods_return_type()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -163,7 +163,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_detects_methods_return_arrays()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -190,7 +190,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_detects_fields_type()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()
@@ -216,7 +216,7 @@ class ClassMetadataBuilderSpec extends ObjectBehavior
     function it_detects_fields_arrays()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()

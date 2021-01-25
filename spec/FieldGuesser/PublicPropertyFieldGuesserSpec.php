@@ -27,7 +27,7 @@ final class PublicPropertyFieldGuesserSpec extends ObjectBehavior
     function it_is_discovering_properties()
     {
         $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser(
                 (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
                 new DocblockFactory()

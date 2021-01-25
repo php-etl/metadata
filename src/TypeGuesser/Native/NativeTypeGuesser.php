@@ -6,13 +6,15 @@ use Kiboko\Component\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
 use Kiboko\Component\Metadata\NullTypeMetadata;
 
-class Php74TypeGuesser implements TypeGuesserInterface
+class NativeTypeGuesser implements TypeGuesserInterface
 {
     use TypeMetadataBuildingTrait;
 
     public function __invoke(\ReflectionClass $class, \ReflectionType $reflector): \Iterator
     {
-        if ($reflector->isBuiltin()) {
+        if ($reflector instanceof \ReflectionUnionType) {
+            yield from array_map(fn ($reflector) => $this($class, $reflector), $reflector->getTypes());
+        } else if ($reflector instanceof \ReflectionNamedType && $reflector->isBuiltin()) {
             yield $this->builtInType($reflector->getName());
         } else {
             try {

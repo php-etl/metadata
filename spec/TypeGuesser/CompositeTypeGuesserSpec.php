@@ -19,7 +19,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
         $this->shouldHaveType(TypeGuesser\CompositeTypeGuesser::class);
@@ -28,7 +28,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_one_scalar_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -46,7 +46,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_one_nullable_scalar_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -69,7 +69,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_multiple_scalar_types()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -92,7 +92,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_mixed_types()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -117,7 +117,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_array_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -137,7 +137,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_iterable_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -157,7 +157,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_class_list_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -179,7 +179,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_collection_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -202,7 +202,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_one_php74_scalar_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -221,7 +221,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_one_php74_nullable_scalar_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -243,7 +243,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_php74_array_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -262,7 +262,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_php74_array_type_with_docblock()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -287,7 +287,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_php74_iterable_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -306,7 +306,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_php74_iterable_type_with_docblock()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 
@@ -331,7 +331,7 @@ class CompositeTypeGuesserSpec extends ObjectBehavior
     function it_is_discovering_php74_class_type()
     {
         $this->beConstructedWith(
-            new TypeGuesser\Native\Php74TypeGuesser(),
+            new TypeGuesser\Native\NativeTypeGuesser(),
             new TypeGuesser\Docblock\DocblockTypeGuesser((new ParserFactory())->create(ParserFactory::ONLY_PHP7), new DocblockFactory())
         );
 

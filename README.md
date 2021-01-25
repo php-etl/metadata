@@ -41,7 +41,7 @@ use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 
 $typeGuesser = new TypeGuesser\CompositeTypeGuesser(
-    new TypeGuesser\Native\Php74TypeGuesser(),
+    new TypeGuesser\Native\NativeTypeGuesser(),
     new TypeGuesser\Docblock\DocblockTypeGuesser(
         (new ParserFactory())->create(ParserFactory::ONLY_PHP7),
         new DocblockFactory()

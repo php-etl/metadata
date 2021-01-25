@@ -10,7 +10,7 @@ use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\TypeGuesser;
 use PhpSpec\ObjectBehavior;
 
-class Php74TypeGuesserSpec extends ObjectBehavior
+class NativeTypeGuesserSpec extends ObjectBehavior
 {
     public function getMatchers(): array
     {
@@ -31,7 +31,7 @@ class Php74TypeGuesserSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(TypeGuesser\Native\Php74TypeGuesser::class);
+        $this->shouldHaveType(TypeGuesser\Native\NativeTypeGuesser::class);
     }
 
     function it_is_discovering_one_php74_scalar_type()
