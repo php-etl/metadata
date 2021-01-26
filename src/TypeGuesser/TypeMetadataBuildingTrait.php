@@ -9,6 +9,7 @@ use Kiboko\Component\Metadata\NullTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\Type;
 use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\VoidTypeMetadata;
 
 trait TypeMetadataBuildingTrait
 {
@@ -33,6 +34,9 @@ trait TypeMetadataBuildingTrait
         }
         if (in_array($type, Type::$null)) {
             return new NullTypeMetadata();
+        }
+        if (in_array($type, Type::$void)) {
+            return new VoidTypeMetadata();
         }
 
         return new ScalarTypeMetadata($type);

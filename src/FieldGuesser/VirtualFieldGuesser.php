@@ -93,7 +93,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
             yield new VirtualFieldMetadata(
                 $fieldName,
-                $this->guessType($typesCandidates),
+                $this->guessType(...$typesCandidates[$fieldName]),
                 $accessor,
                 $mutator,
                 $actions['has'] ?? null,

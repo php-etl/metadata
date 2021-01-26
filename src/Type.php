@@ -29,6 +29,12 @@ final class Type
     /** @internal */
     public static $null = ['null'];
     /** @internal */
+    public static $void = ['void'];
+    /** @internal */
+    public static $static = ['static'];
+    /** @internal */
+    public static $self = ['self'];
+    /** @internal */
     public static $builtInTypes = [
         'bool', 'boolean',
         'int', 'integer',

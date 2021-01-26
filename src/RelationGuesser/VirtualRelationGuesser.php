@@ -124,6 +124,6 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
     private function guessType(TypeMetadataInterface ...$types): TypeMetadataInterface
     {
-        return reset($types) ?? new MixedTypeMetadata();
+        return reset($types);
     }
 }
