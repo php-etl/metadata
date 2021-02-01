@@ -2,6 +2,8 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 trait TypedTrait
 {
     private TypeMetadataInterface $type;

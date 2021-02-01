@@ -2,13 +2,14 @@
 
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\Metadata\IncompatibleTypeException;
-use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
 use Kiboko\Component\Metadata\IterableUnionTypeMetadata;
 use Kiboko\Component\Metadata\MultipleRelationMetadata;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
-use Kiboko\Component\Metadata\UnionTypeMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\IterableTypeMetadataInterface;
+use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInterface
 {

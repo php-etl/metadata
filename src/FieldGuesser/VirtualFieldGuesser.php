@@ -3,14 +3,15 @@
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
 use Doctrine\Inflector;
-use Kiboko\Component\Metadata\ArgumentListMetadataInterface;
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\Metadata\MethodMetadataInterface;
 use Kiboko\Component\Metadata\MixedTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\Type;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\VirtualFieldMetadata;
+use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
 {

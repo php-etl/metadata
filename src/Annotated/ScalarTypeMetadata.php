@@ -2,17 +2,15 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ScalarTypeMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ScalarTypeMetadataInterface;
 
 final class ScalarTypeMetadata implements ScalarTypeMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ScalarTypeMetadataInterface $decorated;
-
-    public function __construct(ScalarTypeMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ScalarTypeMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 

@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
+
 final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMetadataInterface
 {
     /** @var ArgumentMetadataInterface[] */
@@ -15,12 +18,12 @@ final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMeta
     /**
      * @return \ArrayIterator|\Traversable|ArgumentMetadataInterface[]
      */
-    public function getIterator()
+    public function getIterator(): array|\Traversable|\ArrayIterator
     {
         return new \ArrayIterator($this->arguments);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->arguments);
     }

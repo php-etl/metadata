@@ -2,18 +2,18 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ClassMetadataInterface;
+use Kiboko\Contract\Metadata\CollectionTypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class CollectionTypeMetadata implements CollectionTypeMetadataInterface
 {
-    private ClassMetadataInterface $type;
-    private TypeMetadataInterface $inner;
+    public function __construct(
+        private ClassMetadataInterface $type,
+        private TypeMetadataInterface $inner
+    ) {}
 
-    public function __construct(ClassMetadataInterface $type, TypeMetadataInterface $inner)
-    {
-        $this->type = $type;
-        $this->inner = $inner;
-    }
-
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf('%s<%s>', (string) $this->type, (string) $this->inner);
     }

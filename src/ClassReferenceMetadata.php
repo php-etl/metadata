@@ -2,22 +2,20 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
+
 final class ClassReferenceMetadata implements ClassReferenceMetadataInterface
 {
-    private ?string $namespace;
-    private string $name;
-
-    public function __construct(string $name, ?string $namespace = null)
-    {
-        if (strpos($name, '\\') !== false) {
+    public function __construct(
+        private string $name,
+        private ?string $namespace = null
+    ) {
+        if (str_contains($this->name, '\\')) {
             throw new \RuntimeException('Class names should not contain root namespace anchoring backslash or namespace.');
         }
-        if ($namespace !== null && strpos($namespace, '\\') === 0) {
+        if ($this->namespace !== null && strpos($this->namespace, '\\') === 0) {
             throw new \RuntimeException('Namespace should not contain root namespace anchoring backslash.');
         }
-
-        $this->name = $name;
-        $this->namespace = $namespace;
     }
 
     public function getNamespace(): ?string
@@ -30,7 +28,7 @@ final class ClassReferenceMetadata implements ClassReferenceMetadataInterface
         return $this->name;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return ($this->namespace !== null ? $this->namespace . '\\' : '') . $this->name;
     }

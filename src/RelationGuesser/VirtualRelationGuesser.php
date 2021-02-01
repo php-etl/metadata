@@ -3,15 +3,15 @@
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
 use Doctrine\Inflector;
-use Kiboko\Component\Metadata\ArgumentListMetadataInterface;
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\Metadata\MethodMetadataInterface;
-use Kiboko\Component\Metadata\MixedTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\Type;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\VirtualMultipleRelationMetadata;
 use Kiboko\Component\Metadata\VirtualUnaryRelationMetadata;
+use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualRelationGuesser implements RelationGuesserInterface
 {

@@ -2,6 +2,11 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\CollectionTypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class Type
 {
     /** @internal */

@@ -2,10 +2,14 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\FieldMetadataInterface;
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+use Kiboko\Contract\Metadata\PropertyMetadataInterface;
+use Kiboko\Contract\Metadata\RelationMetadataInterface;
+
 final class ClassTypeMetadata implements ClassTypeMetadataInterface
 {
-    private ?string $namespace;
-    private ?string $name;
     /** @var PropertyMetadataInterface[] */
     private iterable $properties;
     /** @var MethodMetadataInterface[] */
@@ -15,17 +19,15 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
     /** @var RelationMetadataInterface[] */
     private iterable $relations;
 
-    public function __construct(?string $name, ?string $namespace = null)
+    public function __construct(private ?string $name, private ?string $namespace = null)
     {
-        if ($name !== null && strpos($name, '\\') !== false) {
+        if ($this->name !== null && str_contains($this->name, '\\')) {
             throw new \RuntimeException('Class names should not contain root namespace anchoring backslash or namespace.');
         }
-        if ($namespace !== null && strpos($namespace, '\\') === 0) {
+        if ($this->namespace !== null && strpos($this->namespace, '\\') === 0) {
             throw new \RuntimeException('Namespace should not contain root namespace anchoring backslash.');
         }
 
-        $this->name = $name;
-        $this->namespace = $namespace;
         $this->properties = [];
         $this->methods = [];
         $this->fields = [];
@@ -154,7 +156,7 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return ($this->namespace !== null ? $this->namespace . '\\' : '') . $this->name;
     }

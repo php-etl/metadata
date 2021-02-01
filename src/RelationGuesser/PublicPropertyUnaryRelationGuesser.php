@@ -2,13 +2,14 @@
 
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Component\Metadata\CompositeUnionTypeMetadata;
 use Kiboko\Component\Metadata\IncompatibleTypeException;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\UnaryRelationMetadata;
-use Kiboko\Component\Metadata\UnionTypeMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
+use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyUnaryRelationGuesser implements RelationGuesserInterface
 {

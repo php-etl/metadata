@@ -2,18 +2,16 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ArgumentMetadataInterface;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class ArgumentMetadata implements ArgumentMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ArgumentMetadataInterface $decorated;
-
-    public function __construct(ArgumentMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ArgumentMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 

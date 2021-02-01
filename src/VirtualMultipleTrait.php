@@ -2,6 +2,8 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+
 trait VirtualMultipleTrait
 {
     private ?MethodMetadataInterface $accessor;

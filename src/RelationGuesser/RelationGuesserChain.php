@@ -2,12 +2,13 @@
 
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
 
 final class RelationGuesserChain implements RelationGuesserInterface
 {
     /** @var RelationGuesserInterface[] */
-    private $inner;
+    private iterable $inner;
 
     public function __construct(RelationGuesserInterface ...$inner)
     {

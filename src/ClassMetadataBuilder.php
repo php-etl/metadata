@@ -2,29 +2,22 @@
 
 namespace Kiboko\Component\Metadata;
 
-use Kiboko\Component\Metadata\FieldGuesser;
-use Kiboko\Component\Metadata\MethodGuesser;
-use Kiboko\Component\Metadata\PropertyGuesser;
-use Kiboko\Component\Metadata\RelationGuesser;
+use Kiboko\Contract\Metadata\ClassMetadataBuilderInterface;
+use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\MethodGuesser\MethodGuesserInterface;
+use Kiboko\Contract\Metadata\PropertyGuesser\PropertyGuesserInterface;
+use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
 
 final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {
-    private PropertyGuesser\PropertyGuesserInterface $propertyGuesser;
-    private MethodGuesser\MethodGuesserInterface $methodGuesser;
-    private FieldGuesser\FieldGuesserInterface $fieldGuesser;
-    private RelationGuesser\RelationGuesserInterface $relationGuesser;
-
     public function __construct(
-        PropertyGuesser\PropertyGuesserInterface $propertyGuesser,
-        MethodGuesser\MethodGuesserInterface $methodGuesser,
-        FieldGuesser\FieldGuesserInterface $fieldGuesser,
-        RelationGuesser\RelationGuesserInterface $relationGuesser
-    ) {
-        $this->propertyGuesser = $propertyGuesser;
-        $this->methodGuesser = $methodGuesser;
-        $this->fieldGuesser = $fieldGuesser;
-        $this->relationGuesser = $relationGuesser;
-    }
+        private PropertyGuesserInterface $propertyGuesser,
+        private MethodGuesserInterface $methodGuesser,
+        private FieldGuesserInterface $fieldGuesser,
+        private RelationGuesserInterface $relationGuesser
+    ) {}
 
     public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface
     {

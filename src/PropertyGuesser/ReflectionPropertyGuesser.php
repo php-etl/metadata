@@ -2,18 +2,15 @@
 
 namespace Kiboko\Component\Metadata\PropertyGuesser;
 
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\Metadata\PropertyMetadata;
-use Kiboko\Component\Metadata\TypeGuesser\TypeGuesserInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\PropertyGuesser\PropertyGuesserInterface;
+use Kiboko\Contract\Metadata\TypeGuesser\TypeGuesserInterface;
 
 final class ReflectionPropertyGuesser implements PropertyGuesserInterface
 {
-    private TypeGuesserInterface $typeGuesser;
-
-    public function __construct(TypeGuesserInterface $typeGuesser)
-    {
-        $this->typeGuesser = $typeGuesser;
-    }
+    public function __construct(private TypeGuesserInterface $typeGuesser)
+    {}
 
     public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {

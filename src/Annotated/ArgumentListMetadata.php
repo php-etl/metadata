@@ -2,21 +2,19 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 
 final class ArgumentListMetadata implements ArgumentListMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ArgumentListMetadataInterface $decorated;
-
-    public function __construct(ArgumentListMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ArgumentListMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 
-    public function count()
+    public function count(): int
     {
         return $this->decorated->count();
     }

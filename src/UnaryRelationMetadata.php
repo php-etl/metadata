@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
+use Kiboko\Contract\Metadata\UnaryRelationMetadataInterface;
+
 class UnaryRelationMetadata implements UnaryRelationMetadataInterface
 {
     use NamedTrait;

@@ -3,13 +3,13 @@
 namespace Kiboko\Component\Metadata\TypeGuesser;
 
 use Kiboko\Component\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\Metadata\ClassMetadataInterface;
 use Kiboko\Component\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\Metadata\NullTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\Type;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\VoidTypeMetadata;
+use Kiboko\Contract\Metadata\ClassMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 trait TypeMetadataBuildingTrait
 {

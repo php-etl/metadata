@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ScalarTypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
 {
     private string $name;
@@ -25,7 +28,7 @@ final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
         return $other instanceof self;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->name;
     }

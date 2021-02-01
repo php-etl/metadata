@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\FieldMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 class FieldMetadata implements FieldMetadataInterface
 {
     use NamedTrait;

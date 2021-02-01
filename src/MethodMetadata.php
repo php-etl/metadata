@@ -2,6 +2,10 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class MethodMetadata implements MethodMetadataInterface
 {
     use NamedTrait;

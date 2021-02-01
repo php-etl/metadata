@@ -3,9 +3,9 @@
 namespace Kiboko\Component\Metadata\TypeGuesser\Native;
 
 use Kiboko\Component\Metadata\ClassReferenceMetadata;
-use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
 use Kiboko\Component\Metadata\NullTypeMetadata;
-use Kiboko\Component\Metadata\VoidTypeMetadata;
+use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
+use Kiboko\Contract\Metadata\TypeGuesser\Native\TypeGuesserInterface;
 
 class NativeTypeGuesser implements TypeGuesserInterface
 {

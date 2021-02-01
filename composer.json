@@ -18,19 +18,14 @@
         "php": "^8.0",
         "phpactor/docblock": "^0.3.0@dev",
         "nikic/php-parser": "^4.9@dev",
-        "doctrine/inflector": "^2.0"
+        "php-etl/metadata-contracts": "0.1.x-dev",
+        "doctrine/inflector": "2.0.x-dev"
     },
     "require-dev": {
         "ext-xdebug": "*",
         "phpunit/phpunit": "^9.0",
-        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-        "phpspec/phpspec": "^7.0",
         "johnkary/phpunit-speedtrap": "*",
-        "mybuilder/phpunit-accelerator": "*",
-        "phpunit/php-invoker": "*",
-        "phpstan/phpstan": "^0.12",
-        "infection/infection": "^0.20",
-        "php-etl/phpspec-extension": "^0.2@dev"
+        "mybuilder/phpunit-accelerator": "*"
     },
     "autoload": {
         "psr-4": {

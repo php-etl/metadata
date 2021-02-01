@@ -2,21 +2,19 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Component\Metadata\FieldMetadataInterface;
-use Kiboko\Component\Metadata\MethodMetadataInterface;
-use Kiboko\Component\Metadata\PropertyMetadataInterface;
-use Kiboko\Component\Metadata\RelationMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\FieldMetadataInterface;
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+use Kiboko\Contract\Metadata\PropertyMetadataInterface;
+use Kiboko\Contract\Metadata\RelationMetadataInterface;
 
 final class ClassTypeMetadata implements ClassTypeMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ClassTypeMetadataInterface $decorated;
-
-    public function __construct(ClassTypeMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ClassTypeMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 
@@ -90,7 +88,7 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface, AnnotatedIn
         return $this->decorated->addRelations(...$relations);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->decorated;
     }

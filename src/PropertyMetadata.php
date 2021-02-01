@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\PropertyMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class PropertyMetadata implements PropertyMetadataInterface
 {
     use NamedTrait;

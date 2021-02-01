@@ -2,6 +2,8 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ArrayTypeMetadataInterface;
+
 final class ArrayTypeMetadata implements \IteratorAggregate, ArrayTypeMetadataInterface
 {
     /** @var ArrayEntryMetadata[] */
@@ -12,12 +14,12 @@ final class ArrayTypeMetadata implements \IteratorAggregate, ArrayTypeMetadataIn
         $this->entries = $entries;
     }
 
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->entries);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return 'array';
     }

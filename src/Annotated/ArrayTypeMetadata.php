@@ -2,21 +2,19 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ArrayTypeMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ArrayTypeMetadataInterface;
 
 final class ArrayTypeMetadata implements ArrayTypeMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ArrayTypeMetadataInterface $decorated;
-
-    public function __construct(ArrayTypeMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ArrayTypeMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->decorated;
     }

@@ -3,14 +3,15 @@
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
 use Kiboko\Component\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\Metadata\FieldMetadata;
 use Kiboko\Component\Metadata\IncompatibleTypeException;
-use Kiboko\Component\Metadata\PropertyMetadataInterface;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
-use Kiboko\Component\Metadata\UnionTypeMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\PropertyMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
 final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {

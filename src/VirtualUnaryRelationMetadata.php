@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class VirtualUnaryRelationMetadata extends UnaryRelationMetadata
 {
     use VirtualUnaryTrait;

@@ -2,18 +2,16 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ListTypeMetadataInterface;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ListTypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class ListTypeMetadata implements ListTypeMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ListTypeMetadataInterface $decorated;
-
-    public function __construct(ListTypeMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ListTypeMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 
@@ -22,7 +20,7 @@ final class ListTypeMetadata implements ListTypeMetadataInterface, AnnotatedInte
         return $this->decorated->getInner();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->decorated;
     }

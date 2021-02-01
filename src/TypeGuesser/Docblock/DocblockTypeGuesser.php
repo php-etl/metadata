@@ -4,10 +4,11 @@ namespace Kiboko\Component\Metadata\TypeGuesser\Docblock;
 
 use Kiboko\Component\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\Metadata\CollectionTypeMetadata;
-use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
 use Kiboko\Component\Metadata\ListTypeMetadata;
 use Kiboko\Component\Metadata\Type;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Component\Metadata\TypeGuesser\TypeMetadataBuildingTrait;
+use Kiboko\Contract\Metadata\TypeGuesser\Docblock\TypeGuesserInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Phpactor\Docblock\DocblockFactory;
 use Phpactor\Docblock\DocblockType;
 use Phpactor\Docblock\Tag;
@@ -20,16 +21,10 @@ class DocblockTypeGuesser implements TypeGuesserInterface
 {
     use TypeMetadataBuildingTrait;
 
-    private DocblockFactory $docblockFactory;
-    private Parser $parser;
-
     public function __construct(
-        Parser $parser,
-        DocblockFactory $docblockFactory
-    ) {
-        $this->docblockFactory = $docblockFactory;
-        $this->parser = $parser;
-    }
+        private Parser $parser,
+        private DocblockFactory $docblockFactory
+    ) {}
 
     /**
      * @return \Generator<TypeMetadataInterface>

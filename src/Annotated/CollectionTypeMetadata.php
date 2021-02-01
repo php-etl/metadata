@@ -2,19 +2,17 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ClassMetadataInterface;
-use Kiboko\Component\Metadata\CollectionTypeMetadataInterface;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ClassMetadataInterface;
+use Kiboko\Contract\Metadata\CollectionTypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class CollectionTypeMetadata implements CollectionTypeMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private CollectionTypeMetadataInterface $decorated;
-
-    public function __construct(CollectionTypeMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private CollectionTypeMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 
@@ -28,7 +26,7 @@ final class CollectionTypeMetadata implements CollectionTypeMetadataInterface, A
         return $this->decorated->getInner();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->decorated;
     }

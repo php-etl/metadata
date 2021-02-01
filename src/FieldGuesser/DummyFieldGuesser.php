@@ -2,7 +2,8 @@
 
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
-use Kiboko\Component\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
+use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
 
 final class DummyFieldGuesser implements FieldGuesserInterface
 {

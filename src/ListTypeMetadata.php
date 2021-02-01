@@ -2,6 +2,9 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\ListTypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class ListTypeMetadata implements ListTypeMetadataInterface
 {
     private TypeMetadataInterface $inner;
@@ -11,7 +14,7 @@ final class ListTypeMetadata implements ListTypeMetadataInterface
         $this->inner = $inner;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->inner.'[]';
     }

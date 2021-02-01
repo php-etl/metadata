@@ -2,6 +2,10 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\NamedInterface;
+use Kiboko\Contract\Metadata\TypedInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
+
 final class ArrayEntryMetadata implements NamedInterface, TypedInterface
 {
     use NamedTrait;

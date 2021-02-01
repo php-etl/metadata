@@ -2,17 +2,15 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Component\Metadata\ClassReferenceMetadataInterface;
+use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
 
 final class ClassReferenceMetadata implements ClassReferenceMetadataInterface, AnnotatedInterface
 {
     use AnnotatedTrait;
 
-    private ClassReferenceMetadataInterface $decorated;
-
-    public function __construct(ClassReferenceMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private ClassReferenceMetadataInterface $decorated, ?string $annotation = null)
     {
-        $this->decorated = $decorated;
         $this->annotation = $annotation;
     }
 
@@ -26,7 +24,7 @@ final class ClassReferenceMetadata implements ClassReferenceMetadataInterface, A
         return $this->decorated->getName();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->decorated;
     }

@@ -3,21 +3,16 @@
 namespace Kiboko\Component\Metadata\TypeGuesser;
 
 use Kiboko\Component\Metadata\MixedTypeMetadata;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
+use Kiboko\Contract\Metadata\TypeGuesser;
 
-class CompositeTypeGuesser implements TypeGuesserInterface
+class CompositeTypeGuesser implements TypeGuesser\TypeGuesserInterface
 {
-    private Native\TypeGuesserInterface $php74Guesser;
-    private Docblock\TypeGuesserInterface $docblockGuesser;
-
     public function __construct(
-        Native\TypeGuesserInterface $php74Guesser,
-        Docblock\TypeGuesserInterface $docblockGuesser
-    ) {
-        $this->php74Guesser = $php74Guesser;
-        $this->docblockGuesser = $docblockGuesser;
-    }
+        private TypeGuesser\Native\TypeGuesserInterface $php74Guesser,
+        private TypeGuesser\Docblock\TypeGuesserInterface $docblockGuesser
+    ) {}
 
     public function __invoke(\ReflectionClass $class, \Reflector $reflector): TypeMetadataInterface
     {
