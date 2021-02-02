@@ -6,14 +6,15 @@ use Kiboko\Component\Metadata\ArgumentMetadata;
 use Kiboko\Component\Metadata\ArgumentListMetadata;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Component\Metadata\MethodMetadata;
-use Kiboko\Contract\Metadata\MethodGuesser\MethodGuesserInterface;
+use Kiboko\Contract\Metadata\MethodGuesserInterface;
 use Kiboko\Contract\Metadata\TypeGuesser\TypeGuesserInterface;
 use Kiboko\Component\Metadata\VariadicArgumentMetadata;
 
 final class ReflectionMethodGuesser implements MethodGuesserInterface
 {
     public function __construct(private TypeGuesserInterface $typeGuesser)
-    {}
+    {
+    }
 
     public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {

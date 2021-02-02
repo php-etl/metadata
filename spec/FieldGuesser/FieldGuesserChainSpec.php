@@ -4,7 +4,7 @@ namespace spec\Kiboko\Component\Metadata\FieldGuesser;
 
 use Kiboko\Component\Metadata\ClassTypeMetadata;
 use Kiboko\Component\Metadata\FieldGuesser\FieldGuesserChain;
-use Kiboko\Component\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\FieldGuesserInterface;
 use PhpSpec\ObjectBehavior;
 
 final class FieldGuesserChainSpec extends ObjectBehavior

@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\AnnotatedInterface;
 use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 

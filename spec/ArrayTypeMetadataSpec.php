@@ -4,7 +4,7 @@ namespace spec\Kiboko\Component\Metadata;
 
 use Kiboko\Component\Metadata\ArrayEntryMetadata;
 use Kiboko\Component\Metadata\ArrayTypeMetadata;
-use Kiboko\Component\Metadata\CompositeTypeMetadataInterface;
+use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use PhpSpec\ObjectBehavior;
 

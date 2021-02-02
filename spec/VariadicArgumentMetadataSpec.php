@@ -2,11 +2,11 @@
 
 namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\Metadata\ArgumentMetadataInterface;
 use Kiboko\Component\Metadata\NullTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
 use Kiboko\Component\Metadata\VariadicArgumentMetadata;
+use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class VariadicArgumentMetadataSpec extends ObjectBehavior

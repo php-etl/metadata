@@ -5,10 +5,10 @@ namespace Kiboko\Component\Metadata;
 use Kiboko\Contract\Metadata\ClassMetadataBuilderInterface;
 use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
-use Kiboko\Contract\Metadata\MethodGuesser\MethodGuesserInterface;
-use Kiboko\Contract\Metadata\PropertyGuesser\PropertyGuesserInterface;
-use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\MethodGuesserInterface;
+use Kiboko\Contract\Metadata\PropertyGuesserInterface;
+use Kiboko\Contract\Metadata\RelationGuesserInterface;
 
 final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {
@@ -17,7 +17,8 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
         private MethodGuesserInterface $methodGuesser,
         private FieldGuesserInterface $fieldGuesser,
         private RelationGuesserInterface $relationGuesser
-    ) {}
+    ) {
+    }
 
     public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface
     {

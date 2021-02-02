@@ -7,7 +7,7 @@ use Kiboko\Component\Metadata\IterableUnionTypeMetadata;
 use Kiboko\Component\Metadata\MultipleRelationMetadata;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\IterableTypeMetadataInterface;
-use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\RelationGuesserInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 

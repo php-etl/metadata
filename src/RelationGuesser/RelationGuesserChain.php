@@ -3,7 +3,7 @@
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\RelationGuesserInterface;
 
 final class RelationGuesserChain implements RelationGuesserInterface
 {

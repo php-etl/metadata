@@ -2,7 +2,7 @@
 
 namespace Kiboko\Component\Metadata\Annotated;
 
-use Kiboko\Contract\Metadata\Annotated\AnnotatedInterface;
+use Kiboko\Contract\Metadata\AnnotatedInterface;
 use Kiboko\Contract\Metadata\ScalarTypeMetadataInterface;
 
 final class ScalarTypeMetadata implements ScalarTypeMetadataInterface, AnnotatedInterface

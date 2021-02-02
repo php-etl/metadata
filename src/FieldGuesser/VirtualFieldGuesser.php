@@ -9,7 +9,7 @@ use Kiboko\Component\Metadata\Type;
 use Kiboko\Component\Metadata\VirtualFieldMetadata;
 use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\FieldGuesserInterface;
 use Kiboko\Contract\Metadata\MethodMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 

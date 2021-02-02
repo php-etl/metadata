@@ -3,7 +3,7 @@
 namespace Kiboko\Component\Metadata\MethodGuesser;
 
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\MethodGuesser\MethodGuesserInterface;
+use Kiboko\Contract\Metadata\MethodGuesserInterface;
 
 final class DummyMethodGuesser implements MethodGuesserInterface
 {

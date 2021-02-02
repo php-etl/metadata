@@ -2,8 +2,8 @@
 
 namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Component\Metadata\VirtualUnaryRelationMetadata;
+use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 final class VirtualUnaryRelationMetadataSpec extends ObjectBehavior

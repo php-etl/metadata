@@ -3,7 +3,7 @@
 namespace spec\Kiboko\Component\Metadata;
 
 use Kiboko\Component\Metadata\ArgumentMetadata;
-use Kiboko\Component\Metadata\ArgumentMetadataInterface;
+use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
 use Kiboko\Component\Metadata\NullTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\UnionTypeMetadata;

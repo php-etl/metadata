@@ -12,7 +12,8 @@ class CompositeTypeGuesser implements TypeGuesser\TypeGuesserInterface
     public function __construct(
         private TypeGuesser\Native\TypeGuesserInterface $php74Guesser,
         private TypeGuesser\Docblock\TypeGuesserInterface $docblockGuesser
-    ) {}
+    ) {
+    }
 
     public function __invoke(\ReflectionClass $class, \Reflector $reflector): TypeMetadataInterface
     {

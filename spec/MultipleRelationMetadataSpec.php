@@ -2,8 +2,8 @@
 
 namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
 use Kiboko\Component\Metadata\MultipleRelationMetadata;
+use Kiboko\Contract\Metadata\IterableTypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 final class MultipleRelationMetadataSpec extends ObjectBehavior

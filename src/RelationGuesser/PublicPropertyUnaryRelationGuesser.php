@@ -7,7 +7,7 @@ use Kiboko\Component\Metadata\IncompatibleTypeException;
 use Kiboko\Component\Metadata\UnaryRelationMetadata;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
-use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\RelationGuesserInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 

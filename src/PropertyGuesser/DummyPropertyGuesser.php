@@ -3,7 +3,7 @@
 namespace Kiboko\Component\Metadata\PropertyGuesser;
 
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\PropertyGuesser\PropertyGuesserInterface;
+use Kiboko\Contract\Metadata\PropertyGuesserInterface;
 
 final class DummyPropertyGuesser implements PropertyGuesserInterface
 {

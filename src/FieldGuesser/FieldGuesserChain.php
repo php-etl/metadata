@@ -3,7 +3,7 @@
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\FieldGuesserInterface;
 
 final class FieldGuesserChain implements FieldGuesserInterface
 {

@@ -2,13 +2,13 @@
 
 namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\Metadata\ArgumentMetadata;
 use Kiboko\Component\Metadata\ArgumentListMetadata;
+use Kiboko\Component\Metadata\ArgumentMetadata;
 use Kiboko\Component\Metadata\MethodMetadata;
-use Kiboko\Component\Metadata\MethodMetadataInterface;
 use Kiboko\Component\Metadata\MixedTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\VirtualFieldMetadata;
+use Kiboko\Contract\Metadata\MethodMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 final class VirtualFieldMetadataSpec extends ObjectBehavior

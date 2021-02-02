@@ -6,8 +6,8 @@ use Kiboko\Component\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\Metadata\ClassReferenceMetadata;
 use Kiboko\Component\Metadata\NullTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\TypeGuesser;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class NativeTypeGuesserSpec extends ObjectBehavior

@@ -11,7 +11,8 @@ final class CollectionTypeMetadata implements CollectionTypeMetadataInterface
     public function __construct(
         private ClassMetadataInterface $type,
         private TypeMetadataInterface $inner
-    ) {}
+    ) {
+    }
 
     public function __toString(): string
     {

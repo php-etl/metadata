@@ -3,7 +3,7 @@
 namespace spec\Kiboko\Component\Metadata;
 
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class ScalarTypeMetadataSpec extends ObjectBehavior

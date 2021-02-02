@@ -4,14 +4,14 @@ namespace spec\Kiboko\Component\Metadata\FieldGuesser;
 
 use Kiboko\Component\Metadata\ClassMetadataBuilder;
 use Kiboko\Component\Metadata\FieldGuesser\DummyFieldGuesser;
-use Kiboko\Component\Metadata\FieldMetadata;
-use Kiboko\Component\Metadata\FieldGuesser\FieldGuesserInterface;
 use Kiboko\Component\Metadata\FieldGuesser\PublicPropertyFieldGuesser;
+use Kiboko\Component\Metadata\FieldMetadata;
 use Kiboko\Component\Metadata\MethodGuesser\DummyMethodGuesser;
 use Kiboko\Component\Metadata\PropertyGuesser\ReflectionPropertyGuesser;
 use Kiboko\Component\Metadata\RelationGuesser\DummyRelationGuesser;
-use Kiboko\Component\Metadata\TypeGuesser;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Component\Metadata\TypeGuesser;
+use Kiboko\Contract\Metadata\FieldGuesserInterface;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;

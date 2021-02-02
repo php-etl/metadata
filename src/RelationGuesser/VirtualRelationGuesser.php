@@ -10,7 +10,7 @@ use Kiboko\Component\Metadata\VirtualUnaryRelationMetadata;
 use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\MethodMetadataInterface;
-use Kiboko\Contract\Metadata\RelationGuesser\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\RelationGuesserInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualRelationGuesser implements RelationGuesserInterface

@@ -19,13 +19,13 @@
         "phpactor/docblock": "^0.3.0@dev",
         "nikic/php-parser": "^4.9@dev",
         "php-etl/metadata-contracts": "0.1.x-dev",
-        "doctrine/inflector": "2.0.x-dev"
+        "doctrine/inflector": "^2.0"
     },
     "require-dev": {
-        "ext-xdebug": "*",
         "phpunit/phpunit": "^9.0",
         "johnkary/phpunit-speedtrap": "*",
-        "mybuilder/phpunit-accelerator": "*"
+        "mybuilder/phpunit-accelerator": "*",
+        "phpspec/phpspec": "^7.0"
     },
     "autoload": {
         "psr-4": {
@@ -34,10 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "KibokoPhpSpecExtension\\": "extension/",
-            "spec\\Kiboko\\Component\\Metadata\\": "spec/",
-            "unit\\Kiboko\\Component\\Metadata\\": "unit/",
-            "functional\\Kiboko\\Component\\Metadata\\": "functional/"
+            "spec\\Kiboko\\Component\\Metadata\\": "spec/"
         }
     },
     "config": {

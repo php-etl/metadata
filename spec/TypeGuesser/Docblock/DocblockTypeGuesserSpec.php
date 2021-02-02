@@ -9,7 +9,7 @@ use Kiboko\Component\Metadata\TypeGuesser;
 use Kiboko\Component\Metadata\ListTypeMetadata;
 use Kiboko\Component\Metadata\NullTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
-use Kiboko\Component\Metadata\TypeMetadataInterface;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Phpactor\Docblock\DocblockFactory;
 use PhpParser\ParserFactory;
 use PhpSpec\ObjectBehavior;

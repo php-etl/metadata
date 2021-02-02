@@ -24,7 +24,8 @@ class DocblockTypeGuesser implements TypeGuesserInterface
     public function __construct(
         private Parser $parser,
         private DocblockFactory $docblockFactory
-    ) {}
+    ) {
+    }
 
     /**
      * @return \Generator<TypeMetadataInterface>
@@ -80,12 +81,12 @@ class DocblockTypeGuesser implements TypeGuesserInterface
         if (($content = @file_get_contents($classContext->getFileName())) === false) {
             throw new \RuntimeException(
                 strtr(
-                'Could not read class %class.name% source file %class.filename% contents, aborting.',
-                [
+                    'Could not read class %class.name% source file %class.filename% contents, aborting.',
+                    [
                     '%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName(),
                     '%class.filename%' =>$classContext->getFileName()
                 ]
-            ),
+                ),
                 0,
                 new \Exception(error_get_last()['message'])
             );

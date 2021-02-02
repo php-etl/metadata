@@ -15,9 +15,9 @@ class NativeTypeGuesser implements TypeGuesserInterface
     {
         if ($reflector instanceof \ReflectionUnionType) {
             yield from array_map(fn ($reflector) => $this($class, $reflector), $reflector->getTypes());
-        } else if ($reflector instanceof \ReflectionNamedType && $reflector->isBuiltin()) {
+        } elseif ($reflector instanceof \ReflectionNamedType && $reflector->isBuiltin()) {
             yield $this->builtInType($reflector->getName());
-        } else if ($reflector->getName() === 'self' || $reflector->getName() === 'static') {
+        } elseif ($reflector->getName() === 'self' || $reflector->getName() === 'static') {
             try {
                 $classReflector = new \ReflectionClass($class->getName());
                 yield new ClassReferenceMetadata(

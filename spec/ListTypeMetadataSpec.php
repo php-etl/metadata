@@ -2,9 +2,9 @@
 
 namespace spec\Kiboko\Component\Metadata;
 
-use Kiboko\Component\Metadata\IterableTypeMetadataInterface;
 use Kiboko\Component\Metadata\ListTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
+use Kiboko\Contract\Metadata\IterableTypeMetadataInterface;
 use PhpSpec\ObjectBehavior;
 
 class ListTypeMetadataSpec extends ObjectBehavior

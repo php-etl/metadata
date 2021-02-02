@@ -8,7 +8,7 @@ use Kiboko\Component\Metadata\IncompatibleTypeException;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\FieldGuesser\FieldGuesserInterface;
+use Kiboko\Contract\Metadata\FieldGuesserInterface;
 use Kiboko\Contract\Metadata\PropertyMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
