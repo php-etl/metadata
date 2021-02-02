@@ -28,6 +28,11 @@ final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
         return $other instanceof self;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
     public function __toString(): string
     {
         return $this->name;
