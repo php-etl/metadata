@@ -25,7 +25,9 @@
         "phpunit/phpunit": "^9.0",
         "johnkary/phpunit-speedtrap": "*",
         "mybuilder/phpunit-accelerator": "*",
-        "phpspec/phpspec": "^7.0"
+        "phpspec/phpspec": "^7.0",
+        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
+        "php-etl/phpspec-extension": "0.2.x-dev"
     },
     "autoload": {
         "psr-4": {
