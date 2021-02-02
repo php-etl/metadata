@@ -7,20 +7,16 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
 {
-    private string $name;
-
-    public function __construct(string $name)
+    public function __construct(private string $name)
     {
-        if (!in_array($name, Type::$builtInTypes)) {
+        if (!in_array($this->name, Type::$builtInTypes)) {
             throw new \RuntimeException(strtr(
                 'The type "%type.name%" is not a built in PHP type.',
                 [
-                    '%type.name%' => $name,
+                    '%type.name%' => $this->name,
                 ]
             ));
         }
-
-        $this->name = $name;
     }
 
     public static function is(TypeMetadataInterface $other): bool
@@ -28,7 +24,7 @@ final class ScalarTypeMetadata implements ScalarTypeMetadataInterface
         return $other instanceof self;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
