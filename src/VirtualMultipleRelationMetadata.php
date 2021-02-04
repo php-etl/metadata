@@ -2,8 +2,8 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\IterableTypeMetadataInterface;
 use Kiboko\Contract\Metadata\MethodMetadataInterface;
-use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualMultipleRelationMetadata extends MultipleRelationMetadata
 {
@@ -11,7 +11,7 @@ final class VirtualMultipleRelationMetadata extends MultipleRelationMetadata
 
     public function __construct(
         string $name,
-        TypeMetadataInterface $type,
+        IterableTypeMetadataInterface $type,
         ?MethodMetadataInterface $accessor = null,
         ?MethodMetadataInterface $mutator = null,
         ?MethodMetadataInterface $adder = null,
