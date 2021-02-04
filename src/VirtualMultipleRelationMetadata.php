@@ -11,6 +11,7 @@ final class VirtualMultipleRelationMetadata extends MultipleRelationMetadata
 
     public function __construct(
         string $name,
+
         IterableTypeMetadataInterface $type,
         ?MethodMetadataInterface $accessor = null,
         ?MethodMetadataInterface $mutator = null,
