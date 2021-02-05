@@ -7,6 +7,7 @@ use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\Type;
 use Kiboko\Component\Metadata\VirtualMultipleRelationMetadata;
 use Kiboko\Component\Metadata\VirtualUnaryRelationMetadata;
+use Kiboko\Component\Metadata\VoidTypeMetadata;
 use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\MethodMetadataInterface;
@@ -38,6 +39,10 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
         $methodCandidates = [];
         /** @var MethodMetadataInterface $method */
         foreach ($class->getMethods() as $method) {
+            if ($method->getReturnType() instanceof VoidTypeMetadata || $method->getReturnType() instanceof ScalarTypeMetadata) {
+                continue;
+            }
+
             if (preg_match('/(?<action>set|remove|add|has)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
                 count($method->getArguments()) === 1
             ) {
@@ -90,6 +95,10 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
         }
 
         foreach ($methodCandidates as $relationName => $actions) {
+            if (empty($typesCandidates[$relationName])) {
+                continue;
+            }
+
             if ($this->isPlural($relationName)) {
                 yield new VirtualMultipleRelationMetadata(
                     $relationName,
