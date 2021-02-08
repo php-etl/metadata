@@ -2,8 +2,8 @@
 
 namespace Kiboko\Component\Metadata;
 
+use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Contract\Metadata\MethodMetadataInterface;
-use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualUnaryRelationMetadata extends UnaryRelationMetadata
 {
@@ -11,7 +11,7 @@ final class VirtualUnaryRelationMetadata extends UnaryRelationMetadata
 
     public function __construct(
         string $name,
-        TypeMetadataInterface $type,
+        CompositeTypeMetadataInterface $type,
         ?MethodMetadataInterface $accessor = null,
         ?MethodMetadataInterface $mutator = null,
         ?MethodMetadataInterface $checker = null,
