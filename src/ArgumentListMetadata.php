@@ -18,7 +18,7 @@ final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMeta
     /**
      * @return \ArrayIterator|\Traversable|ArgumentMetadataInterface[]
      */
-    public function getIterator(): array|\Traversable|\ArrayIterator
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->arguments);
     }
