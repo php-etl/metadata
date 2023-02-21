@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -6,12 +8,12 @@ use Kiboko\Contract\Metadata\MethodMetadataInterface;
 
 trait VirtualMultipleTrait
 {
-    private ?MethodMetadataInterface $accessor;
-    private ?MethodMetadataInterface $mutator;
-    private ?MethodMetadataInterface $adder;
-    private ?MethodMetadataInterface $remover;
-    private ?MethodMetadataInterface $walker;
-    private ?MethodMetadataInterface $counter;
+    private ?MethodMetadataInterface $accessor = null;
+    private ?MethodMetadataInterface $mutator = null;
+    private ?MethodMetadataInterface $adder = null;
+    private ?MethodMetadataInterface $remover = null;
+    private ?MethodMetadataInterface $walker = null;
+    private ?MethodMetadataInterface $counter = null;
 
     public function getAccessor(): ?MethodMetadataInterface
     {

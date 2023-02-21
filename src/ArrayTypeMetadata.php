@@ -1,13 +1,15 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\ArrayTypeMetadataInterface;
 
-final class ArrayTypeMetadata implements \IteratorAggregate, ArrayTypeMetadataInterface
+final class ArrayTypeMetadata implements \IteratorAggregate, ArrayTypeMetadataInterface, \Stringable
 {
     /** @var ArrayEntryMetadata[] */
-    private iterable $entries;
+    private readonly iterable $entries;
 
     public function __construct(ArrayEntryMetadata ...$entries)
     {

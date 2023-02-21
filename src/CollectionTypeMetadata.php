@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -6,7 +8,7 @@ use Kiboko\Contract\Metadata\ClassMetadataInterface;
 use Kiboko\Contract\Metadata\CollectionTypeMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
-final class CollectionTypeMetadata implements CollectionTypeMetadataInterface
+final readonly class CollectionTypeMetadata implements CollectionTypeMetadataInterface, \Stringable
 {
     public function __construct(
         private ClassMetadataInterface $type,

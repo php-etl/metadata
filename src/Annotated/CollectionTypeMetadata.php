@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\Annotated;
 
@@ -7,11 +9,11 @@ use Kiboko\Contract\Metadata\ClassMetadataInterface;
 use Kiboko\Contract\Metadata\CollectionTypeMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
-final class CollectionTypeMetadata implements CollectionTypeMetadataInterface, AnnotatedInterface
+final class CollectionTypeMetadata implements CollectionTypeMetadataInterface, AnnotatedInterface, \Stringable
 {
     use AnnotatedTrait;
 
-    public function __construct(private CollectionTypeMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private readonly CollectionTypeMetadataInterface $decorated, ?string $annotation = null)
     {
         $this->annotation = $annotation;
     }

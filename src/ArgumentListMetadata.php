@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -8,7 +10,7 @@ use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
 final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMetadataInterface
 {
     /** @var ArgumentMetadataInterface[] */
-    private iterable $arguments;
+    private readonly iterable $arguments;
 
     public function __construct(ArgumentMetadataInterface ...$arguments)
     {
@@ -25,6 +27,6 @@ final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMeta
 
     public function count(): int
     {
-        return count($this->arguments);
+        return \count($this->arguments);
     }
 }

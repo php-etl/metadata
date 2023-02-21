@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
@@ -15,7 +17,7 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
 {
-    private Inflector\Inflector $inflector;
+    private readonly Inflector\Inflector $inflector;
 
     public function __construct(?Inflector\Inflector $inflector = null)
     {
@@ -33,9 +35,9 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         $methodCandidates = [];
         /** @var MethodMetadataInterface $method */
         foreach ($class->getMethods() as $method) {
-            if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                Type::is($method->getReturnType(), new ScalarTypeMetadata('bool')) &&
-                count($method->getArguments()) === 0
+            if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && Type::is($method->getReturnType(), new ScalarTypeMetadata('bool'))
+                && 0 === \count($method->getArguments())
             ) {
                 $fieldName = $this->inflector->camelize($matches['fieldName']);
                 if (!$this->isSingular($fieldName)) {
@@ -46,8 +48,8 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
                 }
 
                 $methodCandidates[$fieldName]['is'] = $method;
-            } elseif (preg_match('/(?<action>set)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                count($method->getArguments()) === 1
+            } elseif (preg_match('/(?<action>set)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && 1 === \count($method->getArguments())
             ) {
                 $action = $matches['action'];
                 $fieldName = $this->inflector->camelize($matches['fieldName']);
@@ -63,8 +65,8 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
                 array_push($typesCandidates[$fieldName], ...$this->extractArgumentTypes($method->getArguments()));
                 $methodCandidates[$fieldName][$action] = $method;
-            } elseif (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                count($method->getArguments()) === 0
+            } elseif (preg_match('/(?<action>unset|remove|get|has)(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && 0 === \count($method->getArguments())
             ) {
                 $action = $matches['action'];
                 $fieldName = $this->inflector->camelize($matches['fieldName']);

@@ -15,10 +15,10 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "phpactor/docblock": "^0.3.0@dev",
         "nikic/php-parser": "^4.9@dev",
-        "php-etl/metadata-contracts": "0.1.x-dev",
+        "php-etl/metadata-contracts": "^0.2",
         "doctrine/inflector": "^2.0"
     },
     "require-dev": {
@@ -27,7 +27,8 @@
         "mybuilder/phpunit-accelerator": "*",
         "phpspec/phpspec": "^7.0",
         "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-        "php-etl/phpspec-extension": "0.2.x-dev"
+        "php-etl/phpspec-extension": "^0.2@dev",
+        "rector/rector": "^0.15"
     },
     "autoload": {
         "psr-4": {
@@ -44,7 +45,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.2.x-dev"
+            "dev-main": "0.3.x-dev"
         }
     }
 }

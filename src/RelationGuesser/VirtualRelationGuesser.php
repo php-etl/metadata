@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
@@ -16,7 +18,7 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualRelationGuesser implements RelationGuesserInterface
 {
-    private Inflector\Inflector $inflector;
+    private readonly Inflector\Inflector $inflector;
 
     public function __construct(?Inflector\Inflector $inflector = null)
     {
@@ -43,8 +45,8 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
                 continue;
             }
 
-            if (preg_match('/(?<action>set|remove|add|has)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                count($method->getArguments()) === 1
+            if (preg_match('/(?<action>set|remove|add|has)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && 1 === \count($method->getArguments())
             ) {
                 $action = $matches['action'];
                 $relationName = $this->inflector->camelize($matches['relationName']);
@@ -57,8 +59,8 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
                 array_push($typesCandidates[$relationName], $method->getReturnType());
                 $methodCandidates[$relationName][$action] = $method;
-            } elseif (preg_match('/(?<action>unset|get)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                count($method->getArguments()) === 0
+            } elseif (preg_match('/(?<action>unset|get)(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && 0 === \count($method->getArguments())
             ) {
                 $action = $matches['action'];
                 $relationName = $this->inflector->camelize($matches['relationName']);
@@ -71,9 +73,9 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
                 array_push($typesCandidates[$relationName], ...$this->extractArgumentTypes($method->getArguments()));
                 $methodCandidates[$relationName][$action] = $method;
-            } elseif (preg_match('/count(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                Type::is($method->getReturnType(), new ScalarTypeMetadata('integer')) &&
-                count($method->getArguments()) === 0
+            } elseif (preg_match('/count(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && Type::is($method->getReturnType(), new ScalarTypeMetadata('integer'))
+                && 0 === \count($method->getArguments())
             ) {
                 $relationName = $this->inflector->camelize($matches['relationName']);
                 if (!isset($methodCandidates[$relationName])) {
@@ -81,9 +83,9 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
                 }
 
                 $methodCandidates[$relationName]['count'] = $method;
-            } elseif (preg_match('/walk(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches) &&
-                Type::is($method->getReturnType(), new ScalarTypeMetadata('iterable')) &&
-                count($method->getArguments()) === 0
+            } elseif (preg_match('/walk(?<relationName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
+                && Type::is($method->getReturnType(), new ScalarTypeMetadata('iterable'))
+                && 0 === \count($method->getArguments())
             ) {
                 $relationName = $this->inflector->camelize($matches['relationName']);
                 if (!isset($methodCandidates[$relationName])) {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -10,7 +12,7 @@ use Kiboko\Contract\Metadata\MethodGuesserInterface;
 use Kiboko\Contract\Metadata\PropertyGuesserInterface;
 use Kiboko\Contract\Metadata\RelationGuesserInterface;
 
-final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
+final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 {
     public function __construct(
         private PropertyGuesserInterface $propertyGuesser,
@@ -30,16 +32,7 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
         try {
             return $this->build(new \ReflectionClass($className));
         } catch (\ReflectionException $e) {
-            throw new \RuntimeException(
-                strtr(
-                    'The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.',
-                    [
-                        '%class.name%' => $className,
-                    ]
-                ),
-                0,
-                $e
-            );
+            throw new \RuntimeException(strtr('The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.', ['%class.name%' => $className]), 0, $e);
         }
     }
 
@@ -69,11 +62,7 @@ final class ClassMetadataBuilder implements ClassMetadataBuilderInterface
 
             $metadata->addRelations(...($this->relationGuesser)($metadata));
         } catch (\ReflectionException $e) {
-            throw new \RuntimeException(
-                'An error occurred during class metadata building.',
-                0,
-                $e
-            );
+            throw new \RuntimeException('An error occurred during class metadata building.', 0, $e);
         }
 
         return $metadata;

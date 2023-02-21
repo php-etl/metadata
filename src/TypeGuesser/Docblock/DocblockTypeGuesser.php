@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\TypeGuesser\Docblock;
 
@@ -22,8 +24,8 @@ class DocblockTypeGuesser implements TypeGuesserInterface
     use TypeMetadataBuildingTrait;
 
     public function __construct(
-        private Parser $parser,
-        private DocblockFactory $docblockFactory
+        private readonly Parser $parser,
+        private readonly DocblockFactory $docblockFactory
     ) {
     }
 
@@ -32,12 +34,10 @@ class DocblockTypeGuesser implements TypeGuesserInterface
      */
     public function __invoke(string $tagName, \ReflectionClass $class, \Reflector $reflector): \Iterator
     {
-        if (!$reflector instanceof \ReflectionProperty &&
-            !$reflector instanceof \ReflectionMethod
+        if (!$reflector instanceof \ReflectionProperty
+            && !$reflector instanceof \ReflectionMethod
         ) {
-            throw new \InvalidArgumentException(
-                'Expected object of type \\ReflectionProperty, \\ReflectionMethod or \\ReflectionParameter.'
-            );
+            throw new \InvalidArgumentException('Expected object of type \\ReflectionProperty, \\ReflectionMethod or \\ReflectionParameter.');
         }
 
         if (($comment = $reflector->getDocComment()) === false) {
@@ -62,38 +62,23 @@ class DocblockTypeGuesser implements TypeGuesserInterface
 
     private function detectFQCN(string $name, \ReflectionClass $classContext)
     {
-        if (strpos($name, '\\') === 0) {
+        if (str_starts_with($name, '\\')) {
             return $name;
         }
 
         $traverser = new NodeTraverser();
         $traverser->addVisitor($nameResolver = new NameResolver());
 
-        if ($classContext->getFileName() === false) {
-            throw new \RuntimeException(strtr(
-                'Could not read class %class.name% source file contents, aborting.',
-                [
-                    '%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName(),
-                ]
-            ));
+        if (false === $classContext->getFileName()) {
+            throw new \RuntimeException(strtr('Could not read class %class.name% source file contents, aborting.', ['%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName()]));
         }
 
         if (($content = @file_get_contents($classContext->getFileName())) === false) {
-            throw new \RuntimeException(
-                strtr(
-                    'Could not read class %class.name% source file %class.filename% contents, aborting.',
-                    [
-                    '%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName(),
-                    '%class.filename%' =>$classContext->getFileName()
-                ]
-                ),
-                0,
-                new \Exception(error_get_last()['message'])
-            );
+            throw new \RuntimeException(strtr('Could not read class %class.name% source file %class.filename% contents, aborting.', ['%class.name%' => $classContext->isAnonymous() ? '<class@anonymous>' : $classContext->getShortName(), '%class.filename%' => $classContext->getFileName()]), 0, new \Exception(error_get_last()['message']));
         }
 
         if (($ast = $this->parser->parse($content)) === null) {
-            throw new \RuntimeException(strtr('Could not parse AST of class file %filename%, aborting.', ['%filename%' =>$classContext->getFileName()]));
+            throw new \RuntimeException(strtr('Could not parse AST of class file %filename%, aborting.', ['%filename%' => $classContext->getFileName()]));
         }
 
         $traverser->traverse($ast);
@@ -113,20 +98,20 @@ class DocblockTypeGuesser implements TypeGuesserInterface
         \ReflectionClass $class
     ) {
         if ($isArray) {
-            if ($iterated === null) {
+            if (null === $iterated) {
                 return new ArrayTypeMetadata();
             }
 
             return new ListTypeMetadata(
-                in_array($iterated, Type::$builtInTypes) ?
+                \in_array($iterated, Type::$builtInTypes) ?
                     $this->builtInType($iterated) :
                     $this->classReferenceType($this->detectFQCN($iterated, $class))
             );
         }
 
-        if ($isCollection && $iterated !== null) {
-            if (in_array($type, Type::$iterable)) {
-                if (in_array($iterated, Type::$builtInTypes)) {
+        if ($isCollection && null !== $iterated) {
+            if (\in_array($type, Type::$iterable)) {
+                if (\in_array($iterated, Type::$builtInTypes)) {
                     return new ListTypeMetadata(
                         $this->builtInType($iterated)
                     );
@@ -137,7 +122,7 @@ class DocblockTypeGuesser implements TypeGuesserInterface
                 );
             }
 
-            if (in_array($iterated, Type::$builtInTypes)) {
+            if (\in_array($iterated, Type::$builtInTypes)) {
                 return new CollectionTypeMetadata(
                     $this->classReferenceType($type),
                     $this->builtInType($iterated)
@@ -150,7 +135,7 @@ class DocblockTypeGuesser implements TypeGuesserInterface
             );
         }
 
-        return in_array($type, Type::$builtInTypes) ?
+        return \in_array($type, Type::$builtInTypes) ?
             $this->builtInType($type) :
             $this->classReferenceType($this->detectFQCN($type, $class));
     }

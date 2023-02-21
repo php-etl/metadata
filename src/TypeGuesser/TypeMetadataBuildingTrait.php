@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\TypeGuesser;
 
@@ -17,7 +19,7 @@ trait TypeMetadataBuildingTrait
     {
         try {
             $classReflector = new \ReflectionClass($type);
-        } catch (\ReflectionException $e) {
+        } catch (\ReflectionException) {
             return new ClassReferenceMetadata(ltrim($type, '\\'));
         }
 
@@ -29,13 +31,13 @@ trait TypeMetadataBuildingTrait
 
     private function builtInType(string $type): TypeMetadataInterface
     {
-        if (in_array($type, Type::$array)) {
+        if (\in_array($type, Type::$array)) {
             return new ArrayTypeMetadata();
         }
-        if (in_array($type, Type::$null)) {
+        if (\in_array($type, Type::$null)) {
             return new NullTypeMetadata();
         }
-        if (in_array($type, Type::$void)) {
+        if (\in_array($type, Type::$void)) {
             return new VoidTypeMetadata();
         }
 

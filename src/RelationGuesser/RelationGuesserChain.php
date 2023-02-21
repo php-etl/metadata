@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\RelationGuesser;
 
@@ -8,7 +10,7 @@ use Kiboko\Contract\Metadata\RelationGuesserInterface;
 final class RelationGuesserChain implements RelationGuesserInterface
 {
     /** @var RelationGuesserInterface[] */
-    private iterable $inner;
+    private readonly iterable $inner;
 
     public function __construct(RelationGuesserInterface ...$inner)
     {

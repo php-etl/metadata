@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\Annotated;
 
@@ -9,8 +11,10 @@ final class ArgumentListMetadata implements ArgumentListMetadataInterface, Annot
 {
     use AnnotatedTrait;
 
-    public function __construct(private ArgumentListMetadataInterface $decorated, ?string $annotation = null)
-    {
+    public function __construct(
+        private readonly ArgumentListMetadataInterface $decorated,
+        ?string $annotation = null
+    ) {
         $this->annotation = $annotation;
     }
 

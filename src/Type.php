@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -50,14 +52,11 @@ final class Type
         'object',
         'callable',
         'resource',
-        'null'
+        'null',
     ];
 
     /**
-     * @param UnionTypeMetadata $left
      * @param UnionTypeMetadata $right
-     *
-     * @return UnionTypeMetadata
      */
     public static function isSubsetOf(UnionTypeMetadata $left, iterable $right): UnionTypeMetadata
     {
@@ -93,10 +92,10 @@ final class Type
 
     public static function is(TypeMetadataInterface $left, TypeMetadataInterface $right): bool
     {
-        if (($left instanceof ClassTypeMetadataInterface || $left instanceof ClassReferenceMetadataInterface) &&
-            ($right instanceof ClassTypeMetadataInterface || $right instanceof ClassReferenceMetadataInterface)
+        if (($left instanceof ClassTypeMetadataInterface || $left instanceof ClassReferenceMetadataInterface)
+            && ($right instanceof ClassTypeMetadataInterface || $right instanceof ClassReferenceMetadataInterface)
         ) {
-            return (((string) $left === (string) $right) || is_a((string) $left, (string) $right, true));
+            return ((string) $left === (string) $right) || is_a((string) $left, (string) $right, true);
         }
         if ($left instanceof ListTypeMetadata && $right instanceof ListTypeMetadata) {
             return self::is($left->getInner(), $right->getInner());
@@ -107,16 +106,16 @@ final class Type
         }
         if ($left instanceof ScalarTypeMetadata && $right instanceof ScalarTypeMetadata) {
             return ((string) $left) === ((string) $right)
-                || (in_array((string) $left, self::$boolean) && in_array((string) $right, self::$boolean))
-                || (in_array((string) $left, self::$integer) && in_array((string) $right, self::$integer))
-                || (in_array((string) $left, self::$float) && in_array((string) $right, self::$float))
-                || (in_array((string) $left, self::$numberCompatible) && in_array((string) $right, self::$numberMeta))
-                || (in_array((string) $left, self::$string) && in_array((string) $right, self::$string))
-                || (in_array((string) $left, self::$binary) && in_array((string) $right, self::$binary))
-                || (in_array((string) $left, self::$array) && in_array((string) $right, self::$array))
-                || (in_array((string) $left, self::$iterable) && (in_array((string) $right, self::$iterable) || in_array((string) $left, self::$array)))
-                || (in_array((string) $left, self::$callable) && (in_array((string) $right, self::$callable) || in_array((string) $left, self::$array)))
-                || (in_array((string) $left, self::$resource) && in_array((string) $right, self::$resource))
+                || (\in_array((string) $left, self::$boolean) && \in_array((string) $right, self::$boolean))
+                || (\in_array((string) $left, self::$integer) && \in_array((string) $right, self::$integer))
+                || (\in_array((string) $left, self::$float) && \in_array((string) $right, self::$float))
+                || (\in_array((string) $left, self::$numberCompatible) && \in_array((string) $right, self::$numberMeta))
+                || (\in_array((string) $left, self::$string) && \in_array((string) $right, self::$string))
+                || (\in_array((string) $left, self::$binary) && \in_array((string) $right, self::$binary))
+                || (\in_array((string) $left, self::$array) && \in_array((string) $right, self::$array))
+                || (\in_array((string) $left, self::$iterable) && (\in_array((string) $right, self::$iterable) || \in_array((string) $left, self::$array)))
+                || (\in_array((string) $left, self::$callable) && (\in_array((string) $right, self::$callable) || \in_array((string) $left, self::$array)))
+                || (\in_array((string) $left, self::$resource) && \in_array((string) $right, self::$resource))
             ;
         }
 

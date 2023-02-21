@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -8,7 +10,7 @@ use Kiboko\Contract\Metadata\MethodMetadataInterface;
 use Kiboko\Contract\Metadata\PropertyMetadataInterface;
 use Kiboko\Contract\Metadata\RelationMetadataInterface;
 
-final class ClassTypeMetadata implements ClassTypeMetadataInterface
+final class ClassTypeMetadata implements ClassTypeMetadataInterface, \Stringable
 {
     /** @var PropertyMetadataInterface[] */
     private iterable $properties;
@@ -19,12 +21,12 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
     /** @var RelationMetadataInterface[] */
     private iterable $relations;
 
-    public function __construct(private ?string $name, private ?string $namespace = null)
+    public function __construct(private readonly ?string $name, private readonly ?string $namespace = null)
     {
-        if ($this->name !== null && str_contains($this->name, '\\')) {
+        if (null !== $this->name && str_contains($this->name, '\\')) {
             throw new \RuntimeException('Class names should not contain root namespace anchoring backslash or namespace.');
         }
-        if ($this->namespace !== null && strpos($this->namespace, '\\') === 0) {
+        if (null !== $this->namespace && str_starts_with($this->namespace, '\\')) {
             throw new \RuntimeException('Namespace should not contain root namespace anchoring backslash.');
         }
 
@@ -55,9 +57,7 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
     public function getProperty(string $name): PropertyMetadataInterface
     {
         if (!isset($this->properties[$name])) {
-            throw new \OutOfBoundsException(strtr('There is no property named %property%', [
-                '%property%' => $name,
-            ]));
+            throw new \OutOfBoundsException(strtr('There is no property named %property%', ['%property%' => $name]));
         }
 
         return $this->properties[$name];
@@ -83,9 +83,7 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
     public function getMethod(string $name): MethodMetadataInterface
     {
         if (!isset($this->methods[$name])) {
-            throw new \OutOfBoundsException(strtr('There is no method named %method%', [
-                '%method%' => $name,
-            ]));
+            throw new \OutOfBoundsException(strtr('There is no method named %method%', ['%method%' => $name]));
         }
 
         return $this->methods[$name];
@@ -111,9 +109,7 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
     public function getField(string $name): FieldMetadataInterface
     {
         if (!isset($this->fields[$name])) {
-            throw new \OutOfBoundsException(strtr('There is no field named %field%', [
-                '%field%' => $name,
-            ]));
+            throw new \OutOfBoundsException(strtr('There is no field named %field%', ['%field%' => $name]));
         }
 
         return $this->fields[$name];
@@ -139,9 +135,7 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
     public function getRelation(string $name): RelationMetadataInterface
     {
         if (!isset($this->relations[$name])) {
-            throw new \OutOfBoundsException(strtr('There is no relation named %relation%', [
-                '%relation%' => $name,
-            ]));
+            throw new \OutOfBoundsException(strtr('There is no relation named %relation%', ['%relation%' => $name]));
         }
 
         return $this->relations[$name];
@@ -158,6 +152,6 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface
 
     public function __toString(): string
     {
-        return ($this->namespace !== null ? $this->namespace . '\\' : '') . $this->name;
+        return (null !== $this->namespace ? $this->namespace.'\\' : '').$this->name;
     }
 }

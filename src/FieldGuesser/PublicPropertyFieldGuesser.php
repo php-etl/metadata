@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
@@ -24,7 +26,7 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
                     $property->getName(),
                     $this->filterTypes($property->getType())
                 );
-            } catch (IncompatibleTypeException $e) {
+            } catch (IncompatibleTypeException) {
                 continue;
             }
         }
@@ -34,12 +36,7 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
     {
         if (!$type instanceof UnionTypeMetadataInterface) {
             if (!$type instanceof ScalarTypeMetadata && !$type instanceof ArrayTypeMetadata) {
-                throw new IncompatibleTypeException(strtr(
-                    'Expected to have at least one scalar or array type, got none compatible: %actual%.',
-                    [
-                        '%actual%' => (string) $type,
-                    ]
-                ));
+                throw new IncompatibleTypeException(strtr('Expected to have at least one scalar or array type, got none compatible: %actual%.', ['%actual%' => (string) $type]));
             }
 
             return $type;
@@ -54,18 +51,11 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
             $filtered[] = $inner;
         }
 
-        if (count($filtered) <= 0) {
-            throw new IncompatibleTypeException(strtr(
-                'Expected to have at least one scalar or array type, got none compatible: %actual%.',
-                [
-                    '%actual%' => implode(', ', array_map(function (TypeMetadataInterface $inner) {
-                        return (string) $inner;
-                    }, iterator_to_array($type))),
-                ]
-            ));
+        if (\count($filtered) <= 0) {
+            throw new IncompatibleTypeException(strtr('Expected to have at least one scalar or array type, got none compatible: %actual%.', ['%actual%' => implode(', ', array_map(fn (TypeMetadataInterface $inner) => (string) $inner, iterator_to_array($type)))]));
         }
 
-        if (count($filtered) > 1) {
+        if (\count($filtered) > 1) {
             return new UnionTypeMetadata(...$filtered);
         }
 

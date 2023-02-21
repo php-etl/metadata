@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -6,10 +8,10 @@ use Kiboko\Contract\Metadata\MethodMetadataInterface;
 
 trait VirtualUnaryTrait
 {
-    private ?MethodMetadataInterface $accessor;
-    private ?MethodMetadataInterface $mutator;
-    private ?MethodMetadataInterface $checker;
-    private ?MethodMetadataInterface $remover;
+    private ?MethodMetadataInterface $accessor = null;
+    private ?MethodMetadataInterface $mutator = null;
+    private ?MethodMetadataInterface $checker = null;
+    private ?MethodMetadataInterface $remover = null;
 
     public function getAccessor(): ?MethodMetadataInterface
     {

@@ -1,14 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
-final class CompositeUnionTypeMetadata implements CompositeTypeMetadataInterface, UnionTypeMetadataInterface
+final class CompositeUnionTypeMetadata implements CompositeTypeMetadataInterface, UnionTypeMetadataInterface, \Stringable
 {
     /** @var CompositeTypeMetadataInterface[] */
-    private iterable $types;
+    private readonly iterable $types;
 
     public function __construct(CompositeTypeMetadataInterface ...$types)
     {
@@ -17,7 +19,7 @@ final class CompositeUnionTypeMetadata implements CompositeTypeMetadataInterface
 
     public function count(): int
     {
-        return count($this->types);
+        return \count($this->types);
     }
 
     public function getIterator(): \ArrayIterator
@@ -27,8 +29,6 @@ final class CompositeUnionTypeMetadata implements CompositeTypeMetadataInterface
 
     public function __toString(): string
     {
-        return implode('|', array_map(function (CompositeTypeMetadataInterface $type) {
-            return (string) $type;
-        }, $this->types));
+        return implode('|', array_map(fn (CompositeTypeMetadataInterface $type) => (string) $type, $this->types));
     }
 }

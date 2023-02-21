@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -10,14 +12,9 @@ final class MethodMetadata implements MethodMetadataInterface
 {
     use NamedTrait;
 
-    private ArgumentListMetadataInterface $arguments;
-    private TypeMetadataInterface $returnType;
-
-    public function __construct(string $name, ArgumentListMetadataInterface $argumentList, ?TypeMetadataInterface $returnType = null)
+    public function __construct(string $name, private readonly ArgumentListMetadataInterface $arguments, private readonly TypeMetadataInterface $returnType = new VoidTypeMetadata())
     {
         $this->name = $name;
-        $this->arguments = $argumentList;
-        $this->returnType = $returnType ?? new VoidTypeMetadata();
     }
 
     public function getArguments(): ArgumentListMetadataInterface

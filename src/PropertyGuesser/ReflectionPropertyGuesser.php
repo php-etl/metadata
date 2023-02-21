@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\PropertyGuesser;
 
@@ -7,7 +9,7 @@ use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\PropertyGuesserInterface;
 use Kiboko\Contract\Metadata\TypeGuesser\TypeGuesserInterface;
 
-final class ReflectionPropertyGuesser implements PropertyGuesserInterface
+final readonly class ReflectionPropertyGuesser implements PropertyGuesserInterface
 {
     public function __construct(private TypeGuesserInterface $typeGuesser)
     {
@@ -16,9 +18,7 @@ final class ReflectionPropertyGuesser implements PropertyGuesserInterface
     public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
     {
         yield from array_map(
-            function (\ReflectionProperty $property) use ($classOrObject) {
-                return new PropertyMetadata($property->getName(), ($this->typeGuesser)($classOrObject, $property));
-            },
+            fn (\ReflectionProperty $property) => new PropertyMetadata($property->getName(), ($this->typeGuesser)($classOrObject, $property)),
             $classOrObject->getProperties(\ReflectionProperty::IS_PUBLIC)
         );
     }

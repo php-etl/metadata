@@ -1,14 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\IterableTypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
-final class IterableUnionTypeMetadata implements IterableTypeMetadataInterface, UnionTypeMetadataInterface
+final class IterableUnionTypeMetadata implements IterableTypeMetadataInterface, UnionTypeMetadataInterface, \Stringable
 {
     /** @var IterableTypeMetadataInterface[] */
-    private iterable $types;
+    private readonly iterable $types;
 
     public function __construct(IterableTypeMetadataInterface ...$types)
     {
@@ -17,7 +19,7 @@ final class IterableUnionTypeMetadata implements IterableTypeMetadataInterface, 
 
     public function count(): int
     {
-        return count($this->types);
+        return \count($this->types);
     }
 
     public function getIterator(): \ArrayIterator
@@ -27,8 +29,6 @@ final class IterableUnionTypeMetadata implements IterableTypeMetadataInterface, 
 
     public function __toString(): string
     {
-        return implode('|', array_map(function (IterableTypeMetadataInterface $type) {
-            return (string) $type;
-        }, $this->types));
+        return implode('|', array_map(fn (IterableTypeMetadataInterface $type) => (string) $type, $this->types));
     }
 }

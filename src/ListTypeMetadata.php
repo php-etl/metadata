@@ -1,17 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\ListTypeMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
-final class ListTypeMetadata implements ListTypeMetadataInterface
+final readonly class ListTypeMetadata implements ListTypeMetadataInterface, \Stringable
 {
-    private TypeMetadataInterface $inner;
-
-    public function __construct(TypeMetadataInterface $inner)
+    public function __construct(private TypeMetadataInterface $inner)
     {
-        $this->inner = $inner;
     }
 
     public function __toString(): string

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\FieldGuesser;
 
@@ -8,7 +10,7 @@ use Kiboko\Contract\Metadata\FieldGuesserInterface;
 final class FieldGuesserChain implements FieldGuesserInterface
 {
     /** @var FieldGuesserInterface[] */
-    private iterable $inner;
+    private readonly iterable $inner;
 
     public function __construct(FieldGuesserInterface ...$inner)
     {

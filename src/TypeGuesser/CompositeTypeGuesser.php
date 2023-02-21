@@ -1,17 +1,19 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\TypeGuesser;
 
 use Kiboko\Component\Metadata\MixedTypeMetadata;
-use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
 use Kiboko\Contract\Metadata\TypeGuesser;
+use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 class CompositeTypeGuesser implements TypeGuesser\TypeGuesserInterface
 {
     public function __construct(
-        private TypeGuesser\Native\TypeGuesserInterface $php74Guesser,
-        private TypeGuesser\Docblock\TypeGuesserInterface $docblockGuesser
+        private readonly TypeGuesser\Native\TypeGuesserInterface $php74Guesser,
+        private readonly TypeGuesser\Docblock\TypeGuesserInterface $docblockGuesser
     ) {
     }
 
@@ -19,11 +21,8 @@ class CompositeTypeGuesser implements TypeGuesser\TypeGuesserInterface
     {
         $types = iterator_to_array($this->walkTypes($class, $reflector), false);
 
-        if (count($types) <= 0) {
+        if (\count($types) <= 0) {
             return new MixedTypeMetadata();
-        }
-        if (count($types) > 1) {
-            return new UnionTypeMetadata(...$types);
         }
 
         return reset($types);
@@ -31,20 +30,18 @@ class CompositeTypeGuesser implements TypeGuesser\TypeGuesserInterface
 
     private function walkTypes(\ReflectionClass $class, \Reflector $reflector): \Generator
     {
-        if (!$reflector instanceof \ReflectionProperty &&
-            !$reflector instanceof \ReflectionMethod &&
-            !$reflector instanceof \ReflectionParameter
+        if (!$reflector instanceof \ReflectionProperty
+            && !$reflector instanceof \ReflectionMethod
+            && !$reflector instanceof \ReflectionParameter
         ) {
-            throw new \InvalidArgumentException(
-                'Expected object of type \\ReflectionProperty, \\ReflectionMethod or \\ReflectionParameter.'
-            );
+            throw new \InvalidArgumentException('Expected object of type \\ReflectionProperty, \\ReflectionMethod or \\ReflectionParameter.');
         }
 
-        if (($reflector instanceof \ReflectionProperty || $reflector instanceof \ReflectionParameter) &&
-            $reflector->getType() !== null
+        if (($reflector instanceof \ReflectionProperty || $reflector instanceof \ReflectionParameter)
+            && null !== $reflector->getType()
         ) {
             yield from ($this->php74Guesser)($class, $reflector->getType());
-        } elseif ($reflector instanceof \ReflectionMethod && $reflector->getReturnType() !== null) {
+        } elseif ($reflector instanceof \ReflectionMethod && null !== $reflector->getReturnType()) {
             yield from ($this->php74Guesser)($class, $reflector->getReturnType());
         }
 

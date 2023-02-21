@@ -1,15 +1,17 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata\Annotated;
 
 use Kiboko\Contract\Metadata\AnnotatedInterface;
 use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
 
-final class ClassReferenceMetadata implements ClassReferenceMetadataInterface, AnnotatedInterface
+final class ClassReferenceMetadata implements ClassReferenceMetadataInterface, AnnotatedInterface, \Stringable
 {
     use AnnotatedTrait;
 
-    public function __construct(private ClassReferenceMetadataInterface $decorated, ?string $annotation = null)
+    public function __construct(private readonly ClassReferenceMetadataInterface $decorated, ?string $annotation = null)
     {
         $this->annotation = $annotation;
     }
