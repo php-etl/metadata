@@ -21,6 +21,31 @@ final readonly class ScalarTypeMetadata implements ScalarTypeMetadataInterface, 
         return $other instanceof self;
     }
 
+    public static function string(): self
+    {
+        return new self('string');
+    }
+
+    public static function boolean(): self
+    {
+        return new self('bool');
+    }
+
+    public static function float(): self
+    {
+        return new self('float');
+    }
+
+    public static function integer(): self
+    {
+        return new self('int');
+    }
+
+    public static function number(): self
+    {
+        return new self('numeric');
+    }
+
     public function getName(): string
     {
         return $this->name;
