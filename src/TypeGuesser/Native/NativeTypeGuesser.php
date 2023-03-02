@@ -41,9 +41,9 @@ class NativeTypeGuesser implements TypeGuesserInterface
                     throw new \RuntimeException('Reached an unexpected anonymous class.');
                 }
                 yield new ClassReferenceMetadata(
-                        $classReflector->getShortName(),
-                        $classReflector->getNamespaceName()
-                    );
+                    $classReflector->getShortName(),
+                    $classReflector->getNamespaceName()
+                );
             } catch (\ReflectionException $e) {
                 throw new \RuntimeException(strtr('The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.', ['%class.name%' => $reflector->getName()]), 0, $e);
             }

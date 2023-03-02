@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kiboko\Component\Metadata\TypeGuesser;
 
 use Kiboko\Component\Metadata\MixedTypeMetadata;
-use Kiboko\Component\Metadata\UnionTypeMetadata;
 use Kiboko\Contract\Metadata\TypeGuesser;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
