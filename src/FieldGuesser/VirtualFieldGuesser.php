@@ -33,7 +33,6 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
     {
         $typesCandidates = [];
         $methodCandidates = [];
-        /** @var MethodMetadataInterface $method */
         foreach ($class->getMethods() as $method) {
             if (preg_match('/is(?<fieldName>[a-zA-Z_][a-zA-Z0-9_]*)/', $method->getName(), $matches)
                 && Type::is($method->getReturnType(), new ScalarTypeMetadata('bool'))
@@ -85,9 +84,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         }
 
         foreach ($methodCandidates as $fieldName => $actions) {
-            /** @var MethodMetadataInterface $accessor */
             $accessor = $actions['get'] ?? $actions['is'] ?? null;
-            /** @var MethodMetadataInterface $mutator */
             $mutator = $actions['set'] ?? null;
 
             if (!isset($accessor) && !isset($mutator)) {
@@ -105,6 +102,7 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
         }
     }
 
+    /** @return iterable<TypeMetadataInterface> */
     private function extractArgumentTypes(ArgumentListMetadataInterface $arguments): iterable
     {
         foreach ($arguments as $argument) {
@@ -114,6 +112,10 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
 
     private function guessType(TypeMetadataInterface ...$types): TypeMetadataInterface
     {
-        return reset($types) ?? new MixedTypeMetadata();
+        $type = reset($types);
+        if ($type !== false) {
+            return $type;
+        }
+        return new MixedTypeMetadata();
     }
 }

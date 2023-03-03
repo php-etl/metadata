@@ -7,6 +7,10 @@ namespace Kiboko\Component\Metadata;
 use Kiboko\Contract\Metadata\CompositeTypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnaryRelationMetadataInterface;
 
+/**
+ * @template Subject of object
+ * @implements UnaryRelationMetadataInterface<Subject>
+ */
 class UnaryRelationMetadata implements UnaryRelationMetadataInterface
 {
     use NamedTrait;
@@ -14,9 +18,9 @@ class UnaryRelationMetadata implements UnaryRelationMetadataInterface
 
     public function __construct(
         string $name,
-        CompositeTypeMetadataInterface ...$types
+        CompositeTypeMetadataInterface $type,
     ) {
         $this->name = $name;
-        $this->types = $types;
+        $this->type = $type;
     }
 }

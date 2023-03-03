@@ -6,6 +6,10 @@ namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
 
+/**
+ * @template Subject of object
+ * @implements ClassReferenceMetadataInterface<Subject>
+ */
 final readonly class ClassReferenceMetadata implements ClassReferenceMetadataInterface, \Stringable
 {
     public function __construct(
@@ -20,6 +24,21 @@ final readonly class ClassReferenceMetadata implements ClassReferenceMetadataInt
         }
     }
 
+    /**
+     * @param class-string<Subject> $fqcn
+     */
+    public static function fromClassName(string $fqcn): self
+    {
+        if (($index = strrpos($fqcn, '\\')) === false) {
+            return new self($fqcn);
+        } else {
+            return new self(
+                substr($fqcn, $index + 1),
+                substr($fqcn, 0, $index)
+            );
+        }
+    }
+
     public function getNamespace(): ?string
     {
         return $this->namespace;
@@ -30,6 +49,9 @@ final readonly class ClassReferenceMetadata implements ClassReferenceMetadataInt
         return $this->name;
     }
 
+    /**
+     * @return class-string<Subject>
+     */
     public function __toString(): string
     {
         return (null !== $this->namespace ? $this->namespace.'\\' : '').$this->name;

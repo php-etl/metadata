@@ -14,6 +14,7 @@ use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\MethodMetadataInterface;
 use Kiboko\Contract\Metadata\RelationGuesserInterface;
+use Kiboko\Contract\Metadata\RelationMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualRelationGuesser implements RelationGuesserInterface
@@ -35,6 +36,11 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
         return $this->inflector->singularize($field) === $field;
     }
 
+    /**
+     * @template Subject of object
+     * @param ClassTypeMetadataInterface<Subject> $class
+     * @return \Iterator<RelationMetadataInterface<Subject>>
+     */
     public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
         $typesCandidates = [];
