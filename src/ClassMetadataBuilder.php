@@ -22,11 +22,21 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
     ) {
     }
 
+    /**
+     * @template Subject of object
+     * @param ClassReferenceMetadataInterface<Subject> $class
+     * @return ClassTypeMetadataInterface<Subject>
+     */
     public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface
     {
         return $this->buildFromFQCN((string) $class);
     }
 
+    /**
+     * @template Subject of object
+     * @param class-string<Subject> $className
+     * @return ClassTypeMetadataInterface<Subject>
+     */
     public function buildFromFQCN(string $className): ClassTypeMetadataInterface
     {
         try {
@@ -36,23 +46,26 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
         }
     }
 
+    /**
+     * @template Subject of object
+     * @param Subject $object
+     * @return ClassTypeMetadataInterface
+     */
     public function buildFromObject(object $object): ClassTypeMetadataInterface
     {
         return $this->build(new \ReflectionObject($object));
     }
 
+    /**
+     * @template Subject of object
+     * @param \ReflectionClass<Subject> $classOrObject
+     * @return ClassTypeMetadataInterface<Subject>
+     */
     public function build(\ReflectionClass $classOrObject): ClassTypeMetadataInterface
     {
         try {
-            $fqcn = $classOrObject->getName();
-            if (($index = strrpos($fqcn, '\\')) === false) {
-                $metadata = new ClassTypeMetadata($fqcn);
-            } else {
-                $metadata = new ClassTypeMetadata(
-                    substr($fqcn, $index + 1),
-                    substr($fqcn, 0, $index)
-                );
-            }
+            /** @var ClassTypeMetadata<Subject> $metadata */
+            $metadata = ClassTypeMetadata::fromClassName($classOrObject->getName());
 
             $metadata->addProperties(...($this->propertyGuesser)($classOrObject, $metadata));
 

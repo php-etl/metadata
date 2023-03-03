@@ -7,6 +7,10 @@ namespace Kiboko\Component\Metadata;
 use Kiboko\Contract\Metadata\FieldMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
+/**
+ * @template Subject of object
+ * @implements FieldMetadataInterface<Subject>
+ */
 class FieldMetadata implements FieldMetadataInterface
 {
     use NamedTrait;
@@ -14,7 +18,7 @@ class FieldMetadata implements FieldMetadataInterface
 
     public function __construct(
         string $name,
-        TypeMetadataInterface $type
+        TypeMetadataInterface $type,
     ) {
         $this->name = $name;
         $this->type = $type;

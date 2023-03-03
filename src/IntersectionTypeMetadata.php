@@ -7,14 +7,17 @@ namespace Kiboko\Component\Metadata;
 use Kiboko\Contract\Metadata\IntersectionTypeMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
-final class IntersectionTypeMetadata implements IntersectionTypeMetadataInterface, \Stringable
+/**
+ * @implements \IteratorAggregate<TypeMetadataInterface>
+ */
+final class IntersectionTypeMetadata implements IntersectionTypeMetadataInterface, \IteratorAggregate, \Stringable
 {
-    /** @var TypeMetadataInterface[] */
-    private readonly iterable $types;
+    /** @var list<TypeMetadataInterface> */
+    private readonly array $types;
 
     public function __construct(TypeMetadataInterface ...$types)
     {
-        $this->types = $types;
+        $this->types = array_values($types);
     }
 
     public function count(): int
@@ -22,6 +25,9 @@ final class IntersectionTypeMetadata implements IntersectionTypeMetadataInterfac
         return \count($this->types);
     }
 
+    /**
+     * @return \Traversable<TypeMetadataInterface>
+     */
     public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->types);

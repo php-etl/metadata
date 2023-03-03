@@ -11,10 +11,17 @@ use Kiboko\Contract\Metadata\MethodMetadataInterface;
 use Kiboko\Contract\Metadata\PropertyMetadataInterface;
 use Kiboko\Contract\Metadata\RelationMetadataInterface;
 
+/**
+ * @template Subject of object
+ * @implements ClassTypeMetadataInterface<Subject>
+ */
 final class ClassTypeMetadata implements ClassTypeMetadataInterface, AnnotatedInterface, \Stringable
 {
     use AnnotatedTrait;
 
+    /**
+     * @param ClassTypeMetadataInterface<Subject> $decorated
+     */
     public function __construct(private readonly ClassTypeMetadataInterface $decorated, ?string $annotation = null)
     {
         $this->annotation = $annotation;
@@ -90,6 +97,9 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface, AnnotatedIn
         return $this->decorated->addRelations(...$relations);
     }
 
+    /**
+     * @return class-string<Subject>
+     */
     public function __toString(): string
     {
         return (string) $this->decorated;

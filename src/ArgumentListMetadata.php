@@ -7,10 +7,13 @@ namespace Kiboko\Component\Metadata;
 use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
 
+/**
+ * @implements \IteratorAggregate<ArgumentMetadataInterface>
+ */
 final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMetadataInterface
 {
-    /** @var ArgumentMetadataInterface[] */
-    private readonly iterable $arguments;
+    /** @var list<ArgumentMetadataInterface> */
+    private readonly array $arguments;
 
     public function __construct(ArgumentMetadataInterface ...$arguments)
     {
@@ -18,7 +21,7 @@ final class ArgumentListMetadata implements \IteratorAggregate, ArgumentListMeta
     }
 
     /**
-     * @return \ArrayIterator|\Traversable|ArgumentMetadataInterface[]
+     * @return \Traversable<ArgumentMetadataInterface>
      */
     public function getIterator(): \Traversable
     {

@@ -11,37 +11,90 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class Type
 {
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $boolean = ['bool', 'boolean'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $integer = ['int', 'integer'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $float = ['float', 'decimal', 'double'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $numberMeta = ['numeric', 'number'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $numberCompatible = ['int', 'integer', 'float', 'decimal', 'double', 'numeric', 'number'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $string = ['string'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $binary = ['binary'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $array = ['array'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $iterable = ['iterable'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $callable = ['callable'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $resource = ['resource'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
+    public static $object = ['object'];
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $null = ['null'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $void = ['void'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $static = ['static'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $self = ['self'];
-    /** @internal */
+    /**
+     * @internal
+     * @var list<string>
+     */
     public static $builtInTypes = [
         'bool', 'boolean',
         'int', 'integer',
@@ -55,10 +108,7 @@ final class Type
         'null',
     ];
 
-    /**
-     * @param UnionTypeMetadata $right
-     */
-    public static function isSubsetOf(UnionTypeMetadata $left, iterable $right): UnionTypeMetadata
+    public static function isSubsetOf(UnionTypeMetadata $left, UnionTypeMetadata $right): UnionTypeMetadata
     {
         $types = [];
         foreach ($left as $type) {
@@ -102,7 +152,7 @@ final class Type
         }
         if ($left instanceof CollectionTypeMetadataInterface && $right instanceof CollectionTypeMetadataInterface) {
             return self::is($left->getType(), $right->getType())
-                && (((string) $left === (string) $right) || is_a((string) $left->getInner(), (string) $right->getInner()));
+                && (((string) $left === (string) $right) || is_a((string) $left->getInner(), (string) $right->getInner(), true));
         }
         if ($left instanceof ScalarTypeMetadata && $right instanceof ScalarTypeMetadata) {
             return ((string) $left) === ((string) $right)

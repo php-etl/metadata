@@ -41,6 +41,15 @@ final readonly class ScalarTypeMetadata implements ScalarTypeMetadataInterface, 
         if (\in_array($type, Type::$binary)) {
             return self::string();
         }
+        if (\in_array($type, Type::$array)) {
+            return self::array();
+        }
+        if (\in_array($type, Type::$iterable)) {
+            return self::iterable();
+        }
+        if (\in_array($type, Type::$object)) {
+            return self::object();
+        }
 
         throw new \RuntimeException(strtr('The type "%type.name%" is not a built in PHP type.', ['%type.name%' => $type]));
     }
@@ -73,6 +82,21 @@ final readonly class ScalarTypeMetadata implements ScalarTypeMetadataInterface, 
     public static function binary(): self
     {
         return new self('binary');
+    }
+
+    public static function array(): self
+    {
+        return new self('array');
+    }
+
+    public static function iterable(): self
+    {
+        return new self('iterable');
+    }
+
+    public static function object(): self
+    {
+        return new self('object');
     }
 
     public static function tryBoolean(string $type): self

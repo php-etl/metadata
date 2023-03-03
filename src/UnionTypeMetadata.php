@@ -7,14 +7,17 @@ namespace Kiboko\Component\Metadata;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
-final class UnionTypeMetadata implements UnionTypeMetadataInterface, \Stringable
+/**
+ * @implements \IteratorAggregate<TypeMetadataInterface>
+ */
+final class UnionTypeMetadata implements UnionTypeMetadataInterface, \IteratorAggregate, \Stringable
 {
-    /** @var TypeMetadataInterface[] */
-    private readonly iterable $types;
+    /** @var list<TypeMetadataInterface> */
+    private readonly array $types;
 
     public function __construct(TypeMetadataInterface ...$types)
     {
-        $this->types = $types;
+        $this->types = array_values($types);
     }
 
     public function count(): int
@@ -22,7 +25,10 @@ final class UnionTypeMetadata implements UnionTypeMetadataInterface, \Stringable
         return \count($this->types);
     }
 
-    public function getIterator(): \ArrayIterator
+    /**
+     * @return \Traversable<TypeMetadataInterface>
+     */
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->types);
     }

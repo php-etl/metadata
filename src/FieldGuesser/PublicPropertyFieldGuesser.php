@@ -7,6 +7,7 @@ namespace Kiboko\Component\Metadata\FieldGuesser;
 use Kiboko\Component\Metadata\ArrayTypeMetadata;
 use Kiboko\Component\Metadata\FieldMetadata;
 use Kiboko\Component\Metadata\IncompatibleTypeException;
+use Kiboko\Component\Metadata\MixedTypeMetadata;
 use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
@@ -19,7 +20,6 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
 {
     public function __invoke(ClassTypeMetadataInterface $class): \Iterator
     {
-        /** @var PropertyMetadataInterface $property */
         foreach ($class->getProperties() as $property) {
             try {
                 yield new FieldMetadata(
@@ -59,6 +59,10 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
             return new UnionTypeMetadata(...$filtered);
         }
 
-        return reset($filtered);
+        $type = reset($filtered);
+        if ($type !== false) {
+            return $type;
+        }
+        return new MixedTypeMetadata();
     }
 }
