@@ -11,6 +11,10 @@ jobs:
                     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
                     restore-keys: |
                         ${{ runner.os }}-composer-
+            -   name: "Set COMPOSER_ROOT_VERSION environment variable"
+                uses: "ergebnis/composer-root-version-action@main"
+                with:
+                    branch: "main"
             -   uses: php-actions/composer@v6
                 with:
                     args: '--prefer-dist'

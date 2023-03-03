@@ -41,7 +41,7 @@ final class PublicPropertyMultipleRelationGuesser implements RelationGuesserInte
 
         $filtered = [];
         foreach ($type as $inner) {
-            if (!$type instanceof IterableTypeMetadataInterface) {
+            if (!$inner instanceof IterableTypeMetadataInterface) {
                 continue;
             }
 

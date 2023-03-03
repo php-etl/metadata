@@ -103,12 +103,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039"
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/570e980a201d8ed0236b0a62ddf2c9cbb2034039",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
                 "shasum": ""
             },
             "require": {
@@ -150,9 +150,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.3"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
             },
-            "time": "2023-01-16T22:05:37+00:00"
+            "time": "2023-03-05T19:49:14+00:00"
         },
         {
             "name": "php-etl/metadata-contracts",
@@ -160,12 +160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/metadata-contracts.git",
-                "reference": "4dda534a57ec49a9ccc6e0bb76ea7f5c7de925e9"
+                "reference": "aa0196e8ea6d0372c4abe58f2d950bd65f834a27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/metadata-contracts/zipball/4dda534a57ec49a9ccc6e0bb76ea7f5c7de925e9",
-                "reference": "4dda534a57ec49a9ccc6e0bb76ea7f5c7de925e9",
+                "url": "https://api.github.com/repos/php-etl/metadata-contracts/zipball/aa0196e8ea6d0372c4abe58f2d950bd65f834a27",
+                "reference": "aa0196e8ea6d0372c4abe58f2d950bd65f834a27",
                 "shasum": ""
             },
             "require": {
@@ -203,9 +203,9 @@
             "description": "Interfaces for the Metadata package whose role is to describe data structures.",
             "support": {
                 "issues": "https://github.com/php-etl/metadata-contracts/issues",
-                "source": "https://github.com/php-etl/metadata-contracts/tree/main"
+                "source": "https://github.com/php-etl/metadata-contracts/tree/v0.2.0"
             },
-            "time": "2023-02-28T13:37:24+00:00"
+            "time": "2023-03-02T21:55:04+00:00"
         },
         {
             "name": "phpactor/docblock",
@@ -1199,12 +1199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "aed9319bda4e1bf862e2576baf28949877891853"
+                "reference": "83b6014ed3af60ce3bedf3e6b8902086281d3130"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/aed9319bda4e1bf862e2576baf28949877891853",
-                "reference": "aed9319bda4e1bf862e2576baf28949877891853",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/83b6014ed3af60ce3bedf3e6b8902086281d3130",
+                "reference": "83b6014ed3af60ce3bedf3e6b8902086281d3130",
                 "shasum": ""
             },
             "require": {
@@ -1251,7 +1251,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-02T09:48:34+00:00"
+            "time": "2023-03-06T08:40:05+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1259,12 +1259,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "700aa825126460ce5be79ae5e1cf2e2c5b71588b"
+                "reference": "9d7019dcb26dcf45aca95596b19bf52cef855844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/700aa825126460ce5be79ae5e1cf2e2c5b71588b",
-                "reference": "700aa825126460ce5be79ae5e1cf2e2c5b71588b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9d7019dcb26dcf45aca95596b19bf52cef855844",
+                "reference": "9d7019dcb26dcf45aca95596b19bf52cef855844",
                 "shasum": ""
             },
             "require": {
@@ -1286,8 +1286,8 @@
                 "phpunit/phpunit": "^9.3"
             },
             "suggest": {
-                "ext-pcov": "*",
-                "ext-xdebug": "*"
+                "ext-pcov": "PHP extension that provides line coverage",
+                "ext-xdebug": "PHP extension that provides line coverage as well as branch and path coverage"
             },
             "type": "library",
             "extra": {
@@ -1328,7 +1328,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-27T12:51:14+00:00"
+            "time": "2023-03-06T07:17:57+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1577,12 +1577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d6454d6dd71024848893a1e2d1f1dd78683351db"
+                "reference": "31a21e7905dc09f6254eb69e8aa102f3ee799376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d6454d6dd71024848893a1e2d1f1dd78683351db",
-                "reference": "d6454d6dd71024848893a1e2d1f1dd78683351db",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/31a21e7905dc09f6254eb69e8aa102f3ee799376",
+                "reference": "31a21e7905dc09f6254eb69e8aa102f3ee799376",
                 "shasum": ""
             },
             "require": {
@@ -1615,8 +1615,8 @@
                 "sebastian/version": "^3.0.2"
             },
             "suggest": {
-                "ext-soap": "*",
-                "ext-xdebug": "*"
+                "ext-soap": "To be able to generate mocks based on WSDL files",
+                "ext-xdebug": "PHP extension that provides line coverage as well as branch and path coverage"
             },
             "bin": [
                 "phpunit"
@@ -1671,7 +1671,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-28T06:43:37+00:00"
+            "time": "2023-03-05T06:06:16+00:00"
         },
         {
             "name": "psr/cache",
@@ -1886,12 +1886,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "867e9441efb4eeb8b12ce66d51a332a7885849ad"
+                "reference": "7a5d9d8a623b9b3c60f88a1b5ef26dcd6a09cf67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/867e9441efb4eeb8b12ce66d51a332a7885849ad",
-                "reference": "867e9441efb4eeb8b12ce66d51a332a7885849ad",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/7a5d9d8a623b9b3c60f88a1b5ef26dcd6a09cf67",
+                "reference": "7a5d9d8a623b9b3c60f88a1b5ef26dcd6a09cf67",
                 "shasum": ""
             },
             "require": {
@@ -1940,7 +1940,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-02T15:27:05+00:00"
+            "time": "2023-03-05T23:49:34+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -3088,12 +3088,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1090bd292e4de35682f80e94d196c62aab4b3ad7"
+                "reference": "138fa49967e8196dc0a91d5f333d07ed76248ae3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1090bd292e4de35682f80e94d196c62aab4b3ad7",
-                "reference": "1090bd292e4de35682f80e94d196c62aab4b3ad7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/138fa49967e8196dc0a91d5f333d07ed76248ae3",
+                "reference": "138fa49967e8196dc0a91d5f333d07ed76248ae3",
                 "shasum": ""
             },
             "require": {
@@ -3176,7 +3176,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-25T17:00:13+00:00"
+            "time": "2023-03-03T15:47:02+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

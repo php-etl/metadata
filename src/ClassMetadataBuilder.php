@@ -25,7 +25,7 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
     /**
      * @template Subject of object
      * @param ClassReferenceMetadataInterface<Subject> $class
-     * @return ClassTypeMetadataInterface<Subject>
+     * @return ClassTypeMetadataInterface
      */
     public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface
     {
