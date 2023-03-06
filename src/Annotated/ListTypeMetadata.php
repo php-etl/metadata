@@ -12,8 +12,10 @@ final class ListTypeMetadata implements ListTypeMetadataInterface, AnnotatedInte
 {
     use AnnotatedTrait;
 
-    public function __construct(private readonly ListTypeMetadataInterface $decorated, ?string $annotation = null)
-    {
+    public function __construct(
+        private readonly ListTypeMetadataInterface $decorated,
+        ?string $annotation = null
+    ) {
         $this->annotation = $annotation;
     }
 

@@ -10,6 +10,7 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements MethodMetadataInterface<Subject>
  */
 final class MethodMetadata implements MethodMetadataInterface

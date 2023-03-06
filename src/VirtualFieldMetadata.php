@@ -9,7 +9,9 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @use VirtualUnaryTrait<Subject>
+ *
  * @extends FieldMetadata<Subject>
  */
 final class VirtualFieldMetadata extends FieldMetadata

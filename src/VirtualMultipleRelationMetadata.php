@@ -9,7 +9,9 @@ use Kiboko\Contract\Metadata\MethodMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @use VirtualMultipleTrait<Subject>
+ *
  * @extends MultipleRelationMetadata<Subject>
  */
 final class VirtualMultipleRelationMetadata extends MultipleRelationMetadata

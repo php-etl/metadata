@@ -9,6 +9,7 @@ use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements ClassReferenceMetadataInterface<Subject>
  */
 final class ClassReferenceMetadata implements ClassReferenceMetadataInterface, AnnotatedInterface, \Stringable

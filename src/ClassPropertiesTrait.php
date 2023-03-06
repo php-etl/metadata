@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Metadata;
 
@@ -35,6 +37,7 @@ trait ClassPropertiesTrait
 
     /**
      * @param PropertyMetadataInterface<Subject> ...$properties
+     *
      * @return ClassTypeMetadataInterface<Subject>
      */
     public function addProperties(PropertyMetadataInterface ...$properties): ClassTypeMetadataInterface

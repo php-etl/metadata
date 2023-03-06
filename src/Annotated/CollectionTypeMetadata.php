@@ -16,6 +16,7 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements CollectionTypeMetadataInterface<Subject>
  */
 final class CollectionTypeMetadata implements CollectionTypeMetadataInterface, AnnotatedInterface, \Stringable

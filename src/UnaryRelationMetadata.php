@@ -9,6 +9,7 @@ use Kiboko\Contract\Metadata\UnaryRelationMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements UnaryRelationMetadataInterface<Subject>
  */
 class UnaryRelationMetadata implements UnaryRelationMetadataInterface

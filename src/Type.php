@@ -13,86 +13,103 @@ final class Type
 {
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $boolean = ['bool', 'boolean'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $integer = ['int', 'integer'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $float = ['float', 'decimal', 'double'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $numberMeta = ['numeric', 'number'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $numberCompatible = ['int', 'integer', 'float', 'decimal', 'double', 'numeric', 'number'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $string = ['string'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $binary = ['binary'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $array = ['array'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $iterable = ['iterable'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $callable = ['callable'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $resource = ['resource'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $object = ['object'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $null = ['null'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $void = ['void'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $static = ['static'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $self = ['self'];
     /**
      * @internal
+     *
      * @var list<string>
      */
     public static $builtInTypes = [

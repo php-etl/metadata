@@ -38,7 +38,9 @@ final class VirtualRelationGuesser implements RelationGuesserInterface
 
     /**
      * @template Subject of object
+     *
      * @param ClassTypeMetadataInterface<Subject> $class
+     *
      * @return \Iterator<RelationMetadataInterface>
      */
     public function __invoke(ClassTypeMetadataInterface $class): \Iterator

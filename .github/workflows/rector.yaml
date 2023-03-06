@@ -23,16 +23,16 @@ jobs:
                 if: github.event.pull_request.head.repo.full_name != github.repository
                 uses: actions/checkout@v3
 
+            -   name: "Set COMPOSER_ROOT_VERSION environment variable"
+                uses: "ergebnis/composer-root-version-action@main"
+                with:
+                    branch: "main"
+
             -
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: '8.2'
                     coverage: none
-
-            -   name: "Set COMPOSER_ROOT_VERSION environment variable"
-                uses: "ergebnis/composer-root-version-action@main"
-                with:
-                    branch: "main"
 
             -   uses: "ramsey/composer-install@v2"
 

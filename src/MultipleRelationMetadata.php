@@ -9,6 +9,7 @@ use Kiboko\Contract\Metadata\MultipleRelationMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements MultipleRelationMetadataInterface<Subject>
  */
 class MultipleRelationMetadata implements MultipleRelationMetadataInterface
