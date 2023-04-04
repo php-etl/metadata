@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6d776c27239a637fb9118d92bf7f2f0",
+    "content-hash": "52d585224de1047e5715be74acff513d",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -932,16 +932,16 @@
         },
         {
             "name": "php-etl/phpspec-extension",
-            "version": "0.4.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/phpspec-extension.git",
-                "reference": "8ca954c656768ec7f0161e8f9e0d94f8011716ec"
+                "reference": "f6b50ba6613c66983e26150aeb4989c4fc3f2976"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/phpspec-extension/zipball/8ca954c656768ec7f0161e8f9e0d94f8011716ec",
-                "reference": "8ca954c656768ec7f0161e8f9e0d94f8011716ec",
+                "url": "https://api.github.com/repos/php-etl/phpspec-extension/zipball/f6b50ba6613c66983e26150aeb4989c4fc3f2976",
+                "reference": "f6b50ba6613c66983e26150aeb4989c4fc3f2976",
                 "shasum": ""
             },
             "require": {
@@ -949,7 +949,7 @@
                 "friends-of-phpspec/phpspec-code-coverage": "^6",
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/metadata": "^0.3",
+                "php-etl/metadata": "^0.4",
                 "phpspec/phpspec": "^7.0",
                 "symfony/expression-language": "^5.2",
                 "symfony/inflector": "^5.2",
@@ -958,6 +958,7 @@
             "require-dev": {
                 "rector/rector": "^0.15@dev"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -988,9 +989,9 @@
             "description": "Extension for testing FastMap and ETL components with PHPSpec testing framework",
             "support": {
                 "issues": "https://github.com/php-etl/phpspec-extension/issues",
-                "source": "https://github.com/php-etl/phpspec-extension/tree/0.4.0"
+                "source": "https://github.com/php-etl/phpspec-extension/tree/main"
             },
-            "time": "2023-04-04T08:32:17+00:00"
+            "time": "2023-04-04T09:22:46+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
