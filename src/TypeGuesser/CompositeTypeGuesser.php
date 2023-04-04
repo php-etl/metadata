@@ -52,7 +52,7 @@ class CompositeTypeGuesser implements TypeGuesser\TypeGuesserInterface
         }
         if ($reflector instanceof \ReflectionParameter) {
             // FIXME: implement the way od discovering parameter docblocks
-//            yield from ($this->docblockGuesser)('param', $class, $reflector);
+            // yield from ($this->docblockGuesser)('param', $class, $reflector);
         }
     }
 }

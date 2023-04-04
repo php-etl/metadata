@@ -182,8 +182,7 @@ final class Type
                 || (\in_array((string) $left, self::$array) && \in_array((string) $right, self::$array))
                 || (\in_array((string) $left, self::$iterable) && (\in_array((string) $right, self::$iterable) || \in_array((string) $left, self::$array)))
                 || (\in_array((string) $left, self::$callable) && (\in_array((string) $right, self::$callable) || \in_array((string) $left, self::$array)))
-                || (\in_array((string) $left, self::$resource) && \in_array((string) $right, self::$resource))
-            ;
+                || (\in_array((string) $left, self::$resource) && \in_array((string) $right, self::$resource));
         }
 
         return $left == $right;
