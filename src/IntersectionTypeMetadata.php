@@ -26,7 +26,7 @@ final class IntersectionTypeMetadata implements IntersectionTypeMetadataInterfac
     }
 
     /**
-     * @return \Traversable<TypeMetadataInterface>
+     * @return \ArrayIterator<TypeMetadataInterface>
      */
     public function getIterator(): \ArrayIterator
     {

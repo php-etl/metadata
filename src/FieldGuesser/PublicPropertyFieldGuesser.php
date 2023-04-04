@@ -12,7 +12,6 @@ use Kiboko\Component\Metadata\ScalarTypeMetadata;
 use Kiboko\Component\Metadata\UnionTypeMetadata;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\FieldGuesserInterface;
-use Kiboko\Contract\Metadata\PropertyMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 use Kiboko\Contract\Metadata\UnionTypeMetadataInterface;
 
@@ -60,9 +59,10 @@ final class PublicPropertyFieldGuesser implements FieldGuesserInterface
         }
 
         $type = reset($filtered);
-        if ($type !== false) {
+        if (false !== $type) {
             return $type;
         }
+
         return new MixedTypeMetadata();
     }
 }

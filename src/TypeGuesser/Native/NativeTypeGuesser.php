@@ -23,7 +23,7 @@ class NativeTypeGuesser implements TypeGuesserInterface
             yield new IntersectionTypeMetadata(...array_map(fn ($reflector) => $this($class, $reflector), $reflector->getTypes()));
         } elseif ($reflector instanceof \ReflectionNamedType && $reflector->isBuiltin()) {
             yield $this->builtInType($reflector->getName());
-        } elseif ('self' === $reflector->getName() || 'static' === $reflector->getName()) {
+        } elseif ('self' === (string) $reflector || 'static' === (string) $reflector) {
             try {
                 $classReflector = new \ReflectionClass($class->getName());
                 yield new ClassReferenceMetadata(
@@ -31,21 +31,21 @@ class NativeTypeGuesser implements TypeGuesserInterface
                     $classReflector->getNamespaceName()
                 );
             } catch (\ReflectionException $e) {
-                throw new \RuntimeException(strtr('The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.', ['%class.name%' => $reflector->getName()]), 0, $e);
+                throw new \RuntimeException(strtr('The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.', ['%class.name%' => (string) $reflector]), 0, $e);
             }
         } else {
             try {
-                $classReflector = new \ReflectionClass($reflector->getName());
+                $classReflector = new \ReflectionClass($reflector);
 
                 if ($classReflector->isAnonymous()) {
                     throw new \RuntimeException('Reached an unexpected anonymous class.');
                 }
                 yield new ClassReferenceMetadata(
-                        $classReflector->getShortName(),
-                        $classReflector->getNamespaceName()
-                    );
+                    $classReflector->getShortName(),
+                    $classReflector->getNamespaceName()
+                );
             } catch (\ReflectionException $e) {
-                throw new \RuntimeException(strtr('The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.', ['%class.name%' => $reflector->getName()]), 0, $e);
+                throw new \RuntimeException(strtr('The class %class.name% was not declared. It does either not exist or it does not have been auto-loaded.', ['%class.name%' => (string) $reflector]), 0, $e);
             }
         }
 

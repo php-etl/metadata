@@ -9,7 +9,9 @@ use Kiboko\Contract\Metadata\MethodMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @use VirtualUnaryTrait<Subject>
+ *
  * @extends UnaryRelationMetadata<Subject>
  */
 final class VirtualUnaryRelationMetadata extends UnaryRelationMetadata

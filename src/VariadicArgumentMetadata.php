@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\ArgumentMetadataInterface;
-use Kiboko\Contract\Metadata\TypedInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VariadicArgumentMetadata implements ArgumentMetadataInterface

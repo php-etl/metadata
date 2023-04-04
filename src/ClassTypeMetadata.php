@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
-use Kiboko\Contract\Metadata\FieldMetadataInterface;
-use Kiboko\Contract\Metadata\MethodMetadataInterface;
-use Kiboko\Contract\Metadata\PropertyMetadataInterface;
-use Kiboko\Contract\Metadata\RelationMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements ClassTypeMetadataInterface<Subject>
+ *
  * @use ClassPropertiesTrait<Subject>
  * @use ClassMethodsTrait<Subject>
  * @use ClassFieldsTrait<Subject>
@@ -25,8 +23,10 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface, \Stringable
     use ClassFieldsTrait;
     use ClassRelationsTrait;
 
-    public function __construct(private readonly ?string $name, private readonly ?string $namespace = null)
-    {
+    public function __construct(
+        private readonly ?string $name,
+        private readonly ?string $namespace = null
+    ) {
         if (null !== $this->name && str_contains($this->name, '\\')) {
             throw new \RuntimeException('Class names should not contain root namespace anchoring backslash or namespace.');
         }
@@ -45,12 +45,12 @@ final class ClassTypeMetadata implements ClassTypeMetadataInterface, \Stringable
     {
         if (($index = strrpos($fqcn, '\\')) === false) {
             return new self($fqcn);
-        } else {
-            return new self(
-                substr($fqcn, $index + 1),
-                substr($fqcn, 0, $index)
-            );
         }
+
+        return new self(
+            substr($fqcn, $index + 1),
+            substr($fqcn, 0, $index)
+        );
     }
 
     public function getNamespace(): ?string

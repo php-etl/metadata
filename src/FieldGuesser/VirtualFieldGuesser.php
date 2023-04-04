@@ -12,7 +12,6 @@ use Kiboko\Component\Metadata\VirtualFieldMetadata;
 use Kiboko\Contract\Metadata\ArgumentListMetadataInterface;
 use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\FieldGuesserInterface;
-use Kiboko\Contract\Metadata\MethodMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 final class VirtualFieldGuesser implements FieldGuesserInterface
@@ -113,9 +112,10 @@ final class VirtualFieldGuesser implements FieldGuesserInterface
     private function guessType(TypeMetadataInterface ...$types): TypeMetadataInterface
     {
         $type = reset($types);
-        if ($type !== false) {
+        if (false !== $type) {
             return $type;
         }
+
         return new MixedTypeMetadata();
     }
 }

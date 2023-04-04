@@ -18,8 +18,10 @@ final readonly class ReflectionMethodGuesser implements MethodGuesserInterface
     {
     }
 
-    public function __invoke(\ReflectionClass $classOrObject, ClassTypeMetadataInterface $class): \Iterator
-    {
+    public function __invoke(
+        \ReflectionClass $classOrObject,
+        ClassTypeMetadataInterface $class
+    ): \Iterator {
         yield from array_map(
             fn (\ReflectionMethod $method) => new MethodMetadata(
                 $method->getName(),

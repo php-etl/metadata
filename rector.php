@@ -13,6 +13,11 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/src',
     ]);
 
+    // We are skipping this file because there is a conflict between rector refacto and phpstan
+    $rectorConfig->skip([
+        __DIR__ . '/src/TypeGuesser/Native/NativeTypeGuesser.php',
+    ]);
+
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
 
     $rectorConfig->sets([

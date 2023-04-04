@@ -13,6 +13,7 @@ use Kiboko\Contract\Metadata\RelationMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements ClassTypeMetadataInterface<Subject>
  */
 final class ClassTypeMetadata implements ClassTypeMetadataInterface, AnnotatedInterface, \Stringable

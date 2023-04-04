@@ -24,8 +24,10 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
 
     /**
      * @template Subject of object
+     *
      * @param ClassReferenceMetadataInterface<Subject> $class
-     * @return ClassTypeMetadataInterface<Subject>
+     *
+     * @return ClassTypeMetadataInterface<object>
      */
     public function buildFromReference(ClassReferenceMetadataInterface $class): ClassTypeMetadataInterface
     {
@@ -34,7 +36,9 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
 
     /**
      * @template Subject of object
+     *
      * @param class-string<Subject> $className
+     *
      * @return ClassTypeMetadataInterface<Subject>
      */
     public function buildFromFQCN(string $className): ClassTypeMetadataInterface
@@ -48,8 +52,10 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
 
     /**
      * @template Subject of object
+     *
      * @param Subject $object
-     * @return ClassTypeMetadataInterface
+     *
+     * @return ClassTypeMetadataInterface<object>
      */
     public function buildFromObject(object $object): ClassTypeMetadataInterface
     {
@@ -58,7 +64,9 @@ final readonly class ClassMetadataBuilder implements ClassMetadataBuilderInterfa
 
     /**
      * @template Subject of object
+     *
      * @param \ReflectionClass<Subject> $classOrObject
+     *
      * @return ClassTypeMetadataInterface<Subject>
      */
     public function build(\ReflectionClass $classOrObject): ClassTypeMetadataInterface

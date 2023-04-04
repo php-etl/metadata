@@ -9,6 +9,7 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements PropertyMetadataInterface<Subject>
  */
 final class PropertyMetadata implements PropertyMetadataInterface

@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace Kiboko\Component\Metadata;
 
 use Kiboko\Contract\Metadata\ClassMetadataInterface;
-use Kiboko\Contract\Metadata\ClassTypeMetadataInterface;
 use Kiboko\Contract\Metadata\CollectionTypeMetadataInterface;
-use Kiboko\Contract\Metadata\FieldMetadataInterface;
-use Kiboko\Contract\Metadata\MethodMetadataInterface;
-use Kiboko\Contract\Metadata\PropertyMetadataInterface;
-use Kiboko\Contract\Metadata\RelationMetadataInterface;
 use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements CollectionTypeMetadataInterface<Subject>
+ *
  * @use ClassPropertiesTrait<Subject>
  * @use ClassMethodsTrait<Subject>
  * @use ClassFieldsTrait<Subject>

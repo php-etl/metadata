@@ -9,6 +9,7 @@ use Kiboko\Contract\Metadata\TypeMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements FieldMetadataInterface<Subject>
  */
 class FieldMetadata implements FieldMetadataInterface

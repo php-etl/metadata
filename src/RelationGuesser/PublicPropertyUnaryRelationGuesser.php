@@ -41,7 +41,7 @@ final class PublicPropertyUnaryRelationGuesser implements RelationGuesserInterfa
 
         $filtered = [];
         foreach ($type as $inner) {
-            if (!$type instanceof CompositeTypeMetadataInterface) {
+            if (!$inner instanceof CompositeTypeMetadataInterface) {
                 continue;
             }
 

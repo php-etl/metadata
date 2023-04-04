@@ -8,6 +8,7 @@ use Kiboko\Contract\Metadata\ClassReferenceMetadataInterface;
 
 /**
  * @template Subject of object
+ *
  * @implements ClassReferenceMetadataInterface<Subject>
  */
 final readonly class ClassReferenceMetadata implements ClassReferenceMetadataInterface, \Stringable
@@ -31,12 +32,12 @@ final readonly class ClassReferenceMetadata implements ClassReferenceMetadataInt
     {
         if (($index = strrpos($fqcn, '\\')) === false) {
             return new self($fqcn);
-        } else {
-            return new self(
-                substr($fqcn, $index + 1),
-                substr($fqcn, 0, $index)
-            );
         }
+
+        return new self(
+            substr($fqcn, $index + 1),
+            substr($fqcn, 0, $index)
+        );
     }
 
     public function getNamespace(): ?string
