@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9b2d66c4512c0f5d151338eb9264113",
+    "content-hash": "8b5ea3e0f0ae1d74d36c45aec2c982d5",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -936,12 +936,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/phpspec-extension.git",
-                "reference": "a2debc02f8f6cb67df60867e33648368a1d48752"
+                "reference": "c11ce955537d63d5de960de4c49290014619c3d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/phpspec-extension/zipball/a2debc02f8f6cb67df60867e33648368a1d48752",
-                "reference": "a2debc02f8f6cb67df60867e33648368a1d48752",
+                "url": "https://api.github.com/repos/php-etl/phpspec-extension/zipball/c11ce955537d63d5de960de4c49290014619c3d5",
+                "reference": "c11ce955537d63d5de960de4c49290014619c3d5",
                 "shasum": ""
             },
             "require": {
@@ -949,7 +949,7 @@
                 "friends-of-phpspec/phpspec-code-coverage": "^6",
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/metadata": "^0.4",
+                "php-etl/metadata": "*",
                 "phpspec/phpspec": "^7.0"
             },
             "require-dev": {
@@ -987,7 +987,7 @@
                 "issues": "https://github.com/php-etl/phpspec-extension/issues",
                 "source": "https://github.com/php-etl/phpspec-extension/tree/v0.4.0"
             },
-            "time": "2023-04-04T09:44:55+00:00"
+            "time": "2023-04-06T12:06:24+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
