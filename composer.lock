@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52d585224de1047e5715be74acff513d",
+    "content-hash": "f9b2d66c4512c0f5d151338eb9264113",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1357,16 +1357,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.17.0",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "bfec8729f7e23c40670f98e27e694cfdb13fc12a"
+                "reference": "882eabc9b6a12e25c27091a261397f9c8792e722"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/bfec8729f7e23c40670f98e27e694cfdb13fc12a",
-                "reference": "bfec8729f7e23c40670f98e27e694cfdb13fc12a",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/882eabc9b6a12e25c27091a261397f9c8792e722",
+                "reference": "882eabc9b6a12e25c27091a261397f9c8792e722",
                 "shasum": ""
             },
             "require": {
@@ -1396,22 +1396,22 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.17.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.18.0"
             },
-            "time": "2023-04-04T08:27:19+00:00"
+            "time": "2023-04-06T07:26:43+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.10",
+            "version": "1.10.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f1e22c9b17a879987f8743d81533250a5fff47f9"
+                "reference": "8aa62e6ea8b58ffb650e02940e55a788cbc3fe21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f1e22c9b17a879987f8743d81533250a5fff47f9",
-                "reference": "f1e22c9b17a879987f8743d81533250a5fff47f9",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8aa62e6ea8b58ffb650e02940e55a788cbc3fe21",
+                "reference": "8aa62e6ea8b58ffb650e02940e55a788cbc3fe21",
                 "shasum": ""
             },
             "require": {
@@ -1460,7 +1460,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-01T17:06:15+00:00"
+            "time": "2023-04-04T19:17:42+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1862,16 +1862,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.15.23",
+            "version": "0.15.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "f4984ebd62b3613002869b0ddd6868261d62819e"
+                "reference": "716473919bcfdc27bdd2a32afb72adbf4c224e59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f4984ebd62b3613002869b0ddd6868261d62819e",
-                "reference": "f4984ebd62b3613002869b0ddd6868261d62819e",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/716473919bcfdc27bdd2a32afb72adbf4c224e59",
+                "reference": "716473919bcfdc27bdd2a32afb72adbf4c224e59",
                 "shasum": ""
             },
             "require": {
@@ -1911,7 +1911,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.15.23"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.24"
             },
             "funding": [
                 {
@@ -1919,7 +1919,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-22T15:22:45+00:00"
+            "time": "2023-04-05T08:49:11+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
