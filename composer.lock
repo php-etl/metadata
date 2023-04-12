@@ -936,12 +936,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/phpspec-extension.git",
-                "reference": "c11ce955537d63d5de960de4c49290014619c3d5"
+                "reference": "325f1162a39569bab316ad66cbaa89bb313c9128"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/phpspec-extension/zipball/c11ce955537d63d5de960de4c49290014619c3d5",
-                "reference": "c11ce955537d63d5de960de4c49290014619c3d5",
+                "url": "https://api.github.com/repos/php-etl/phpspec-extension/zipball/325f1162a39569bab316ad66cbaa89bb313c9128",
+                "reference": "325f1162a39569bab316ad66cbaa89bb313c9128",
                 "shasum": ""
             },
             "require": {
@@ -987,7 +987,7 @@
                 "issues": "https://github.com/php-etl/phpspec-extension/issues",
                 "source": "https://github.com/php-etl/phpspec-extension/tree/v0.4.0"
             },
-            "time": "2023-04-06T12:06:24+00:00"
+            "time": "2023-04-12T13:26:31+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
