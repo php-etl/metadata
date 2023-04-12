@@ -19,7 +19,7 @@
         "php": "^8.2",
         "phpactor/docblock": "^0.3.0@dev",
         "nikic/php-parser": "^4.9@dev",
-        "php-etl/metadata-contracts": "0.2.0",
+        "php-etl/metadata-contracts": "0.2.*",
         "doctrine/inflector": "^2.0"
     },
     "require-dev": {
